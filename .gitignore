@@ -3,7 +3,8 @@
 .gitignore
 .idea/workspace.xml
 mybatis-generator-core-fix/target/
-src/main/resources/.gitignore
+src/main/resources/properties/
 src/main/test/resources/
 src/main/webapp/WEB-INF/lib/
 target/
+
