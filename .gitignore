@@ -6,6 +6,4 @@ mybatis-generator-core-fix/target/
 src/main/resources/.gitignore
 src/main/test/resources/
 src/main/webapp/WEB-INF/lib/
-src/main/resources/properties/jdbc_back.properties
-src/main/resources/properties/jdbc.properties
 target/
