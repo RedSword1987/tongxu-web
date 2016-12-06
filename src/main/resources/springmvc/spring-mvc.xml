@@ -21,4 +21,5 @@
     <context:component-scan base-package="com.tongxuweb.aspect"/>
     <bean id="controllAspect" class="com.tongxuweb.aspect.ControllAspect"/>
 
+
 </beans>
