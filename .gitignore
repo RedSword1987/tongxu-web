@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+.DS_Store
+.gitignore
+.idea/workspace.xml
+mybatis-generator-core-fix/target/
+src/main/resources/.gitignore
+src/main/test/resources/
+src/main/webapp/WEB-INF/lib/
+src/main/resources/properties/jdbc.properties
+target/
