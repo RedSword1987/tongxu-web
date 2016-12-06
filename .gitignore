@@ -4,7 +4,7 @@
 .idea/workspace.xml
 mybatis-generator-core-fix/target/
 src/main/test/resources/
-src/main/java/resources/properties/
+src/main/resources/properties/
 src/main/webapp/WEB-INF/lib/
 target/
 
