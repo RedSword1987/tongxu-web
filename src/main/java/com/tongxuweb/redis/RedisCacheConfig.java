@@ -1,5 +1,6 @@
 package com.tongxuweb.redis;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -17,12 +18,23 @@ import org.springframework.data.redis.core.RedisTemplate;
 @EnableCaching
 public class RedisCacheConfig extends CachingConfigurerSupport {
 
+
+    @Value("${redis_host}")
+    private String redisHost;
+
+    @Value("${redis_port}")
+    private Integer redisPort;
+
+    @Value("${redis_password}")
+    private String redisPassword;
+
+
     @Bean
     public JedisConnectionFactory redisConnectionFactory() {
         JedisConnectionFactory redisConnectionFactory = new JedisConnectionFactory();
-        redisConnectionFactory.setHostName("106.14.41.107");
-        redisConnectionFactory.setPort(6379);
-        redisConnectionFactory.setPassword("shao13451835104");
+        redisConnectionFactory.setHostName(redisHost);
+        redisConnectionFactory.setPort(redisPort);
+        redisConnectionFactory.setPassword(redisPassword);
         return redisConnectionFactory;
     }
 
