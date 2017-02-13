@@ -15,29 +15,16 @@
  */
 package org.mybatis.generator.api;
 
-import static org.mybatis.generator.internal.util.StringUtility.isTrue;
-import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-
-import org.mybatis.generator.config.Context;
-import org.mybatis.generator.config.GeneratedKey;
-import org.mybatis.generator.config.JavaClientGeneratorConfiguration;
-import org.mybatis.generator.config.JavaModelGeneratorConfiguration;
-import org.mybatis.generator.config.ModelType;
-import org.mybatis.generator.config.PropertyHolder;
-import org.mybatis.generator.config.PropertyRegistry;
-import org.mybatis.generator.config.SqlMapGeneratorConfiguration;
-import org.mybatis.generator.config.TableConfiguration;
+import org.mybatis.generator.config.*;
 import org.mybatis.generator.internal.rules.ConditionalModelRules;
 import org.mybatis.generator.internal.rules.FlatModelRules;
 import org.mybatis.generator.internal.rules.HierarchicalModelRules;
 import org.mybatis.generator.internal.rules.Rules;
+
+import java.util.*;
+
+import static org.mybatis.generator.internal.util.StringUtility.isTrue;
+import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 /**
  * Base class for all code generator implementations. This class provides many
@@ -432,6 +419,33 @@ public abstract class IntrospectedTable {
     }
 
     /**
+     * Returns all columns in the table (for use by the select by primary key and select by example with BLOBs methods).
+     *
+     * @return a List of ColumnDefinition objects for all columns in the table
+     */
+    public List<IntrospectedColumn> getNonUpdateAllColumns() {
+        List<IntrospectedColumn> answer = new ArrayList<IntrospectedColumn>();
+        answer.addAll(primaryKeyColumns);
+        answer.addAll(baseColumns);
+        answer.addAll(blobColumns);
+
+        List<IntrospectedColumn> result = new ArrayList<IntrospectedColumn>();
+        for (IntrospectedColumn introspectedColumn : answer) {
+            if ("updatedAt".equalsIgnoreCase(introspectedColumn.getJavaProperty())) {
+                continue;
+            }else if ("createdAt".equalsIgnoreCase(introspectedColumn.getJavaProperty())) {
+                continue;
+            }else if ("createdBy".equalsIgnoreCase(introspectedColumn.getJavaProperty())) {
+                continue;
+            }else if ("id".equalsIgnoreCase(introspectedColumn.getJavaProperty())) {
+                continue;
+            }
+            result.add(introspectedColumn);
+        }
+        return result;
+    }
+
+    /**
      * Returns all columns except BLOBs (for use by the select by example without BLOBs method).
      *
      * @return a List of ColumnDefinition objects for columns in the table that are non BLOBs
@@ -464,6 +478,33 @@ public abstract class IntrospectedTable {
         answer.addAll(blobColumns);
 
         return answer;
+    }
+
+    /**
+     * Gets the non primary key columns.
+     *
+     * @return the non primary key columns
+     */
+    public List<IntrospectedColumn> getNonUpdateAndPrimaryKeyColumns() {
+        List<IntrospectedColumn> answer = new ArrayList<IntrospectedColumn>();
+        answer.addAll(baseColumns);
+        answer.addAll(blobColumns);
+
+        List<IntrospectedColumn> result = new ArrayList<IntrospectedColumn>();
+        for (IntrospectedColumn introspectedColumn : answer) {
+            if ("updatedAt".equalsIgnoreCase(introspectedColumn.getJavaProperty())) {
+                continue;
+            }else if ("createdAt".equalsIgnoreCase(introspectedColumn.getJavaProperty())) {
+                continue;
+            }else if ("createdBy".equalsIgnoreCase(introspectedColumn.getJavaProperty())) {
+                continue;
+            }else if ("id".equalsIgnoreCase(introspectedColumn.getJavaProperty())) {
+                continue;
+            }
+            result.add(introspectedColumn);
+        }
+
+        return result;
     }
 
     /**

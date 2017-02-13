@@ -64,7 +64,7 @@ public class UpdateByPrimaryKeySelectiveElementGenerator extends
         answer.addElement(dynamicElement);
 
         for (IntrospectedColumn introspectedColumn : introspectedTable
-                .getNonPrimaryKeyColumns()) {
+                .getNonUpdateAndPrimaryKeyColumns()) {
             XmlElement isNotNullElement = new XmlElement("if"); //$NON-NLS-1$
             sb.setLength(0);
             sb.append(introspectedColumn.getJavaProperty());

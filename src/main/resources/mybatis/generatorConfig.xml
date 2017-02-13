@@ -52,11 +52,33 @@
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
+
+
         <!-- 指定数据库表 -->
-        <table tableName="t_user">
-            <!--
-               <ignoreColumn column="USER_EMAIL" />
-             -->
-        </table>
+        <table tableName="p_user"></table>
+        <table tableName="p_role"></table>
+        <table tableName="p_permission"></table>
+        <table tableName="p_resource"></table>
+        <table tableName="p_action"></table>
+        <table tableName="p_user_property"></table>
+        <table tableName="p_user_role"></table>
+        <table tableName="p_role_permission"></table>
+        <table tableName="p_permission_action"></table>
+        <table tableName="p_menu"></table>
+        <table tableName="p_log_operate"></table>
+        <table tableName="p_log_table"></table>
+
+        <table tableName="p_msg_template"></table>
+        <table tableName="p_msg_template_key"></table>
+        <table tableName="p_msg_batch"></table>
+        <table tableName="p_msg"></table>
+        <table tableName="p_msg_key"></table>
+        <table tableName="p_msg_message_channel"></table>
+        <table tableName="p_msg_email_channel"></table>
+
+        <table tableName="task_getdata_taobao"></table>
+        <table tableName="task_getdata_taobao_order"></table>
+
+
     </context>
 </generatorConfiguration>

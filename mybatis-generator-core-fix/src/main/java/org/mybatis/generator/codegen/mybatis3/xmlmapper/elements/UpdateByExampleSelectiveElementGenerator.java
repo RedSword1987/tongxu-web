@@ -55,7 +55,7 @@ public class UpdateByExampleSelectiveElementGenerator extends
         answer.addElement(dynamicElement);
 
         for (IntrospectedColumn introspectedColumn : introspectedTable
-                .getAllColumns()) {
+                .getNonUpdateAllColumns()) {
             XmlElement isNotNullElement = new XmlElement("if"); //$NON-NLS-1$
             sb.setLength(0);
             sb.append(introspectedColumn.getJavaProperty("record.")); //$NON-NLS-1$
