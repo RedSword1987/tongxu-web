@@ -28,7 +28,7 @@
         </javaTypeResolver>
 
         <!-- targetProject:生成PO类的位置 -->
-        <javaModelGenerator targetPackage="com.tongxuweb.generate.Bean"
+        <javaModelGenerator targetPackage="com.tongxuweb.domain.generate"
                             targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
@@ -40,14 +40,14 @@
            若果maven工程是分模块的工程，targetProject="所属模块的名称"，例如：
            targetProject="ecps-manager-mapper"，下同-->
         <sqlMapGenerator targetPackage="generate"
-                         targetProject="src/main/resources/mapper">
+                         targetProject="src/main/resources/mapper/">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="mergeable" value="false"/>
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
         <!-- targetPackage：mapper接口生成的位置 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.tongxuweb.generate.mapper"
+                             targetPackage="com.tongxuweb.mapper.generate"
                              targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
@@ -55,29 +55,73 @@
 
 
         <!-- 指定数据库表 -->
-        <table tableName="p_user"></table>
-        <table tableName="p_role"></table>
-        <table tableName="p_permission"></table>
-        <table tableName="p_resource"></table>
-        <table tableName="p_action"></table>
-        <table tableName="p_user_property"></table>
-        <table tableName="p_user_role"></table>
-        <table tableName="p_role_permission"></table>
-        <table tableName="p_permission_action"></table>
-        <table tableName="p_menu"></table>
-        <table tableName="p_log_operate"></table>
-        <table tableName="p_log_table"></table>
+        <table tableName="p_user">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_role">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_permission">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_resource">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_action">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_user_property">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_user_role">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_role_permission">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_permission_action">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_menu">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_log_operate">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_log_table">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
 
-        <table tableName="p_msg_template"></table>
-        <table tableName="p_msg_template_key"></table>
-        <table tableName="p_msg_batch"></table>
-        <table tableName="p_msg"></table>
-        <table tableName="p_msg_key"></table>
-        <table tableName="p_msg_message_channel"></table>
-        <table tableName="p_msg_email_channel"></table>
+        <table tableName="p_msg_template">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_msg_template_key">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_msg_batch">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_msg">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_msg_key">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_msg_message_channel">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_msg_email_channel">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
 
-        <table tableName="task_getdata_taobao"></table>
-        <table tableName="task_getdata_taobao_order"></table>
+        </table>
+
+        <table tableName="task_getdata_taobao">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="task_getdata_taobao_order">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+
+        </table>
 
 
     </context>

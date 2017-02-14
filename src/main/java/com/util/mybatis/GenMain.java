@@ -1,4 +1,5 @@
-package com.tongxu.util.mybatis;
+package com.util.mybatis;
+
 
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;

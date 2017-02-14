@@ -5,10 +5,12 @@
        xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-
-
            http://www.springframework.org/schema/context
-           http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- 引入jdbc配置文件 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -19,6 +21,7 @@
             </list>
         </property>
     </bean>
+
 
 
     <!-- 配置数据源 -->
@@ -48,37 +51,38 @@
         <property name="maxActive" value="50"/>
     </bean>
 
-    <!-- 自动扫描了所有的XxxxMapper.xml对应的mapper接口文件，这样就不用一个一个手动配置Mpper的映射了，只要Mapper接口类和Mapper映射文件对应起来就可以了。 -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage"
-                  value="com.tongxuweb.dao"/>
-    </bean>
-
     <!-- 配置Mybatis的文件 ，mapperLocations配置**Mapper.xml文件位置，configLocation配置mybatis-config文件位置-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
         <property name="dataSource" ref="dataSource"/>
-
-
         <property name="mapperLocations">
             <list>
                 <value>classpath*:mapper/generate/*.xml</value>
+                <!--
                 <value>classpath*:mapper/create/*.xml</value>
+                -->
             </list>
         </property>
-        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+
         <!-- <property name="typeAliasesPackage" value="com.tiantian.ckeditor.model"
             /> -->
     </bean>
+
+    <!-- 自动扫描了所有的XxxxMapper.xml对应的mapper接口文件，这样就不用一个一个手动配置Mpper的映射了，只要Mapper接口类和Mapper映射文件对应起来就可以了。 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.tongxuweb.dao,com.tongxuweb.mapper.generate"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
-        <qualifier value="insurance"/>
     </bean>
     <tx:annotation-driven transaction-manager="transactionManager" />
 
-    <!-- 自动扫描注解的bean -->
-    <context:component-scan base-package="com.tongxuweb.service"/>
-    <context:component-scan base-package="com.tongxuweb"/>
-    <!--  -->
     <aop:aspectj-autoproxy/>
+    <!-- 自动扫描注解的bean -->
+    <context:component-scan base-package="com.tongxuweb"/>
+    <context:component-scan base-package="com.tongxuweb.controller"/>
+    <context:component-scan base-package="com.tongxuweb.mapper.generate"/>
 </beans>
