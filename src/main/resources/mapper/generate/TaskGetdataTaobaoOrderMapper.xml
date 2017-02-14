@@ -4,6 +4,14 @@
     <resultMap id="BaseResultMap" type="com.tongxuweb.domain.generate.TaskGetdataTaobaoOrder">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="task_id" jdbcType="BIGINT" property="taskId" />
+        <result column="buyer_id" jdbcType="VARCHAR" property="buyerId" />
+        <result column="buyer_nick" jdbcType="VARCHAR" property="buyerNick" />
+        <result column="buyer_phonenum" jdbcType="VARCHAR" property="buyerPhonenum" />
+        <result column="orderinfo_createtime" jdbcType="VARCHAR" property="orderinfoCreatetime" />
+        <result column="orderinfo_id" jdbcType="VARCHAR" property="orderinfoId" />
+        <result column="payinfo_actualfee" jdbcType="VARCHAR" property="payinfoActualfee" />
+        <result column="statusinfo_text" jdbcType="VARCHAR" property="statusinfoText" />
+        <result column="statusinfo_type" jdbcType="VARCHAR" property="statusinfoType" />
         <result column="created_by" jdbcType="BIGINT" property="createdBy" />
         <result column="updated_by" jdbcType="BIGINT" property="updatedBy" />
         <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
@@ -68,7 +76,9 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        id, task_id, created_by, updated_by, created_at, updated_at
+        id, task_id, buyer_id, buyer_nick, buyer_phonenum, orderinfo_createtime, orderinfo_id, 
+        payinfo_actualfee, statusinfo_text, statusinfo_type, created_by, updated_by, created_at, 
+        updated_at
     </sql>
     <select id="selectByExample" parameterType="com.tongxuweb.domain.generate.TaskGetdataTaobaoOrderExample" resultMap="BaseResultMap">
         select
@@ -109,6 +119,30 @@
             <if test="taskId != null">
                 task_id,
             </if>
+            <if test="buyerId != null">
+                buyer_id,
+            </if>
+            <if test="buyerNick != null">
+                buyer_nick,
+            </if>
+            <if test="buyerPhonenum != null">
+                buyer_phonenum,
+            </if>
+            <if test="orderinfoCreatetime != null">
+                orderinfo_createtime,
+            </if>
+            <if test="orderinfoId != null">
+                orderinfo_id,
+            </if>
+            <if test="payinfoActualfee != null">
+                payinfo_actualfee,
+            </if>
+            <if test="statusinfoText != null">
+                statusinfo_text,
+            </if>
+            <if test="statusinfoType != null">
+                statusinfo_type,
+            </if>
             <if test="createdBy != null">
                 created_by,
             </if>
@@ -125,6 +159,30 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="taskId != null">
                 #{taskId,jdbcType=BIGINT},
+            </if>
+            <if test="buyerId != null">
+                #{buyerId,jdbcType=VARCHAR},
+            </if>
+            <if test="buyerNick != null">
+                #{buyerNick,jdbcType=VARCHAR},
+            </if>
+            <if test="buyerPhonenum != null">
+                #{buyerPhonenum,jdbcType=VARCHAR},
+            </if>
+            <if test="orderinfoCreatetime != null">
+                #{orderinfoCreatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="orderinfoId != null">
+                #{orderinfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="payinfoActualfee != null">
+                #{payinfoActualfee,jdbcType=VARCHAR},
+            </if>
+            <if test="statusinfoText != null">
+                #{statusinfoText,jdbcType=VARCHAR},
+            </if>
+            <if test="statusinfoType != null">
+                #{statusinfoType,jdbcType=VARCHAR},
             </if>
             <if test="createdBy != null">
                 #{createdBy,jdbcType=BIGINT},
@@ -152,6 +210,30 @@
             <if test="record.taskId != null">
                 task_id = #{record.taskId,jdbcType=BIGINT},
             </if>
+            <if test="record.buyerId != null">
+                buyer_id = #{record.buyerId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.buyerNick != null">
+                buyer_nick = #{record.buyerNick,jdbcType=VARCHAR},
+            </if>
+            <if test="record.buyerPhonenum != null">
+                buyer_phonenum = #{record.buyerPhonenum,jdbcType=VARCHAR},
+            </if>
+            <if test="record.orderinfoCreatetime != null">
+                orderinfo_createtime = #{record.orderinfoCreatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.orderinfoId != null">
+                orderinfo_id = #{record.orderinfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.payinfoActualfee != null">
+                payinfo_actualfee = #{record.payinfoActualfee,jdbcType=VARCHAR},
+            </if>
+            <if test="record.statusinfoText != null">
+                statusinfo_text = #{record.statusinfoText,jdbcType=VARCHAR},
+            </if>
+            <if test="record.statusinfoType != null">
+                statusinfo_type = #{record.statusinfoType,jdbcType=VARCHAR},
+            </if>
             <if test="record.updatedBy != null">
                 updated_by = #{record.updatedBy,jdbcType=BIGINT},
             </if>
@@ -165,6 +247,30 @@
         <set>
             <if test="taskId != null">
                 task_id = #{taskId,jdbcType=BIGINT},
+            </if>
+            <if test="buyerId != null">
+                buyer_id = #{buyerId,jdbcType=VARCHAR},
+            </if>
+            <if test="buyerNick != null">
+                buyer_nick = #{buyerNick,jdbcType=VARCHAR},
+            </if>
+            <if test="buyerPhonenum != null">
+                buyer_phonenum = #{buyerPhonenum,jdbcType=VARCHAR},
+            </if>
+            <if test="orderinfoCreatetime != null">
+                orderinfo_createtime = #{orderinfoCreatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="orderinfoId != null">
+                orderinfo_id = #{orderinfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="payinfoActualfee != null">
+                payinfo_actualfee = #{payinfoActualfee,jdbcType=VARCHAR},
+            </if>
+            <if test="statusinfoText != null">
+                statusinfo_text = #{statusinfoText,jdbcType=VARCHAR},
+            </if>
+            <if test="statusinfoType != null">
+                statusinfo_type = #{statusinfoType,jdbcType=VARCHAR},
             </if>
             <if test="updatedBy != null">
                 updated_by = #{updatedBy,jdbcType=BIGINT},
