@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class ControllAspect {
 
 
-    @Before("execution(* com.tongxuweb.service.*.selectUserById(..))")
+    /*@Before("execution(* com.tongxuweb.service.*.selectUserById(..))")
     private void pointCut11() {
         System.out.println("aaa1111aaa");
     }
@@ -28,6 +28,6 @@ public class ControllAspect {
     public ControllAspect() {
 
         System.out.println("aaaaaa");
-    }
+    }*/
 
 }
