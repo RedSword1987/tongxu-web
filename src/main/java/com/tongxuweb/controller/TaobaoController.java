@@ -22,9 +22,18 @@ public class TaobaoController {
     @Resource
     private TaskGetdataTaobaoService taskGetdataTaobaoService;
 
+
+    @RequestMapping("/test")
+    @ResponseBody
+    public Map<String, String> test() {
+        Map<String, String> ss = new HashMap<String, String>();
+        ss.put("1", "1");
+        return ss;
+    }
+
     @RequestMapping("/batch")
     @ResponseBody
-    public TaskGetdataTaobao save(@RequestBody TaskGetdataTaobao taskGetdataTaobao) {
+    public TaskGetdataTaobao batch(@RequestBody TaskGetdataTaobao taskGetdataTaobao) {
         TaskGetdataTaobao newTaskGetdataTaobao = taskGetdataTaobaoService.save(taskGetdataTaobao);
         return newTaskGetdataTaobao;
     }
@@ -35,7 +44,9 @@ public class TaobaoController {
     public Map<String, String> save(@RequestBody MainOrders mainOrders) {
         Map<String, String> ss = new HashMap<String, String>();
         ss.put("1", "1");
-        taskGetdataTaobaoOrderService.saveAll();
+        if (mainOrders.getBatchId() != null) {
+            taskGetdataTaobaoOrderService.saveAll(mainOrders);
+        }
         return ss;
     }
 }
