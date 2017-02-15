@@ -20,6 +20,24 @@ public class TaskGetdataTaobaoOrder implements Serializable {
     //购买人手机
     private String buyerPhonenum;
 
+    //省
+    private String buyerProvice;
+
+    //市
+    private String buyerCity;
+
+    //区号
+    private String buyerArea;
+
+    //邮编
+    private String buyerPost;
+
+    //地址合集
+    private String buyerAddress;
+
+    //物流里填的手机号
+    private String buyerLogisticsPhone;
+
     //购买时间
     private String orderinfoCreatetime;
 
@@ -34,6 +52,33 @@ public class TaskGetdataTaobaoOrder implements Serializable {
 
     //状态类型
     private String statusinfoType;
+
+    //创建时间
+    private String createTime;
+
+    //付款时间
+    private String payTime;
+
+    //发货时间
+    private String sendTime;
+
+    //支付宝交易号
+    private String alipayId;
+
+    //订单阶段
+    private String orderBar;
+
+    //订单阶段说明
+    private String orderBarText;
+
+    //快递名称
+    private String logisticsName;
+
+    //快递编号
+    private String logisticsNum;
+
+    //备注
+    private String buyMessage;
 
     //创建人
     private Long createdBy;
@@ -89,6 +134,54 @@ public class TaskGetdataTaobaoOrder implements Serializable {
         this.buyerPhonenum = buyerPhonenum == null ? null : buyerPhonenum.trim();
     }
 
+    public String getBuyerProvice() {
+        return buyerProvice;
+    }
+
+    public void setBuyerProvice(String buyerProvice) {
+        this.buyerProvice = buyerProvice == null ? null : buyerProvice.trim();
+    }
+
+    public String getBuyerCity() {
+        return buyerCity;
+    }
+
+    public void setBuyerCity(String buyerCity) {
+        this.buyerCity = buyerCity == null ? null : buyerCity.trim();
+    }
+
+    public String getBuyerArea() {
+        return buyerArea;
+    }
+
+    public void setBuyerArea(String buyerArea) {
+        this.buyerArea = buyerArea == null ? null : buyerArea.trim();
+    }
+
+    public String getBuyerPost() {
+        return buyerPost;
+    }
+
+    public void setBuyerPost(String buyerPost) {
+        this.buyerPost = buyerPost == null ? null : buyerPost.trim();
+    }
+
+    public String getBuyerAddress() {
+        return buyerAddress;
+    }
+
+    public void setBuyerAddress(String buyerAddress) {
+        this.buyerAddress = buyerAddress == null ? null : buyerAddress.trim();
+    }
+
+    public String getBuyerLogisticsPhone() {
+        return buyerLogisticsPhone;
+    }
+
+    public void setBuyerLogisticsPhone(String buyerLogisticsPhone) {
+        this.buyerLogisticsPhone = buyerLogisticsPhone == null ? null : buyerLogisticsPhone.trim();
+    }
+
     public String getOrderinfoCreatetime() {
         return orderinfoCreatetime;
     }
@@ -127,6 +220,78 @@ public class TaskGetdataTaobaoOrder implements Serializable {
 
     public void setStatusinfoType(String statusinfoType) {
         this.statusinfoType = statusinfoType == null ? null : statusinfoType.trim();
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime == null ? null : createTime.trim();
+    }
+
+    public String getPayTime() {
+        return payTime;
+    }
+
+    public void setPayTime(String payTime) {
+        this.payTime = payTime == null ? null : payTime.trim();
+    }
+
+    public String getSendTime() {
+        return sendTime;
+    }
+
+    public void setSendTime(String sendTime) {
+        this.sendTime = sendTime == null ? null : sendTime.trim();
+    }
+
+    public String getAlipayId() {
+        return alipayId;
+    }
+
+    public void setAlipayId(String alipayId) {
+        this.alipayId = alipayId == null ? null : alipayId.trim();
+    }
+
+    public String getOrderBar() {
+        return orderBar;
+    }
+
+    public void setOrderBar(String orderBar) {
+        this.orderBar = orderBar == null ? null : orderBar.trim();
+    }
+
+    public String getOrderBarText() {
+        return orderBarText;
+    }
+
+    public void setOrderBarText(String orderBarText) {
+        this.orderBarText = orderBarText == null ? null : orderBarText.trim();
+    }
+
+    public String getLogisticsName() {
+        return logisticsName;
+    }
+
+    public void setLogisticsName(String logisticsName) {
+        this.logisticsName = logisticsName == null ? null : logisticsName.trim();
+    }
+
+    public String getLogisticsNum() {
+        return logisticsNum;
+    }
+
+    public void setLogisticsNum(String logisticsNum) {
+        this.logisticsNum = logisticsNum == null ? null : logisticsNum.trim();
+    }
+
+    public String getBuyMessage() {
+        return buyMessage;
+    }
+
+    public void setBuyMessage(String buyMessage) {
+        this.buyMessage = buyMessage == null ? null : buyMessage.trim();
     }
 
     public Long getCreatedBy() {

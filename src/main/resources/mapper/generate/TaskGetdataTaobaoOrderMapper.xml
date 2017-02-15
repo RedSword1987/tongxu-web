@@ -7,11 +7,26 @@
         <result column="buyer_id" jdbcType="VARCHAR" property="buyerId" />
         <result column="buyer_nick" jdbcType="VARCHAR" property="buyerNick" />
         <result column="buyer_phonenum" jdbcType="VARCHAR" property="buyerPhonenum" />
+        <result column="buyer_provice" jdbcType="VARCHAR" property="buyerProvice" />
+        <result column="buyer_city" jdbcType="VARCHAR" property="buyerCity" />
+        <result column="buyer_area" jdbcType="VARCHAR" property="buyerArea" />
+        <result column="buyer_post" jdbcType="VARCHAR" property="buyerPost" />
+        <result column="buyer_address" jdbcType="VARCHAR" property="buyerAddress" />
+        <result column="buyer_logistics_phone" jdbcType="VARCHAR" property="buyerLogisticsPhone" />
         <result column="orderinfo_createtime" jdbcType="VARCHAR" property="orderinfoCreatetime" />
         <result column="orderinfo_id" jdbcType="VARCHAR" property="orderinfoId" />
         <result column="payinfo_actualfee" jdbcType="VARCHAR" property="payinfoActualfee" />
         <result column="statusinfo_text" jdbcType="VARCHAR" property="statusinfoText" />
         <result column="statusinfo_type" jdbcType="VARCHAR" property="statusinfoType" />
+        <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+        <result column="pay_time" jdbcType="VARCHAR" property="payTime" />
+        <result column="send_time" jdbcType="VARCHAR" property="sendTime" />
+        <result column="alipay_id" jdbcType="VARCHAR" property="alipayId" />
+        <result column="order_bar" jdbcType="VARCHAR" property="orderBar" />
+        <result column="order_bar_text" jdbcType="VARCHAR" property="orderBarText" />
+        <result column="logistics_name" jdbcType="VARCHAR" property="logisticsName" />
+        <result column="logistics_num" jdbcType="VARCHAR" property="logisticsNum" />
+        <result column="buy_message" jdbcType="VARCHAR" property="buyMessage" />
         <result column="created_by" jdbcType="BIGINT" property="createdBy" />
         <result column="updated_by" jdbcType="BIGINT" property="updatedBy" />
         <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
@@ -76,9 +91,11 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        id, task_id, buyer_id, buyer_nick, buyer_phonenum, orderinfo_createtime, orderinfo_id, 
-        payinfo_actualfee, statusinfo_text, statusinfo_type, created_by, updated_by, created_at, 
-        updated_at
+        id, task_id, buyer_id, buyer_nick, buyer_phonenum, buyer_provice, buyer_city, buyer_area, 
+        buyer_post, buyer_address, buyer_logistics_phone, orderinfo_createtime, orderinfo_id, 
+        payinfo_actualfee, statusinfo_text, statusinfo_type, create_time, pay_time, send_time, 
+        alipay_id, order_bar, order_bar_text, logistics_name, logistics_num, buy_message, 
+        created_by, updated_by, created_at, updated_at
     </sql>
     <select id="selectByExample" parameterType="com.tongxuweb.domain.generate.TaskGetdataTaobaoOrderExample" resultMap="BaseResultMap">
         select
@@ -128,6 +145,24 @@
             <if test="buyerPhonenum != null">
                 buyer_phonenum,
             </if>
+            <if test="buyerProvice != null">
+                buyer_provice,
+            </if>
+            <if test="buyerCity != null">
+                buyer_city,
+            </if>
+            <if test="buyerArea != null">
+                buyer_area,
+            </if>
+            <if test="buyerPost != null">
+                buyer_post,
+            </if>
+            <if test="buyerAddress != null">
+                buyer_address,
+            </if>
+            <if test="buyerLogisticsPhone != null">
+                buyer_logistics_phone,
+            </if>
             <if test="orderinfoCreatetime != null">
                 orderinfo_createtime,
             </if>
@@ -142,6 +177,33 @@
             </if>
             <if test="statusinfoType != null">
                 statusinfo_type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="payTime != null">
+                pay_time,
+            </if>
+            <if test="sendTime != null">
+                send_time,
+            </if>
+            <if test="alipayId != null">
+                alipay_id,
+            </if>
+            <if test="orderBar != null">
+                order_bar,
+            </if>
+            <if test="orderBarText != null">
+                order_bar_text,
+            </if>
+            <if test="logisticsName != null">
+                logistics_name,
+            </if>
+            <if test="logisticsNum != null">
+                logistics_num,
+            </if>
+            <if test="buyMessage != null">
+                buy_message,
             </if>
             <if test="createdBy != null">
                 created_by,
@@ -169,6 +231,24 @@
             <if test="buyerPhonenum != null">
                 #{buyerPhonenum,jdbcType=VARCHAR},
             </if>
+            <if test="buyerProvice != null">
+                #{buyerProvice,jdbcType=VARCHAR},
+            </if>
+            <if test="buyerCity != null">
+                #{buyerCity,jdbcType=VARCHAR},
+            </if>
+            <if test="buyerArea != null">
+                #{buyerArea,jdbcType=VARCHAR},
+            </if>
+            <if test="buyerPost != null">
+                #{buyerPost,jdbcType=VARCHAR},
+            </if>
+            <if test="buyerAddress != null">
+                #{buyerAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="buyerLogisticsPhone != null">
+                #{buyerLogisticsPhone,jdbcType=VARCHAR},
+            </if>
             <if test="orderinfoCreatetime != null">
                 #{orderinfoCreatetime,jdbcType=VARCHAR},
             </if>
@@ -183,6 +263,33 @@
             </if>
             <if test="statusinfoType != null">
                 #{statusinfoType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="payTime != null">
+                #{payTime,jdbcType=VARCHAR},
+            </if>
+            <if test="sendTime != null">
+                #{sendTime,jdbcType=VARCHAR},
+            </if>
+            <if test="alipayId != null">
+                #{alipayId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderBar != null">
+                #{orderBar,jdbcType=VARCHAR},
+            </if>
+            <if test="orderBarText != null">
+                #{orderBarText,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsName != null">
+                #{logisticsName,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsNum != null">
+                #{logisticsNum,jdbcType=VARCHAR},
+            </if>
+            <if test="buyMessage != null">
+                #{buyMessage,jdbcType=VARCHAR},
             </if>
             <if test="createdBy != null">
                 #{createdBy,jdbcType=BIGINT},
@@ -219,6 +326,24 @@
             <if test="record.buyerPhonenum != null">
                 buyer_phonenum = #{record.buyerPhonenum,jdbcType=VARCHAR},
             </if>
+            <if test="record.buyerProvice != null">
+                buyer_provice = #{record.buyerProvice,jdbcType=VARCHAR},
+            </if>
+            <if test="record.buyerCity != null">
+                buyer_city = #{record.buyerCity,jdbcType=VARCHAR},
+            </if>
+            <if test="record.buyerArea != null">
+                buyer_area = #{record.buyerArea,jdbcType=VARCHAR},
+            </if>
+            <if test="record.buyerPost != null">
+                buyer_post = #{record.buyerPost,jdbcType=VARCHAR},
+            </if>
+            <if test="record.buyerAddress != null">
+                buyer_address = #{record.buyerAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="record.buyerLogisticsPhone != null">
+                buyer_logistics_phone = #{record.buyerLogisticsPhone,jdbcType=VARCHAR},
+            </if>
             <if test="record.orderinfoCreatetime != null">
                 orderinfo_createtime = #{record.orderinfoCreatetime,jdbcType=VARCHAR},
             </if>
@@ -233,6 +358,33 @@
             </if>
             <if test="record.statusinfoType != null">
                 statusinfo_type = #{record.statusinfoType,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.payTime != null">
+                pay_time = #{record.payTime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sendTime != null">
+                send_time = #{record.sendTime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.alipayId != null">
+                alipay_id = #{record.alipayId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.orderBar != null">
+                order_bar = #{record.orderBar,jdbcType=VARCHAR},
+            </if>
+            <if test="record.orderBarText != null">
+                order_bar_text = #{record.orderBarText,jdbcType=VARCHAR},
+            </if>
+            <if test="record.logisticsName != null">
+                logistics_name = #{record.logisticsName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.logisticsNum != null">
+                logistics_num = #{record.logisticsNum,jdbcType=VARCHAR},
+            </if>
+            <if test="record.buyMessage != null">
+                buy_message = #{record.buyMessage,jdbcType=VARCHAR},
             </if>
             <if test="record.updatedBy != null">
                 updated_by = #{record.updatedBy,jdbcType=BIGINT},
@@ -257,6 +409,24 @@
             <if test="buyerPhonenum != null">
                 buyer_phonenum = #{buyerPhonenum,jdbcType=VARCHAR},
             </if>
+            <if test="buyerProvice != null">
+                buyer_provice = #{buyerProvice,jdbcType=VARCHAR},
+            </if>
+            <if test="buyerCity != null">
+                buyer_city = #{buyerCity,jdbcType=VARCHAR},
+            </if>
+            <if test="buyerArea != null">
+                buyer_area = #{buyerArea,jdbcType=VARCHAR},
+            </if>
+            <if test="buyerPost != null">
+                buyer_post = #{buyerPost,jdbcType=VARCHAR},
+            </if>
+            <if test="buyerAddress != null">
+                buyer_address = #{buyerAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="buyerLogisticsPhone != null">
+                buyer_logistics_phone = #{buyerLogisticsPhone,jdbcType=VARCHAR},
+            </if>
             <if test="orderinfoCreatetime != null">
                 orderinfo_createtime = #{orderinfoCreatetime,jdbcType=VARCHAR},
             </if>
@@ -271,6 +441,33 @@
             </if>
             <if test="statusinfoType != null">
                 statusinfo_type = #{statusinfoType,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="payTime != null">
+                pay_time = #{payTime,jdbcType=VARCHAR},
+            </if>
+            <if test="sendTime != null">
+                send_time = #{sendTime,jdbcType=VARCHAR},
+            </if>
+            <if test="alipayId != null">
+                alipay_id = #{alipayId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderBar != null">
+                order_bar = #{orderBar,jdbcType=VARCHAR},
+            </if>
+            <if test="orderBarText != null">
+                order_bar_text = #{orderBarText,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsName != null">
+                logistics_name = #{logisticsName,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsNum != null">
+                logistics_num = #{logisticsNum,jdbcType=VARCHAR},
+            </if>
+            <if test="buyMessage != null">
+                buy_message = #{buyMessage,jdbcType=VARCHAR},
             </if>
             <if test="updatedBy != null">
                 updated_by = #{updatedBy,jdbcType=BIGINT},

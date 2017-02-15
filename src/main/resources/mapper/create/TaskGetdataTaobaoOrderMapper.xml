@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tongxuweb.dao.TaskGetdataTaobaoOrderDao">
+    <update id="updateBuyer" parameterType="map">
+        INSERT INTO taobao_buyer (
+        buyer_id,
+        buyer_nick,
+        buyer_phonenum,
+        buyer_provice,
+        buyer_city,
+        buyer_area,
+        buyer_post,
+        buyer_address,
+        buyer_logistics_phone
+        ) SELECT
+        a.buyer_id,
+        a.buyer_nick,
+        a.buyer_phonenum,
+        a.buyer_provice,
+        a.buyer_city,
+        a.buyer_area,
+        a.buyer_post,
+        a.buyer_address,
+        buyer_logistics_phone
+        FROM
+        (
+        SELECT
+        a.*
+        FROM
+        task_getdata_taobao_order a
+        WHERE
+        a.buyer_id NOT IN (
+        SELECT
+        buyer_id
+        FROM
+        taobao_buyer
+        )
+        ) a
+    </update>
+</mapper>

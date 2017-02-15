@@ -10,12 +10,20 @@ import java.util.List;
 public class MainOrder {
 
     private Buyer buyer;
+    private Trade trade;
     private Extra extra;
     private OrderInfo orderInfo;
     private PayInfo payInfo;
     private StatusInfo statusInfo;
     private List<SubOrder> subOrders;
 
+    public Trade getTrade() {
+        return trade;
+    }
+
+    public void setTrade(Trade trade) {
+        this.trade = trade;
+    }
 
     public Buyer getBuyer() {
         return buyer;
