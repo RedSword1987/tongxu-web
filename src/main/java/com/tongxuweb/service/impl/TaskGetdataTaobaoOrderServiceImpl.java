@@ -4,8 +4,10 @@ import com.tongxuweb.dao.TaskGetdataTaobaoOrderDao;
 import com.tongxuweb.domain.entity.MainOrder;
 import com.tongxuweb.domain.entity.MainOrders;
 import com.tongxuweb.domain.generate.TaskGetdataTaobaoOrder;
+import com.tongxuweb.domain.generate.TaskGetdataTaobaoOrderExample;
 import com.tongxuweb.mapper.generate.PUserMapper;
 import com.tongxuweb.service.TaskGetdataTaobaoOrderService;
+import com.tongxuweb.util.DateUtil;
 import com.tongxuweb.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by higgs on 17/2/13.
@@ -24,18 +28,46 @@ public class TaskGetdataTaobaoOrderServiceImpl implements TaskGetdataTaobaoOrder
     @Resource
     private TaskGetdataTaobaoOrderDao taskGetdataTaobaoOrderDao;
 
-    @Autowired
-    private PUserMapper pUserMapper;
+    public Date getLastDate() {
+        Date result = null;
+        TaskGetdataTaobaoOrder bean = taskGetdataTaobaoOrderDao.getLastDate();
+        if (bean != null) {
+            result = new Date(DateUtil.convertStringToLong(bean.getOrderinfoCreatetime(),
+                    DateUtil.DATE_PATTERN_YYYY_MM_DD_HH_MM_SS) * 1000);
+        }
+        return result;
+    }
 
+    public Integer saveAll(MainOrders mainOrders, Map<String, Object> ss) {
 
-    public void saveAll(MainOrders mainOrders) {
+        Integer insert = 0;
+        Integer update = 0;
         List<TaskGetdataTaobaoOrder> list = convert(mainOrders);
         for (TaskGetdataTaobaoOrder taskGetdataTaobaoOrder : list) {
             taskGetdataTaobaoOrder.setTaskId(mainOrders.getBatchId());
-            taskGetdataTaobaoOrderDao.insertSelective(taskGetdataTaobaoOrder);
+            if (!StringUtil.isEmpty(taskGetdataTaobaoOrder.getOrderinfoId())) {
+                TaskGetdataTaobaoOrderExample example = new TaskGetdataTaobaoOrderExample();
+                example.createCriteria().andOrderinfoIdEqualTo(taskGetdataTaobaoOrder.getOrderinfoId());
+                List<TaskGetdataTaobaoOrder> lli = taskGetdataTaobaoOrderDao.selectByExample(example);
+                if (lli != null && lli.size() > 0) {
+                    taskGetdataTaobaoOrder.setId(lli.get(0).getId());
+                    taskGetdataTaobaoOrderDao.updateByPrimaryKeySelective(taskGetdataTaobaoOrder);
+                    update++;
+                } else {
+                    taskGetdataTaobaoOrderDao.insertSelective(taskGetdataTaobaoOrder);
+                    insert++;
+                }
+            }
         }
 
-        taskGetdataTaobaoOrderDao.updateBuyer();
+        taskGetdataTaobaoOrderDao.insertBuyer();
+        ss.put("insert", insert);
+        ss.put("update", update);
+        return list.size();
+    }
+
+    public Integer saveTradeAll(MainOrders mainOrders, Map<String, Object> ss) {
+        return null;
     }
 
 
@@ -47,7 +79,7 @@ public class TaskGetdataTaobaoOrderServiceImpl implements TaskGetdataTaobaoOrder
 
 
                     TaskGetdataTaobaoOrder taskGetdataTaobaoOrder = new TaskGetdataTaobaoOrder();
-
+                    taskGetdataTaobaoOrder.setOrderinfoId(mainOrder.getId());
                     if (mainOrder.getTrade() != null) {
                         taskGetdataTaobaoOrder.setAlipayId(mainOrder.getTrade().getAlipayId());
                         taskGetdataTaobaoOrder.setBuyerAddress(mainOrder.getTrade().getBuyerAddress());
@@ -59,6 +91,11 @@ public class TaskGetdataTaobaoOrderServiceImpl implements TaskGetdataTaobaoOrder
                         taskGetdataTaobaoOrder.setOrderBarText(mainOrder.getTrade().getOrderBarText());
                         taskGetdataTaobaoOrder.setPayTime(mainOrder.getTrade().getPayTime());
                         taskGetdataTaobaoOrder.setSendTime(mainOrder.getTrade().getSendTime());
+
+
+                        taskGetdataTaobaoOrder.setLogisticsDesc(mainOrder.getTrade().getLogisticsDesc());
+                        taskGetdataTaobaoOrder.setLogisticsLastDesc(mainOrder.getTrade().getLogisticsLastDesc());
+                        taskGetdataTaobaoOrder.setLogisticsNumTaobao(mainOrder.getTrade().getLogisticsNumTaobao());
                     }
 
                     if (mainOrder.getBuyer() != null) {
@@ -68,7 +105,7 @@ public class TaskGetdataTaobaoOrderServiceImpl implements TaskGetdataTaobaoOrder
                     }
                     if (mainOrder.getOrderInfo() != null) {
                         taskGetdataTaobaoOrder.setOrderinfoCreatetime(mainOrder.getOrderInfo().getCreateTime());
-                        taskGetdataTaobaoOrder.setOrderinfoId(mainOrder.getOrderInfo().getId());
+
                     }
                     if (mainOrder.getPayInfo()!=null){
                         taskGetdataTaobaoOrder.setPayinfoActualfee(mainOrder.getPayInfo().getActualFee());

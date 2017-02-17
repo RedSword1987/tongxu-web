@@ -5,7 +5,7 @@ package com.tongxuweb.domain.entity.mainOrder;
  */
 public class OrderInfo {
     private String createTime;
-    private String id;
+
 
     public String getCreateTime() {
         return createTime;
@@ -15,11 +15,5 @@ public class OrderInfo {
         this.createTime = createTime;
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 }

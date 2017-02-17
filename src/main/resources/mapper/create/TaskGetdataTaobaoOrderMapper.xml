@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tongxuweb.dao.TaskGetdataTaobaoOrderDao">
-    <update id="updateBuyer" parameterType="map">
+    <update id="insertBuyer" parameterType="map">
         INSERT INTO taobao_buyer (
         buyer_id,
         buyer_nick,
@@ -37,4 +37,14 @@
         )
         ) a
     </update>
+    <select id="getLastDate" resultType="com.tongxuweb.domain.generate.TaskGetdataTaobaoOrder">
+    SELECT
+        max(orderinfo_createtime) orderinfo_createtime
+    FROM
+        task_getdata_taobao_order
+
+
+    </select>
+
+
 </mapper>

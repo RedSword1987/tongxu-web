@@ -22,6 +22,34 @@ public class Trade {
     private String logisticsNum;
     private String buyMessage;
 
+    private String logisticsDesc;
+    private String logisticsLastDesc;
+    private String logisticsNumTaobao;
+
+    public String getLogisticsDesc() {
+        return logisticsDesc;
+    }
+
+    public void setLogisticsDesc(String logisticsDesc) {
+        this.logisticsDesc = logisticsDesc;
+    }
+
+    public String getLogisticsLastDesc() {
+        return logisticsLastDesc;
+    }
+
+    public void setLogisticsLastDesc(String logisticsLastDesc) {
+        this.logisticsLastDesc = logisticsLastDesc;
+    }
+
+    public String getLogisticsNumTaobao() {
+        return logisticsNumTaobao;
+    }
+
+    public void setLogisticsNumTaobao(String logisticsNumTaobao) {
+        this.logisticsNumTaobao = logisticsNumTaobao;
+    }
+
     public String getBuyerAddress() {
         return buyerAddress;
     }

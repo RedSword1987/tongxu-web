@@ -77,6 +77,15 @@ public class TaskGetdataTaobaoOrder implements Serializable {
     //快递编号
     private String logisticsNum;
 
+    //淘宝物流编号
+    private String logisticsNumTaobao;
+
+    //物流信息
+    private String logisticsDesc;
+
+    //物流最后信息
+    private String logisticsLastDesc;
+
     //备注
     private String buyMessage;
 
@@ -284,6 +293,30 @@ public class TaskGetdataTaobaoOrder implements Serializable {
 
     public void setLogisticsNum(String logisticsNum) {
         this.logisticsNum = logisticsNum == null ? null : logisticsNum.trim();
+    }
+
+    public String getLogisticsNumTaobao() {
+        return logisticsNumTaobao;
+    }
+
+    public void setLogisticsNumTaobao(String logisticsNumTaobao) {
+        this.logisticsNumTaobao = logisticsNumTaobao == null ? null : logisticsNumTaobao.trim();
+    }
+
+    public String getLogisticsDesc() {
+        return logisticsDesc;
+    }
+
+    public void setLogisticsDesc(String logisticsDesc) {
+        this.logisticsDesc = logisticsDesc == null ? null : logisticsDesc.trim();
+    }
+
+    public String getLogisticsLastDesc() {
+        return logisticsLastDesc;
+    }
+
+    public void setLogisticsLastDesc(String logisticsLastDesc) {
+        this.logisticsLastDesc = logisticsLastDesc == null ? null : logisticsLastDesc.trim();
     }
 
     public String getBuyMessage() {

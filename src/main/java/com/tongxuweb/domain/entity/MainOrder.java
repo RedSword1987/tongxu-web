@@ -8,7 +8,7 @@ import java.util.List;
  * Created by higgs on 17/2/14.
  */
 public class MainOrder {
-
+    private String id;
     private Buyer buyer;
     private Trade trade;
     private Extra extra;
@@ -16,6 +16,14 @@ public class MainOrder {
     private PayInfo payInfo;
     private StatusInfo statusInfo;
     private List<SubOrder> subOrders;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Trade getTrade() {
         return trade;

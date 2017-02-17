@@ -26,6 +26,9 @@
         <result column="order_bar_text" jdbcType="VARCHAR" property="orderBarText" />
         <result column="logistics_name" jdbcType="VARCHAR" property="logisticsName" />
         <result column="logistics_num" jdbcType="VARCHAR" property="logisticsNum" />
+        <result column="logistics_num_taobao" jdbcType="VARCHAR" property="logisticsNumTaobao" />
+        <result column="logistics_desc" jdbcType="VARCHAR" property="logisticsDesc" />
+        <result column="logistics_last_desc" jdbcType="VARCHAR" property="logisticsLastDesc" />
         <result column="buy_message" jdbcType="VARCHAR" property="buyMessage" />
         <result column="created_by" jdbcType="BIGINT" property="createdBy" />
         <result column="updated_by" jdbcType="BIGINT" property="updatedBy" />
@@ -94,8 +97,9 @@
         id, task_id, buyer_id, buyer_nick, buyer_phonenum, buyer_provice, buyer_city, buyer_area, 
         buyer_post, buyer_address, buyer_logistics_phone, orderinfo_createtime, orderinfo_id, 
         payinfo_actualfee, statusinfo_text, statusinfo_type, create_time, pay_time, send_time, 
-        alipay_id, order_bar, order_bar_text, logistics_name, logistics_num, buy_message, 
-        created_by, updated_by, created_at, updated_at
+        alipay_id, order_bar, order_bar_text, logistics_name, logistics_num, logistics_num_taobao, 
+        logistics_desc, logistics_last_desc, buy_message, created_by, updated_by, created_at, 
+        updated_at
     </sql>
     <select id="selectByExample" parameterType="com.tongxuweb.domain.generate.TaskGetdataTaobaoOrderExample" resultMap="BaseResultMap">
         select
@@ -202,6 +206,15 @@
             <if test="logisticsNum != null">
                 logistics_num,
             </if>
+            <if test="logisticsNumTaobao != null">
+                logistics_num_taobao,
+            </if>
+            <if test="logisticsDesc != null">
+                logistics_desc,
+            </if>
+            <if test="logisticsLastDesc != null">
+                logistics_last_desc,
+            </if>
             <if test="buyMessage != null">
                 buy_message,
             </if>
@@ -287,6 +300,15 @@
             </if>
             <if test="logisticsNum != null">
                 #{logisticsNum,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsNumTaobao != null">
+                #{logisticsNumTaobao,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsDesc != null">
+                #{logisticsDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsLastDesc != null">
+                #{logisticsLastDesc,jdbcType=VARCHAR},
             </if>
             <if test="buyMessage != null">
                 #{buyMessage,jdbcType=VARCHAR},
@@ -383,6 +405,15 @@
             <if test="record.logisticsNum != null">
                 logistics_num = #{record.logisticsNum,jdbcType=VARCHAR},
             </if>
+            <if test="record.logisticsNumTaobao != null">
+                logistics_num_taobao = #{record.logisticsNumTaobao,jdbcType=VARCHAR},
+            </if>
+            <if test="record.logisticsDesc != null">
+                logistics_desc = #{record.logisticsDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="record.logisticsLastDesc != null">
+                logistics_last_desc = #{record.logisticsLastDesc,jdbcType=VARCHAR},
+            </if>
             <if test="record.buyMessage != null">
                 buy_message = #{record.buyMessage,jdbcType=VARCHAR},
             </if>
@@ -465,6 +496,15 @@
             </if>
             <if test="logisticsNum != null">
                 logistics_num = #{logisticsNum,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsNumTaobao != null">
+                logistics_num_taobao = #{logisticsNumTaobao,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsDesc != null">
+                logistics_desc = #{logisticsDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsLastDesc != null">
+                logistics_last_desc = #{logisticsLastDesc,jdbcType=VARCHAR},
             </if>
             <if test="buyMessage != null">
                 buy_message = #{buyMessage,jdbcType=VARCHAR},

@@ -1767,6 +1767,216 @@ public class TaskGetdataTaobaoOrderExample {
             return (Criteria) this;
         }
 
+        public Criteria andLogisticsNumTaobaoIsNull() {
+            addCriterion("logistics_num_taobao is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsNumTaobaoIsNotNull() {
+            addCriterion("logistics_num_taobao is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsNumTaobaoEqualTo(String value) {
+            addCriterion("logistics_num_taobao =", value, "logisticsNumTaobao");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsNumTaobaoNotEqualTo(String value) {
+            addCriterion("logistics_num_taobao <>", value, "logisticsNumTaobao");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsNumTaobaoGreaterThan(String value) {
+            addCriterion("logistics_num_taobao >", value, "logisticsNumTaobao");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsNumTaobaoGreaterThanOrEqualTo(String value) {
+            addCriterion("logistics_num_taobao >=", value, "logisticsNumTaobao");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsNumTaobaoLessThan(String value) {
+            addCriterion("logistics_num_taobao <", value, "logisticsNumTaobao");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsNumTaobaoLessThanOrEqualTo(String value) {
+            addCriterion("logistics_num_taobao <=", value, "logisticsNumTaobao");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsNumTaobaoLike(String value) {
+            addCriterion("logistics_num_taobao like", value, "logisticsNumTaobao");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsNumTaobaoNotLike(String value) {
+            addCriterion("logistics_num_taobao not like", value, "logisticsNumTaobao");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsNumTaobaoIn(List<String> values) {
+            addCriterion("logistics_num_taobao in", values, "logisticsNumTaobao");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsNumTaobaoNotIn(List<String> values) {
+            addCriterion("logistics_num_taobao not in", values, "logisticsNumTaobao");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsNumTaobaoBetween(String value1, String value2) {
+            addCriterion("logistics_num_taobao between", value1, value2, "logisticsNumTaobao");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsNumTaobaoNotBetween(String value1, String value2) {
+            addCriterion("logistics_num_taobao not between", value1, value2, "logisticsNumTaobao");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsDescIsNull() {
+            addCriterion("logistics_desc is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsDescIsNotNull() {
+            addCriterion("logistics_desc is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsDescEqualTo(String value) {
+            addCriterion("logistics_desc =", value, "logisticsDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsDescNotEqualTo(String value) {
+            addCriterion("logistics_desc <>", value, "logisticsDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsDescGreaterThan(String value) {
+            addCriterion("logistics_desc >", value, "logisticsDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsDescGreaterThanOrEqualTo(String value) {
+            addCriterion("logistics_desc >=", value, "logisticsDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsDescLessThan(String value) {
+            addCriterion("logistics_desc <", value, "logisticsDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsDescLessThanOrEqualTo(String value) {
+            addCriterion("logistics_desc <=", value, "logisticsDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsDescLike(String value) {
+            addCriterion("logistics_desc like", value, "logisticsDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsDescNotLike(String value) {
+            addCriterion("logistics_desc not like", value, "logisticsDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsDescIn(List<String> values) {
+            addCriterion("logistics_desc in", values, "logisticsDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsDescNotIn(List<String> values) {
+            addCriterion("logistics_desc not in", values, "logisticsDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsDescBetween(String value1, String value2) {
+            addCriterion("logistics_desc between", value1, value2, "logisticsDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsDescNotBetween(String value1, String value2) {
+            addCriterion("logistics_desc not between", value1, value2, "logisticsDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsLastDescIsNull() {
+            addCriterion("logistics_last_desc is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsLastDescIsNotNull() {
+            addCriterion("logistics_last_desc is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsLastDescEqualTo(String value) {
+            addCriterion("logistics_last_desc =", value, "logisticsLastDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsLastDescNotEqualTo(String value) {
+            addCriterion("logistics_last_desc <>", value, "logisticsLastDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsLastDescGreaterThan(String value) {
+            addCriterion("logistics_last_desc >", value, "logisticsLastDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsLastDescGreaterThanOrEqualTo(String value) {
+            addCriterion("logistics_last_desc >=", value, "logisticsLastDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsLastDescLessThan(String value) {
+            addCriterion("logistics_last_desc <", value, "logisticsLastDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsLastDescLessThanOrEqualTo(String value) {
+            addCriterion("logistics_last_desc <=", value, "logisticsLastDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsLastDescLike(String value) {
+            addCriterion("logistics_last_desc like", value, "logisticsLastDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsLastDescNotLike(String value) {
+            addCriterion("logistics_last_desc not like", value, "logisticsLastDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsLastDescIn(List<String> values) {
+            addCriterion("logistics_last_desc in", values, "logisticsLastDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsLastDescNotIn(List<String> values) {
+            addCriterion("logistics_last_desc not in", values, "logisticsLastDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsLastDescBetween(String value1, String value2) {
+            addCriterion("logistics_last_desc between", value1, value2, "logisticsLastDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogisticsLastDescNotBetween(String value1, String value2) {
+            addCriterion("logistics_last_desc not between", value1, value2, "logisticsLastDesc");
+            return (Criteria) this;
+        }
+
         public Criteria andBuyMessageIsNull() {
             addCriterion("buy_message is null");
             return (Criteria) this;
