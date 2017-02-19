@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tongxuweb.dao.TaskGetdataTaobaoDao">
+
+    <select id="listNeedTask" resultType="com.tongxuweb.domain.create.OTaskGetdataTaobao">
+    SELECT
+        *
+    FROM
+        task_getdata_taobao a
+    where a.status=1
+    limit 1
+    </select>
+
+    <select id="getOrderids" resultType="java.lang.String">
+       select orderinfo_id from task_getdata_taobao_orderids a where a.task_id=#{taskId}
+
+
+
+    </select>
+
+
+    <sql id="listTaskSql">
+        select * from task_getdata_taobao
+    </sql>
+
+
+    <select id="listTask" resultType="com.tongxuweb.domain.generate.TaskGetdataTaobao">
+        SELECT * from (<include refid="listTaskSql"/> order by  id desc)  a limit #{offet},#{pageSize}
+    </select>
+
+    <select id="countTask" resultType="java.lang.Integer">
+        SELECT count(*) cc from (<include refid="listTaskSql"/>) a
+    </select>
+
+
+</mapper>

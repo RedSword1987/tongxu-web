@@ -118,6 +118,10 @@
         <table tableName="task_getdata_taobao">
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
         </table>
+        <table tableName="task_getdata_taobao_orderids">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+
         <table tableName="task_getdata_taobao_order">
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
 

@@ -27,13 +27,15 @@
         <result column="logistics_name" jdbcType="VARCHAR" property="logisticsName" />
         <result column="logistics_num" jdbcType="VARCHAR" property="logisticsNum" />
         <result column="logistics_num_taobao" jdbcType="VARCHAR" property="logisticsNumTaobao" />
-        <result column="logistics_desc" jdbcType="VARCHAR" property="logisticsDesc" />
         <result column="logistics_last_desc" jdbcType="VARCHAR" property="logisticsLastDesc" />
         <result column="buy_message" jdbcType="VARCHAR" property="buyMessage" />
         <result column="created_by" jdbcType="BIGINT" property="createdBy" />
         <result column="updated_by" jdbcType="BIGINT" property="updatedBy" />
         <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
         <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tongxuweb.domain.generate.TaskGetdataTaobaoOrder">
+        <result column="logistics_desc" jdbcType="LONGVARCHAR" property="logisticsDesc" />
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -98,9 +100,27 @@
         buyer_post, buyer_address, buyer_logistics_phone, orderinfo_createtime, orderinfo_id, 
         payinfo_actualfee, statusinfo_text, statusinfo_type, create_time, pay_time, send_time, 
         alipay_id, order_bar, order_bar_text, logistics_name, logistics_num, logistics_num_taobao, 
-        logistics_desc, logistics_last_desc, buy_message, created_by, updated_by, created_at, 
-        updated_at
+        logistics_last_desc, buy_message, created_by, updated_by, created_at, updated_at
     </sql>
+    <sql id="Blob_Column_List">
+        logistics_desc
+    </sql>
+    <select id="selectByExampleWithBLOBs" parameterType="com.tongxuweb.domain.generate.TaskGetdataTaobaoOrderExample" resultMap="ResultMapWithBLOBs">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from task_getdata_taobao_order
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
     <select id="selectByExample" parameterType="com.tongxuweb.domain.generate.TaskGetdataTaobaoOrderExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -115,9 +135,11 @@
             order by ${orderByClause}
         </if>
     </select>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
         select 
         <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
         from task_getdata_taobao_order
         where id = #{id,jdbcType=BIGINT}
     </select>
@@ -209,9 +231,6 @@
             <if test="logisticsNumTaobao != null">
                 logistics_num_taobao,
             </if>
-            <if test="logisticsDesc != null">
-                logistics_desc,
-            </if>
             <if test="logisticsLastDesc != null">
                 logistics_last_desc,
             </if>
@@ -229,6 +248,9 @@
             </if>
             <if test="updatedAt != null">
                 updated_at,
+            </if>
+            <if test="logisticsDesc != null">
+                logistics_desc,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -304,9 +326,6 @@
             <if test="logisticsNumTaobao != null">
                 #{logisticsNumTaobao,jdbcType=VARCHAR},
             </if>
-            <if test="logisticsDesc != null">
-                #{logisticsDesc,jdbcType=VARCHAR},
-            </if>
             <if test="logisticsLastDesc != null">
                 #{logisticsLastDesc,jdbcType=VARCHAR},
             </if>
@@ -324,6 +343,9 @@
             </if>
             <if test="updatedAt != null">
                 #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="logisticsDesc != null">
+                #{logisticsDesc,jdbcType=LONGVARCHAR},
             </if>
         </trim>
     </insert>
@@ -408,9 +430,6 @@
             <if test="record.logisticsNumTaobao != null">
                 logistics_num_taobao = #{record.logisticsNumTaobao,jdbcType=VARCHAR},
             </if>
-            <if test="record.logisticsDesc != null">
-                logistics_desc = #{record.logisticsDesc,jdbcType=VARCHAR},
-            </if>
             <if test="record.logisticsLastDesc != null">
                 logistics_last_desc = #{record.logisticsLastDesc,jdbcType=VARCHAR},
             </if>
@@ -419,6 +438,9 @@
             </if>
             <if test="record.updatedBy != null">
                 updated_by = #{record.updatedBy,jdbcType=BIGINT},
+            </if>
+            <if test="record.logisticsDesc != null">
+                logistics_desc = #{record.logisticsDesc,jdbcType=LONGVARCHAR},
             </if>
         </set>
         <if test="_parameter != null">
@@ -500,9 +522,6 @@
             <if test="logisticsNumTaobao != null">
                 logistics_num_taobao = #{logisticsNumTaobao,jdbcType=VARCHAR},
             </if>
-            <if test="logisticsDesc != null">
-                logistics_desc = #{logisticsDesc,jdbcType=VARCHAR},
-            </if>
             <if test="logisticsLastDesc != null">
                 logistics_last_desc = #{logisticsLastDesc,jdbcType=VARCHAR},
             </if>
@@ -511,6 +530,9 @@
             </if>
             <if test="updatedBy != null">
                 updated_by = #{updatedBy,jdbcType=BIGINT},
+            </if>
+            <if test="logisticsDesc != null">
+                logistics_desc = #{logisticsDesc,jdbcType=LONGVARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=BIGINT}

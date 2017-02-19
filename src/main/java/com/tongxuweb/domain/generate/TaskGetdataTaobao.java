@@ -10,6 +10,12 @@ public class TaskGetdataTaobao implements Serializable {
 
     private String taskName;
 
+    //1:主订单信息 2:订单明细信息
+    private Integer type;
+
+    //需要抓取的订单的数量
+    private Integer typeNum;
+
     //开始时间
     private Date beginDate;
 
@@ -28,8 +34,8 @@ public class TaskGetdataTaobao implements Serializable {
     //是否合并
     private Integer isMerge;
 
-    //1:浏览器手动触发
-    private Integer type;
+    //1:待执行 2:执行结束 
+    private Integer status;
 
     //创建人
     private Long createdBy;
@@ -59,6 +65,22 @@ public class TaskGetdataTaobao implements Serializable {
 
     public void setTaskName(String taskName) {
         this.taskName = taskName == null ? null : taskName.trim();
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getTypeNum() {
+        return typeNum;
+    }
+
+    public void setTypeNum(Integer typeNum) {
+        this.typeNum = typeNum;
     }
 
     public Date getBeginDate() {
@@ -109,12 +131,12 @@ public class TaskGetdataTaobao implements Serializable {
         this.isMerge = isMerge;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Long getCreatedBy() {

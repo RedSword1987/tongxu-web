@@ -14,6 +14,8 @@ public interface TaskGetdataTaobaoOrderMapper {
 
     int insertSelective(TaskGetdataTaobaoOrder record);
 
+    List<TaskGetdataTaobaoOrder> selectByExampleWithBLOBs(TaskGetdataTaobaoOrderExample example);
+
     List<TaskGetdataTaobaoOrder> selectByExample(TaskGetdataTaobaoOrderExample example);
 
     TaskGetdataTaobaoOrder selectByPrimaryKey(Long id);

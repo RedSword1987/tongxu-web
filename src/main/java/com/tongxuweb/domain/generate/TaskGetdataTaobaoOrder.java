@@ -80,9 +80,6 @@ public class TaskGetdataTaobaoOrder implements Serializable {
     //淘宝物流编号
     private String logisticsNumTaobao;
 
-    //物流信息
-    private String logisticsDesc;
-
     //物流最后信息
     private String logisticsLastDesc;
 
@@ -100,6 +97,8 @@ public class TaskGetdataTaobaoOrder implements Serializable {
 
     //修改时间
     private Date updatedAt;
+
+    private String logisticsDesc;
 
     private static final long serialVersionUID = 1L;
 
@@ -303,14 +302,6 @@ public class TaskGetdataTaobaoOrder implements Serializable {
         this.logisticsNumTaobao = logisticsNumTaobao == null ? null : logisticsNumTaobao.trim();
     }
 
-    public String getLogisticsDesc() {
-        return logisticsDesc;
-    }
-
-    public void setLogisticsDesc(String logisticsDesc) {
-        this.logisticsDesc = logisticsDesc == null ? null : logisticsDesc.trim();
-    }
-
     public String getLogisticsLastDesc() {
         return logisticsLastDesc;
     }
@@ -357,5 +348,13 @@ public class TaskGetdataTaobaoOrder implements Serializable {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getLogisticsDesc() {
+        return logisticsDesc;
+    }
+
+    public void setLogisticsDesc(String logisticsDesc) {
+        this.logisticsDesc = logisticsDesc == null ? null : logisticsDesc.trim();
     }
 }

@@ -1,5 +1,6 @@
 package com.tongxuweb.controller;
 
+import com.tongxuweb.domain.create.OTaskGetdataTaobao;
 import com.tongxuweb.domain.entity.MainOrders;
 import com.tongxuweb.domain.generate.TaskGetdataTaobao;
 import com.tongxuweb.service.TaskGetdataTaobaoOrderService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -24,13 +26,29 @@ public class TaobaoController {
     private TaskGetdataTaobaoService taskGetdataTaobaoService;
 
 
-    @RequestMapping("/test")
+    @RequestMapping("/getNeedTask")
     @ResponseBody
-    public Map<String, String> test() {
-        Map<String, String> ss = new HashMap<String, String>();
-        ss.put("1", "1");
+    public Map<String, Object> getNeedTask() {
+        Map<String, Object> result = new HashMap<String, Object>();
+        List<OTaskGetdataTaobao> tasklist=taskGetdataTaobaoService.getNeedTask();
+        result.put("tasklist",tasklist);
+        return result;
+    }
+
+    @RequestMapping("/finishTask")
+    @ResponseBody
+    public Map<String, Object> finishTask(@RequestBody TaskGetdataTaobao taskGetdataTaobao) {
+        Map<String, Object> ss = new HashMap<String, Object>();
+        int result=taskGetdataTaobaoService.finishTask(taskGetdataTaobao);
+        ss.put("result", result);
         return ss;
     }
+
+
+
+
+
+
 
 
     @RequestMapping("/getLast")
@@ -46,12 +64,7 @@ public class TaobaoController {
         return ss;
     }
 
-    @RequestMapping("/batch")
-    @ResponseBody
-    public TaskGetdataTaobao batch(@RequestBody TaskGetdataTaobao taskGetdataTaobao) {
-        TaskGetdataTaobao newTaskGetdataTaobao = taskGetdataTaobaoService.save(taskGetdataTaobao);
-        return newTaskGetdataTaobao;
-    }
+
 
 
     @RequestMapping("/orders")

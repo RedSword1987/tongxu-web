@@ -4,13 +4,15 @@
     <resultMap id="BaseResultMap" type="com.tongxuweb.domain.generate.TaskGetdataTaobao">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+        <result column="type" jdbcType="INTEGER" property="type" />
+        <result column="type_num" jdbcType="INTEGER" property="typeNum" />
         <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
         <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
         <result column="time_interval" jdbcType="INTEGER" property="timeInterval" />
         <result column="all_num" jdbcType="INTEGER" property="allNum" />
         <result column="fact_num" jdbcType="INTEGER" property="factNum" />
         <result column="is_merge" jdbcType="INTEGER" property="isMerge" />
-        <result column="type" jdbcType="INTEGER" property="type" />
+        <result column="status" jdbcType="INTEGER" property="status" />
         <result column="created_by" jdbcType="BIGINT" property="createdBy" />
         <result column="updated_by" jdbcType="BIGINT" property="updatedBy" />
         <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
@@ -75,8 +77,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        id, task_name, begin_date, end_date, time_interval, all_num, fact_num, is_merge, 
-        type, created_by, updated_by, created_at, updated_at
+        id, task_name, type, type_num, begin_date, end_date, time_interval, all_num, fact_num, 
+        is_merge, status, created_by, updated_by, created_at, updated_at
     </sql>
     <select id="selectByExample" parameterType="com.tongxuweb.domain.generate.TaskGetdataTaobaoExample" resultMap="BaseResultMap">
         select
@@ -117,6 +119,12 @@
             <if test="taskName != null">
                 task_name,
             </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="typeNum != null">
+                type_num,
+            </if>
             <if test="beginDate != null">
                 begin_date,
             </if>
@@ -135,8 +143,8 @@
             <if test="isMerge != null">
                 is_merge,
             </if>
-            <if test="type != null">
-                type,
+            <if test="status != null">
+                status,
             </if>
             <if test="createdBy != null">
                 created_by,
@@ -154,6 +162,12 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="taskName != null">
                 #{taskName,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="typeNum != null">
+                #{typeNum,jdbcType=INTEGER},
             </if>
             <if test="beginDate != null">
                 #{beginDate,jdbcType=TIMESTAMP},
@@ -173,8 +187,8 @@
             <if test="isMerge != null">
                 #{isMerge,jdbcType=INTEGER},
             </if>
-            <if test="type != null">
-                #{type,jdbcType=INTEGER},
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
             </if>
             <if test="createdBy != null">
                 #{createdBy,jdbcType=BIGINT},
@@ -202,6 +216,12 @@
             <if test="record.taskName != null">
                 task_name = #{record.taskName,jdbcType=VARCHAR},
             </if>
+            <if test="record.type != null">
+                type = #{record.type,jdbcType=INTEGER},
+            </if>
+            <if test="record.typeNum != null">
+                type_num = #{record.typeNum,jdbcType=INTEGER},
+            </if>
             <if test="record.beginDate != null">
                 begin_date = #{record.beginDate,jdbcType=TIMESTAMP},
             </if>
@@ -220,8 +240,8 @@
             <if test="record.isMerge != null">
                 is_merge = #{record.isMerge,jdbcType=INTEGER},
             </if>
-            <if test="record.type != null">
-                type = #{record.type,jdbcType=INTEGER},
+            <if test="record.status != null">
+                status = #{record.status,jdbcType=INTEGER},
             </if>
             <if test="record.updatedBy != null">
                 updated_by = #{record.updatedBy,jdbcType=BIGINT},
@@ -236,6 +256,12 @@
         <set>
             <if test="taskName != null">
                 task_name = #{taskName,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="typeNum != null">
+                type_num = #{typeNum,jdbcType=INTEGER},
             </if>
             <if test="beginDate != null">
                 begin_date = #{beginDate,jdbcType=TIMESTAMP},
@@ -255,8 +281,8 @@
             <if test="isMerge != null">
                 is_merge = #{isMerge,jdbcType=INTEGER},
             </if>
-            <if test="type != null">
-                type = #{type,jdbcType=INTEGER},
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
             </if>
             <if test="updatedBy != null">
                 updated_by = #{updatedBy,jdbcType=BIGINT},

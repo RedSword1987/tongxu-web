@@ -60,7 +60,7 @@ public class TaskGetdataTaobaoOrderServiceImpl implements TaskGetdataTaobaoOrder
             }
         }
 
-        taskGetdataTaobaoOrderDao.insertBuyer();
+        //taskGetdataTaobaoOrderDao.insertBuyer();
         ss.put("insert", insert);
         ss.put("update", update);
         return list.size();
