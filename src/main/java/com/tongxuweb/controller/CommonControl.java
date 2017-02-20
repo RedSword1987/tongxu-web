@@ -31,15 +31,20 @@ public class CommonControl {
      */
     @RequestMapping("/common_download_xls")
     public void common_download_xls(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String id = request.getParameter("id");
         SearchTaskResultBean searchTaskResultBean = new SearchTaskResultBean(request);
         searchTaskResultBean.setLimit(100000);
         searchTaskResultBean.setOffset(0);
+
         List<Map<String, Object>> listResult = taskGetdataTaobaoService.listTaskResultMap(searchTaskResultBean);
 
-        String fileName = "数据抓取_" + DateUtil.getTimeStringNow("yyyy-MM-dd");
-        String columnNames[] = {"ID"};// 列名
-        String keys[] = {"id"};// map中的key
+        String fileName = "ID_" + searchTaskResultBean.getId() + "_" + DateUtil.getTimeStringNow("yyyy-MM-dd");
+        String columnNames[] = {"订单标号", "订单创建时间", "订单买家状态", "订单卖家状态", "快递公司", "快递号", "淘宝物流编号",
+                "购买者昵称", "注册手机", "收货手机", "省",
+                "市", "区", "邮编", "详细地址", "支付时间", "发货时间", "支付单号", "物流最后状态", "物流明细"};// 列名
+        String keys[] = {"orderinfo_id", "orderinfo_createtime", "order_bar_text", "statusinfo_text",
+                "logistics_name", "logistics_num", "logistics_num_taobao", "buyer_nick", "buyer_phonenum", "buyer_logistics_phone",
+                "buyer_provice", "buyer_city", "buyer_area", "buyer_post", "buyer_address", "pay_time", "send_time", "alipay_id"
+                , "logistics_last_desc", "logistics_desc"};// map中的key
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         try {
             ExcelUtil.createWorkBook(listResult, keys, columnNames).write(os);
