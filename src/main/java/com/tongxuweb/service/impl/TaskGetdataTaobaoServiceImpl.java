@@ -123,21 +123,31 @@ public class TaskGetdataTaobaoServiceImpl implements TaskGetdataTaobaoService{
     public PaginationResult listTaskResult(SearchTaskResultBean searchTaskResultBean) {
         PaginationResult result = new PaginationResult();
 
-        TaskGetdataTaobao task = taskGetdataTaobaoDao.selectByPrimaryKey(searchTaskResultBean.getId());
-        List<TaskGetdataTaobaoOrder> re = null;
-        if (1 == task.getType()) {
-            searchTaskResultBean.setBeginDate(task.getBeginDate());
-            searchTaskResultBean.setEndDate(task.getBeginDate());
+        TaskGetdataTaobao task = null;
+        if (searchTaskResultBean.getId() != null) {
+            task = taskGetdataTaobaoDao.selectByPrimaryKey(searchTaskResultBean.getId());
+        }
 
+        List<TaskGetdataTaobaoOrder> re = null;
+        if (task != null) {
+            if (1 == task.getType()) {
+                searchTaskResultBean.setBeginDate(task.getBeginDate());
+                searchTaskResultBean.setEndDate(task.getBeginDate());
+
+                re = taskGetdataTaobaoDao.listTaskResult1(searchTaskResultBean);
+                Integer count = taskGetdataTaobaoDao.countTaskResult1(searchTaskResultBean);
+                searchTaskResultBean.setTotal(count);
+
+            } else if (2 == task.getType()) {
+                re = taskGetdataTaobaoDao.listTaskResult2(searchTaskResultBean);
+                Integer count = taskGetdataTaobaoDao.countTaskResult2(searchTaskResultBean);
+                searchTaskResultBean.setTotal(count);
+
+            }
+        } else {
             re = taskGetdataTaobaoDao.listTaskResult1(searchTaskResultBean);
             Integer count = taskGetdataTaobaoDao.countTaskResult1(searchTaskResultBean);
             searchTaskResultBean.setTotal(count);
-
-        } else if (2 == task.getType()) {
-            re = taskGetdataTaobaoDao.listTaskResult2(searchTaskResultBean);
-            Integer count = taskGetdataTaobaoDao.countTaskResult2(searchTaskResultBean);
-            searchTaskResultBean.setTotal(count);
-
         }
 
 

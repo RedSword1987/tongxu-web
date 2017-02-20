@@ -42,7 +42,13 @@
 
 
     <sql id="listTaskResultSql1">
-        select * from task_getdata_taobao a where a.orderinfo_createtime between #{beginDate} and #{endDate}
+        select * from task_getdata_taobao a where 1=1
+        <if test="beginDate != null">
+            and a.orderinfo_createtime &gt;= #{beginDate}
+        </if>
+        <if test="endDate != null">
+            and a.orderinfo_createtime &lt;= #{endDate}
+        </if>
     </sql>
 
     <select id="listTaskResult1" resultType="com.tongxuweb.domain.generate.TaskGetdataTaobaoOrder">

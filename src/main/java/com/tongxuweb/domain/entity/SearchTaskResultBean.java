@@ -29,9 +29,9 @@ public class SearchTaskResultBean extends Pagination {
             } else {
                 setOffset(Integer.valueOf(start));
             }
-
-            setId(Long.valueOf(String.valueOf(request.getParameter("id"))));
-
+            if (!StringUtil.isEmpty(request.getParameter("id"))) {
+                setId(Long.valueOf(String.valueOf(request.getParameter("id"))));
+            }
         }
     }
 
