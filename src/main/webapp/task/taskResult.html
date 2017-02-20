@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>数据抓取</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <!-- HTTP 1.0 -->
+    <meta http-equiv="cache-control" content="no-cache">
+    <!-- Prevent caching at the proxy server -->
+    <meta http-equiv="expires" content="0">
+
+    <link href="../gentelella-master/vendors/bootstrap/dist/css/bootstrap.min.css?v=20160907"
+          rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../gentelella-master/vendors/font-awesome/css/font-awesome.min.css?v=20160907"
+          rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../gentelella-master/vendors/iCheck/skins/flat/green.css?v=20160907"
+          rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="../gentelella-master/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css?v=20160907"
+          rel="stylesheet">
+    <!-- jVectorMap -->
+    <link href="../gentelella-master/production/css/maps/jquery-jvectormap-2.0.3.css?v=20160907"
+          rel="stylesheet"/>
+    <!-- Custom Theme Style -->
+    <link href="../gentelella-master/production/css/custom.css?v=20160907"
+          rel="stylesheet">
+    <!-- Select2 -->
+    <link href="../gentelella-master/vendors/select2/dist/css/select2.min.css?v=20160907"
+          rel="stylesheet">
+    <link href="../gentelella-master/vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css?v=20160907"
+          rel="stylesheet">
+
+    <link href="../gentelella-master/vendors/bootstrap-table/bootstrap-table.css?v=20160907"
+          rel="stylesheet">
+    <!-- ztree树 -->
+    <link href="../gentelella-master/vendors/ztree/css/zTreeStyle/metro.css?v=20160907"
+          rel="stylesheet">
+    <!-- showLoading-->
+    <link href="../gentelella-master/vendors/jquery-showLoading/css/showLoading.css?v=20160907"
+          rel="stylesheet">
+    <!-- jquery-confirm-->
+    <link href="../gentelella-master/vendors/jquery-confirm/jquery-confirm.min.css?v=20160907"
+          rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../gentelella-master/production/css/common.css?v=20160907"
+          rel="stylesheet">
+
+
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div  role="main" >
+            <div class="col-md-12 col-sm-12 col-xs-12" style="min-height: 400px!important;">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>任务抓取</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <table id="bootstrap-table">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jQuery -->
+<script src="../gentelella-master/vendors/jquery/dist/jquery.min.js?v=20160907"></script>
+<!-- Bootstrap -->
+<script src="../gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js?v=20160907"></script>
+<!-- FastClick -->
+<script src="../gentelella-master/vendors/fastclick/lib/fastclick.js?v=20160907"></script>
+<!-- NProgress -->
+<script src="../gentelella-master/vendors/nprogress/nprogress.js?v=20160907"></script>
+<!-- Chart.js -->
+<script src="../gentelella-master/vendors/Chart.js/dist/Chart.min.js"></script>
+<!-- gauge.js -->
+<script src="../gentelella-master/vendors/bernii/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../gentelella-master/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="../gentelella-master/vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script src="../gentelella-master/vendors/skycons/skycons.js"></script>
+<!-- Flot -->
+<script src="../gentelella-master/vendors/Flot/jquery.flot.js"></script>
+<script src="../gentelella-master/vendors/Flot/jquery.flot.pie.js"></script>
+<script src="../gentelella-master/vendors/Flot/jquery.flot.time.js"></script>
+<script src="../gentelella-master/vendors/Flot/jquery.flot.stack.js"></script>
+<script src="../gentelella-master/vendors/Flot/jquery.flot.resize.js"></script>
+<!-- Flot plugins -->
+<script src="../gentelella-master/production/js/flot/jquery.flot.orderBars.js"></script>
+<script src="../gentelella-master/production/js/flot/date.js"></script>
+<script src="../gentelella-master/production/js/flot/jquery.flot.spline.js"></script>
+<script src="../gentelella-master/production/js/flot/curvedLines.js"></script>
+<!-- jVectorMap -->
+<script src="../gentelella-master/production/js/maps/jquery-jvectormap-2.0.3.min.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="../gentelella-master/production/js/moment/moment.min.js"></script>
+<script src="../gentelella-master/production/js/datepicker/daterangepicker.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../gentelella-master/production/js/custom.js"></script>
+<!--  -->
+<script src="../gentelella-master/production/js/maps/jquery-jvectormap-world-mill-en.js"></script>
+<script src="../gentelella-master/production/js/maps/jquery-jvectormap-us-aea-en.js"></script>
+<script src="../gentelella-master/production/js/maps/gdp-data.js"></script>
+<!-- Flot -->
+<script src="../gentelella-master/vendors/jszip/dist/jszip.min.js"></script>
+<!--
+<script src="../gentelella-master/vendors/pdfmake/build/pdfmake.min.js"></script>
+ -->
+<script src="../gentelella-master/vendors/pdfmake/build/vfs_fonts.js"></script>
+<!-- ECharts -->
+<script src="../gentelella-master/vendors/echarts/dist/echarts.min.js"></script>
+<script src="../gentelella-master/vendors/echarts/map/js/world.js"></script>
+<!--   -->
+<!--   -->
+<!-- 时间控件  -->
+<script src="../gentelella-master/vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+<script src="../gentelella-master/vendors/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"
+        charset="UTF-8"></script>
+<!-- Select2 -->
+<script src="../gentelella-master/vendors/select2/dist/js/select2.full.min.js"></script>
+<!--   -->
+<!-- ztree -->
+<script src="../gentelella-master/vendors/ztree/js/jquery.ztree.all-3.5.min.js"></script>
+<!--   -->
+<!-- showLoading -->
+<script src="../gentelella-master/vendors/jquery-showLoading/js/jquery.showLoading.min.js"></script>
+<!-- jquery-confirm -->
+<script src="../gentelella-master/vendors/jquery-confirm/jquery-confirm.min.js"></script>
+<!--   -->
+<!-- 另外导入 -->
+<script src="../gentelella-master/vendors/bootstrap-table/bootstrap-table.js"></script>
+<script src="../gentelella-master/vendors/bootstrap-table/bootstrap-table-zh-CN.js"></script>
+<script src="../gentelella-master/vendors/jquery-cookie/jquery.cookie.js"></script>
+<!-- 自己项目的js -->
+<script src="../common/js/common.js?v=20160907"></script>
+<script src="../common/js/common_forTable.js?v=20160907"></script>
+<script src="../common/js/common_forModal.js?v=20160907"></script>
+<script src="../common/js/common_ajax.js?v=20160907"></script>
+<script src="../common/js/echart.js?v=20160907"></script>
+
+
+<div id="fakeloader"></div>
+<script type="text/javascript">
+    var localHref = window.location.href;
+    var idValue=getQueryString("id");
+
+    var columns = [
+        {field: "id", title: "ID",  class: "th_ka"},
+        {field: "type", title: "任务类型",  class: "th_ka" },
+        {field: "taskName", title: "任务名称",  class: "th_ka"},
+        {field: "typeNum", title: "明细订单数量",  class: "th_ka" },
+        {field: "beginDate", title: "开始时间",  class: "th_ka",formatter:formatter_datetime,class:"th_time"},
+        {field: "endDate", title: "结束时间",  class: "th_ka",formatter:formatter_datetime,class:"th_time"},
+        {field: "status", title: "状态",  class: "th_ka" }
+
+    ];
+
+    var idField = "id";
+    var url_prefix = "/task/taobao/";
+    var url_page = url_prefix + "listTaskResult.action?id="+idValue;
+
+    //此处不需要修改
+    var tableId = "bootstrap-table";
+
+
+    $(function () {
+
+
+        initPage(tableId, idField, url_page, columns);
+
+        $(window).resize(function () {
+            $('#bootstrap-table').bootstrapTable('resetView');
+        });
+
+    });
+</script>
+
+</body>
+</html>

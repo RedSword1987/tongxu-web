@@ -1,5 +1,7 @@
 package com.tongxuweb.domain.entity.common;
 
+import com.tongxuweb.domain.entity.SearchTaskBean;
+
 /**
  * Created by higgs on 17/2/14.
  */
@@ -8,14 +10,16 @@ public class Pagination {
     public static final Integer DEFAULT_SIZE = 10;
     public static final Integer FIRST_PAGE = 1;
     private Integer currentPage = 0;
-    private Integer pageSize = 0;
-    private Integer totalNumber = 0;
-    private Integer totalPage = 0;
-    private Integer offet = 0;
+    private Integer limit = 0;
+    private Integer total = 0;
+    private Integer offset = 0;
 
+    public Integer getOffset() {
+        return offset;
+    }
 
-    public Integer getOffet() {
-        return (getCurrentPage() - 1) * getPageSize();
+    public void setOffset(Integer offset) {
+        this.offset = offset;
     }
 
     public Integer getCurrentPage() {
@@ -29,36 +33,30 @@ public class Pagination {
         this.currentPage = currentPage;
     }
 
-    public Integer getPageSize() {
-        if (pageSize == null || pageSize < 1) {
-            pageSize = DEFAULT_SIZE;
+    public Integer getLimit() {
+        if (limit == null || limit < 1) {
+            limit = DEFAULT_SIZE;
         }
-        return pageSize;
+        return limit;
     }
 
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 
-    public Integer getTotalNumber() {
-        if (totalNumber == null) {
-            totalNumber = 0;
+    public Integer getTotal() {
+        if (total == null) {
+            total = 0;
         }
-        return totalNumber;
+        return total;
     }
 
-    public void setTotalNumber(Integer totalNumber) {
+    public void setTotal(Integer total) {
 
-        this.totalNumber = totalNumber;
+        this.total = total;
 
 
     }
 
-    public Integer getTotalPage() {
-        return (getTotalNumber() + pageSize - 1) / pageSize;
-    }
 
-    public void setTotalPage(Integer totalPage) {
-        this.totalPage = totalPage;
-    }
 }

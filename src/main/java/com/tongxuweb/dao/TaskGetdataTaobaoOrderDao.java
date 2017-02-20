@@ -10,4 +10,6 @@ public interface TaskGetdataTaobaoOrderDao extends TaskGetdataTaobaoOrderMapper 
     void insertBuyer();
 
     TaskGetdataTaobaoOrder getLastDate();
+
+
 }

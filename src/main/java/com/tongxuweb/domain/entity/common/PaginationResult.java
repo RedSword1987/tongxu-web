@@ -3,24 +3,21 @@ package com.tongxuweb.domain.entity.common;
 /**
  * Created by higgs on 17/2/14.
  */
-public class PaginationResult {
-    Pagination pagination;
-    Object data;
+public class PaginationResult extends Pagination {
+    Object rows;
 
+    public Object getRows() {
+        return rows;
+    }
 
-    public Pagination getPagination() {
-        return pagination;
+    public void setRows(Object rows) {
+        this.rows = rows;
     }
 
     public void setPagination(Pagination pagination) {
-        this.pagination = pagination;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
+        this.setCurrentPage(pagination.getCurrentPage());
+        this.setLimit(pagination.getLimit());
+        this.setTotal(pagination.getTotal());
+        this.setOffset(pagination.getOffset());
     }
 }
