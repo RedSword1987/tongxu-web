@@ -1,0 +1,17 @@
+
+ .searchInput{height: 27px;padding: 0px;border: 1"}
+
+.table th.th_store_name {
+  min-width: 110px!important;
+}
+
+.table th.th_item_name {
+  min-width: 200px!important;
+}
+
+.table th.th_time {
+  min-width: 136px!important;
+}
+#btn_search_action  {
+	margin-left: 400px!important;
+}
