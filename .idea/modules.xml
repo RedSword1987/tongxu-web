@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/mybatis-generator-core-fix/mybatis-generator-core-fix.iml" filepath="$PROJECT_DIR$/mybatis-generator-core-fix/mybatis-generator-core-fix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis-generator-core-fix/mybatis-generator-core.iml" filepath="$PROJECT_DIR$/mybatis-generator-core-fix/mybatis-generator-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/tongxu-web.iml" filepath="$PROJECT_DIR$/tongxu-web.iml" />
     </modules>
   </component>
