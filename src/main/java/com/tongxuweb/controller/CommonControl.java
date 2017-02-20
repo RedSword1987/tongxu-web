@@ -32,13 +32,14 @@ public class CommonControl {
     @RequestMapping("/common_download_xls")
     public void common_download_xls(HttpServletRequest request, HttpServletResponse response) throws IOException {
         SearchTaskResultBean searchTaskResultBean = new SearchTaskResultBean(request);
+
         searchTaskResultBean.setLimit(100000);
         searchTaskResultBean.setOffset(0);
 
         List<Map<String, Object>> listResult = taskGetdataTaobaoService.listTaskResultMap(searchTaskResultBean);
 
         String fileName = "ID_" + searchTaskResultBean.getId() + "_" + DateUtil.getTimeStringNow("yyyy-MM-dd");
-        String columnNames[] = {"订单标号", "订单创建时间", "订单买家状态", "订单卖家状态", "快递公司", "快递号", "淘宝物流编号",
+        String columnNames[] = {"订单编号", "订单创建时间", "订单买家状态", "订单卖家状态", "快递公司", "快递号", "淘宝物流编号",
                 "购买者昵称", "注册手机", "收货手机", "省",
                 "市", "区", "邮编", "详细地址", "支付时间", "发货时间", "支付单号", "物流最后状态", "物流明细"};// 列名
         String keys[] = {"orderinfo_id", "orderinfo_createtime", "order_bar_text", "statusinfo_text",

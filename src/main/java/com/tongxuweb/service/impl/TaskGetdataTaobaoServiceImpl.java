@@ -158,18 +158,23 @@ public class TaskGetdataTaobaoServiceImpl implements TaskGetdataTaobaoService{
 
     public List<Map<String, Object>> listTaskResultMap(SearchTaskResultBean searchTaskResultBean) {
         List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
-        TaskGetdataTaobao task = taskGetdataTaobaoDao.selectByPrimaryKey(searchTaskResultBean.getId());
-        List<TaskGetdataTaobaoOrder> re = null;
-        if (1 == task.getType()) {
-            searchTaskResultBean.setBeginDate(task.getBeginDate());
-            searchTaskResultBean.setEndDate(task.getBeginDate());
-
-            result = taskGetdataTaobaoDao.listTaskResult1Map(searchTaskResultBean);
-
-        } else if (2 == task.getType()) {
-            result = taskGetdataTaobaoDao.listTaskResult2Map(searchTaskResultBean);
-
+        TaskGetdataTaobao task = null;
+        if (searchTaskResultBean.getId()!=null){
+            task=taskGetdataTaobaoDao.selectByPrimaryKey(searchTaskResultBean.getId());
         }
+        if (task!=null){
+            if (1 == task.getType()) {
+                searchTaskResultBean.setBeginDate(task.getBeginDate());
+                searchTaskResultBean.setEndDate(task.getBeginDate());
+                result = taskGetdataTaobaoDao.listTaskResult1Map(searchTaskResultBean);
+
+            } else if (2 == task.getType()) {
+                result = taskGetdataTaobaoDao.listTaskResult2Map(searchTaskResultBean);
+            }
+        }else{
+            result = taskGetdataTaobaoDao.listTaskResult1Map(searchTaskResultBean);
+        }
+
         return result;
     }
 

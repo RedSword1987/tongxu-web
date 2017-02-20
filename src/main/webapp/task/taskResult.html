@@ -65,6 +65,85 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        <form id="btn_search_content" style="display: none;" data-parsley-validate class="form-horizontal form-label-left">
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-2"> 订单编号 :</label>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <input type="text" id="searchForm_orderinfoId----1" class="form-control col-md-3 col-xs-3">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-2">订单买家状态 : </label>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <select id="searchForm_orderBarText----1" class="form-control">
+                                        <option value=""></option>
+                                        <option value="买家确认收货">买家确认收货</option>
+                                    </select>
+                                </div>
+
+                                <label class="control-label col-md-2 col-sm-2 col-xs-2">订单卖家状态 : </label>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <select id="searchForm_statusinfoText----1" class="form-control">
+                                        <option value=""></option>
+                                        <option value="卖家已发货">卖家已发货</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-2">快递公司 : </label>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <select id="searchForm_logisticsName----1" class="form-control">
+                                        <option value=""></option>
+                                        <option value="韵达快递">韵达快递</option>
+                                        <option value="EMS经济快递">EMS经济快递</option>
+                                    </select>
+                                </div>
+
+                                <label class="control-label col-md-2 col-sm-2 col-xs-2">快递号 : </label>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <input type="text" id="searchForm_logisticsNum----1" class="form-control col-md-3 col-xs-3">
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-2">购买者昵称/手机 : </label>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <input type="text" id="searchForm_buyerNick----1" class="form-control col-md-3 col-xs-3">
+                                </div>
+
+                                <label class="control-label col-md-2 col-sm-2 col-xs-2">购买者地区 : </label>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <input type="text" id="searchForm_buyerArea----1" class="form-control col-md-3 col-xs-3">
+                                </div>
+
+                            </div>
+
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-8 col-sm-8 col-xs-8  ">
+                                    <button id="btn_search_action" class="btn btn-primary" type="button">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索
+                                    </button>
+
+                                </div>
+                            </div>
+                        </form>
+                        <div id="toolbar" class="btn-group">
+                            <div>
+                                <button id="btn_search" type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索
+                                </button>
+                                <button id="btn_export_xls" type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                                </button>
+                            </div>
+                        </div>
+
                         <table id="bootstrap-table">
                         </table>
                     </div>
@@ -157,15 +236,32 @@
     var idValue=getQueryString("id");
 
     var columns = [
-        {field: "id", title: "ID",  class: "th_ka"},
-        {field: "type", title: "任务类型",  class: "th_ka" },
-        {field: "taskName", title: "任务名称",  class: "th_ka"},
-        {field: "typeNum", title: "明细订单数量",  class: "th_ka" },
-        {field: "beginDate", title: "开始时间",  class: "th_ka",formatter:formatter_datetime,class:"th_time"},
-        {field: "endDate", title: "结束时间",  class: "th_ka",formatter:formatter_datetime,class:"th_time"},
-        {field: "status", title: "状态",  class: "th_ka" }
+        {field: "orderinfoId", title: "订单编号",  class: "th_ka",sortable:"true"},
+        {field: "orderinfoCreatetime", title: "订单创建时间",  class: "th_ka" ,formatter:formatter_datetime,class:"th_time",sortable:"true"},
+        {field: "orderBarText", title: "订单买家状态",  class: "th_100",sortable:"true"},
+        {field: "statusinfoText", title: "订单卖家状态",  class: "th_100" ,sortable:"true"},
+        {field: "logisticsName", title: "快递公司",  class: "th_100",sortable:"true"},
+        {field: "logisticsNum", title: "快递号",  class: "th_ka" ,sortable:"true"},
+        {field: "logisticsNumTaobao", title: "淘宝物流编号",  class: "th_ka" ,sortable:"true"},
+        {field: "buyerNick", title: "购买者昵称",  class: "th_150" ,sortable:"true"},
+        {field: "buyerPhonenum", title: "注册手机",  class: "th_ka" ,sortable:"true"},
+        {field: "buyerLogisticsPhone", title: "收货手机",  class: "th_ka" ,sortable:"true"},
+        {field: "buyerProvice", title: "省",  class: "th_ka" ,sortable:"true"},
+        {field: "buyerCity", title: "市",  class: "th_ka",sortable:"true" },
+        {field: "buyerArea", title: "区",  class: "th_250" ,sortable:"true"},
+        {field: "buyerPost", title: "邮编",  class: "th_ka",sortable:"true" },
+
+        {field: "payTime", title: "支付时间",  class: "th_ka",formatter:formatter_datetime,class:"th_time" ,sortable:"true"},
+        {field: "sendTime", title: "发货时间",  class: "th_ka",formatter:formatter_datetime,class:"th_time",sortable:"true" },
+
+        {field: "alipayId", title: "支付单号",  class: "th_ka" ,sortable:"true"},
+        {field: "logisticsLastDesc", title: "物流最后状态",  class: "th_250" ,sortable:"true"}
+       // ,{field: "logisticsDesc", title: "物流明细",  class: "th_ka" },
+
 
     ];
+
+
 
     var idField = "id";
     var url_prefix = "/task/taobao/";
@@ -176,6 +272,46 @@
 
 
     $(function () {
+        //添加按钮
+        $("#btn_search").click(function(){
+            if(!$("#btn_search_content").is(":hidden")){
+
+            }else{
+
+            }
+
+            $("#btn_search_content").toggle();
+            $("#btn_search_action").unbind("click");
+            $("#btn_search_action").click(function(){
+                $('#bootstrap-table').bootstrapTable("refresh");
+            });
+
+        });
+
+        $("#btn_export_xls").click(function(){
+            $("#exportForm #exportForm_sort").val("");
+            $("#exportForm #exportForm_order").val("");
+            $("#exportForm #exportForm_searchField").val("");
+
+
+            var sortOrder=$('#'+tableId).bootstrapTable('getOptions').sortOrder;
+            var sortName=$('#'+tableId).bootstrapTable('getOptions').sortName;
+            if(!sortName){
+                sortName="";
+            }
+            var searchField=getSearchFields();
+
+            var length_=getObjKeyNums(searchField);
+            if(length_!=0){
+                $("#exportForm #exportForm_searchFields").val(JSON.stringify(searchField));
+            }
+            $("#exportForm #exportForm_sort").val(sortName);
+            $("#exportForm #exportForm_order").val(sortOrder);
+            var url="/common/common_download_xls.action?id="+idValue;
+            $("#exportForm").attr("action",url);
+            $("#exportForm").submit();
+        });
+
 
 
         initPage(tableId, idField, url_page, columns);
@@ -186,6 +322,10 @@
 
     });
 </script>
-
+<form action="" id="exportForm" method="post" target="_blank" style="display: none;">
+    <input type="hidden" name="sort" id="exportForm_sort">
+    <input type="hidden" name="order" id="exportForm_order">
+    <input type="hidden" name="searchFields"  id="exportForm_searchFields">
+</form>
 </body>
 </html>

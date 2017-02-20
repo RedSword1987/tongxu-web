@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.QueryParam;
 
 /**
  * Created by higgs on 17/2/19.
@@ -44,7 +45,7 @@ public class TaskControl {
 
     @RequestMapping("/listTaskResult")
     @ResponseBody
-    public PaginationResult listTaskResult(HttpServletRequest request) {
+    public PaginationResult listTaskResult(HttpServletRequest request, @QueryParam("id") Integer id) {
         //@RequestBody
         SearchTaskResultBean searchTaskResultBean = new SearchTaskResultBean(request);
         PaginationResult result = taskGetdataTaobaoService.listTaskResult(searchTaskResultBean);
