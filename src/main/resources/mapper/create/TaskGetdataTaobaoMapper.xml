@@ -20,11 +20,20 @@
 
 
     <sql id="listTaskSql">
-        select * from task_getdata_taobao
+        select * from task_getdata_taobao a where 1=1
+        <if test="type != null">
+             and a.type=#{type}
+        </if>
+        <if test="status != null">
+            and a.status=#{status}
+        </if>
+        <if test="taskName != null">
+            and a.task_name like #{taskName}
+        </if>
     </sql>
 
     <select id="listTask" resultType="com.tongxuweb.domain.generate.TaskGetdataTaobao">
-        SELECT * from (<include refid="listTaskSql"/> order by  id desc)  a limit #{offset},#{limit}
+        SELECT * from (<include refid="listTaskSql"/> order by ${sort} ${order})  a limit #{offset},#{limit}
     </select>
 
     <select id="countTask" resultType="java.lang.Integer">

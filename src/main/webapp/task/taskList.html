@@ -56,57 +56,69 @@
 <body class="nav-md">
 <div class="container body">
     <div class="main_container">
-        <div class="col-md-3 left_col">
-            <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <div href="" class="site_title">
-                        <span> 抓数管理</span>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-                <!-- sidebar menu -->
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                    <div class="menu_section">
-                        <ul class="nav side-menu">
-                            <li>
-                                <a href="javascript:;">任务模块</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- top navigation -->
-        <div class="top_nav">
-            <div class="nav_menu">
-                <nav class="" role="navigation">
-                    <div class="nav toggle">
-                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                    </div>
-                    <ul class="nav navbar-nav navbar-right">
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <div class="right_col" role="main" >
+        <div  role="main" >
             <div class="col-md-12 col-sm-12 col-xs-12" style="min-height: 400px!important;">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>任务抓取</h2>
+                        <h2>任务列表</h2>
 
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        <form id="btn_search_content" style="display: none;" data-parsley-validate class="form-horizontal form-label-left">
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-2"> 任务名称 :</label>
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <input type="text" id="searchForm_taskName----1" class="form-control col-md-3 col-xs-3">
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-2">任务类型 : </label>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <select id="searchForm_type----2" class="form-control">
+                                        <option value=""></option>
+                                        <option value="1">订单主数据</option>
+                                        <option value="2">订单明细数据</option>
+                                    </select>
+                                </div>
+
+                                <label class="control-label col-md-2 col-sm-2 col-xs-2">状态 : </label>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <select id="searchForm_status----2" class="form-control">
+                                        <option value=""></option>
+                                        <option value="1">待执行</option>
+                                        <option value="2">执行结束</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-8 col-sm-8 col-xs-8  ">
+                                    <button id="btn_search_action" class="btn btn-primary" type="button">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="toolbar" class="btn-group">
+                            <div>
+                                <button id="btn_search" type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索
+                                </button>
+                            </div>
+                        </div>
+
                         <table id="bootstrap-table">
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        <footer>
-            <div class="pull-right">©2016-2017 All Rights Reserved.</div>
-            <div class="clearfix"></div>
-        </footer>
     </div>
 </div>
 <!-- jQuery -->
@@ -232,14 +244,14 @@
 
 
     var columns = [
-        {field: "id", title: "ID",  class: "th_id"},
-        {field: "type", title: "任务类型",  class: "th_ka",formatter:formatter_taskType},
-        {field: "taskName", title: "任务名称",  class: "th_ka"},
-        {field: "typeNum", title: "源订单数量",  class: "th_ka",formatter:formatter_taskTypeNum},
-        {field: "beginDate", title: "开始时间",  class: "th_time",formatter:formatter_datetime },
-        {field: "endDate", title: "结束时间",  class: "th_time",formatter:formatter_datetime },
-        {field: "status", title: "状态",  class: "th_ka",formatter:formatter_taskStatus},
-        {field: "createdAt", title: "任务创建时间",  class: "th_time",formatter:formatter_datetime}
+        {field: "id", title: "ID",  class: "th_id",sortable:"true",},
+        {field: "type", title: "任务类型",  class: "th_ka",formatter:formatter_taskType,sortable:"true"},
+        {field: "taskName", title: "任务名称",  class: "th_ka",sortable:"true"},
+        {field: "typeNum", title: "源订单数量",  class: "th_ka",formatter:formatter_taskTypeNum,sortable:"true"},
+        {field: "beginDate", title: "开始时间",  class: "th_time",formatter:formatter_datetime ,sortable:"true"},
+        {field: "endDate", title: "结束时间",  class: "th_time",formatter:formatter_datetime ,sortable:"true"},
+        {field: "status", title: "状态",  class: "th_ka",formatter:formatter_taskStatus,sortable:"true"},
+        {field: "createdAt", title: "任务创建时间",  class: "th_time",formatter:formatter_datetime,sortable:"true"}
 
     ];
 
@@ -252,6 +264,21 @@
 
 
     $(function () {
+        //添加按钮
+        $("#btn_search").click(function(){
+            if(!$("#btn_search_content").is(":hidden")){
+
+            }else{
+
+            }
+
+            $("#btn_search_content").toggle();
+            $("#btn_search_action").unbind("click");
+            $("#btn_search_action").click(function(){
+                $('#bootstrap-table').bootstrapTable("refresh");
+            });
+
+        });
 
 
         initPage(tableId, idField, url_page, columns);
