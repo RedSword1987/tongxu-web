@@ -20,7 +20,7 @@
 
 
     <sql id="listTaskSql">
-        select * from task_getdata_taobao a where 1=1
+        select * from task_getdata_taobao a where a.status!=3
         <if test="type != null">
              and a.type=#{type}
         </if>

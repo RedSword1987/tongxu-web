@@ -7,7 +7,7 @@ function initAddModal(addFields_p){
 		if(value.isHidden){
 			 content+='<input type="hidden" id="addForm_'+value.field+'" value="'+value.defaultValue+'">';
 		}else{
-			 content+='<div class="form-group">';
+			 content+='<div class="form-group" id="form-group-'+value.field+'">';
 			 content+='<label class="control-label col-md-3 col-sm-3 col-xs-12" for="addForm_'+value.field+'">'+value.title;
 			 if(value.require){
 				 content+=' <span class="required">*</span>';
@@ -29,6 +29,16 @@ function initAddModal(addFields_p){
 				 content+='<input class="form-control" size="16" type="text"   readonly value="'+defaultV+'"> <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>';
 				 content+='</div>';
 				content+='<input type="hidden" id="addForm_'+value.field+'" value="'+defaultV+'"/> ';
+			 }else if(23==value.fileType){
+				 var defaultV="";
+				 if(value.defaultValue!=null){
+					 defaultV=value.defaultValue;
+				 }
+
+				 content+='<div id="'+value.field+'-date" class="input-group date form_date  col-md-12 col-sm-12 col-xs-12" data-date="'+defaultV+'" data-date-format="yyyy-mm-dd hh:ii:ss" data-link-field="addForm_'+value.field+'"  data-link-format="yyyy-mm-dd hh:ii:ss">';
+				 content+='<input class="form-control" size="16" type="text"   readonly value="'+defaultV+'"> <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>';
+				 content+='</div>';
+				 content+='<input type="hidden" id="addForm_'+value.field+'" value="'+defaultV+'"/> ';
 			 }else if(2==value.fileType){
 				 if(value.defaultValue){
 					 content+='<input type="text"  id="addForm_'+value.field+'"   value="'+value.defaultValue+'"  class="form-control col-md-7 col-xs-12">';
@@ -61,6 +71,8 @@ function initAddModal(addFields_p){
 				 }else{
 					 content+='<input type="password"  id="addForm_'+value.field+'"     class="form-control col-md-7 col-xs-12">';
 				 }
+			 }else  if(27==value.fileType){
+				 content+='<textarea type="textarea" rows="3"   id="addForm_'+value.field+'" class="form-control col-md-7 col-xs-12"></textarea>';
 			 }else{
 				 if(value.defaultValue){
 					 content+='<input type="text"  id="addForm_'+value.field+'"   value="'+value.defaultValue+'"  class="form-control col-md-7 col-xs-12">';
@@ -98,6 +110,18 @@ function initAddModal(addFields_p){
 			        forceParse: 1 ,
 			        minuteStep:2
 		    });
+		}else if(23==value.fileType){
+			$('#'+value.field+'-date').datetimepicker({
+				language:  'zh-CN',
+				weekStart: 1,
+				todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 1,
+				minView: 0,
+				forceParse: 1 ,
+				minuteStep:2
+			});
 		}else if(11==value.fileType){
 			$('#addForm_'+value.field).select2({
 				placeholder: "请选择用户",

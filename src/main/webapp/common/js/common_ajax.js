@@ -46,18 +46,19 @@ function common_add(addFields_p,url_add,table_id_p){
 		$.ajax({
                 type: "post",
                 url: url_add,
-                data: param,
+                data: JSON.stringify(needAddFields),
+				contentType: "application/json",
                 dataType: "json",
                 timeout:   20000,
                 success: function (data) {
                 	hideLoading();
-					if(data.result){
+					if(data&&data.id){
 						if(table_id_p){
 							$('#'+table_id_p).bootstrapTable("refresh");
 						}
 						$('#addModal').modal('hide')
 					}else{
-						alert(data.msg);
+						alert("添加失败");
 					}
                 },
                 error: function (e) {
@@ -71,7 +72,7 @@ function common_add(addFields_p,url_add,table_id_p){
 function common_delete(url_del_p,ids,idField,table_id_p){
 	$.confirm({
 	    title: '确认修改',
-	    content: "确认删除所选项吗？",
+	    content: "确认修改所选项状态吗？",
 	    confirm: function(){
 	    	showLoading();
 	    	$.ajax({
@@ -85,12 +86,8 @@ function common_delete(url_del_p,ids,idField,table_id_p){
 	    	    timeout:   20000,
 	    	    success: function (data) {
 	    	    	hideLoading();
-	    			if(data.result){
-	    				alert(data.msg);
-	    				$('#'+table_id_p).bootstrapTable("refresh");
-	    			}else{
-	    				alert(data.msg);
-	    			}
+					$('#'+table_id_p).bootstrapTable("refresh");
+	    			 
 	    	    },
 	    	    error: function (e) {
 	    	    	hideLoading();

@@ -27,4 +27,6 @@ public interface TaskGetdataTaobaoService {
 
     List<Map<String,Object>> listTaskResultMap(SearchTaskResultBean searchTaskResultBean);
 
+    boolean updateTaskuStatus(String ids, Integer status);
+
 }

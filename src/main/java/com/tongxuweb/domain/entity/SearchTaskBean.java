@@ -35,10 +35,7 @@ public class SearchTaskBean extends Pagination {
                 setOffset(Integer.valueOf(start));
             }
 
-            String orderP = request.getParameter("order");
-            if ("asc".equalsIgnoreCase(orderP)) {
-                this.order = "asc";
-            }
+
 
             String sortP = request.getParameter("sort");
             if ("id".equalsIgnoreCase(sortP)) {
@@ -59,6 +56,10 @@ public class SearchTaskBean extends Pagination {
                 this.sort = "created_at";
             }
 
+            String orderP = request.getParameter("order");
+            if ("asc".equalsIgnoreCase(orderP) && !StringUtil.isEmpty(request.getParameter("sort"))) {
+                this.order = "asc";
+            }
 
             try {
                 String searchFields = request.getParameter("searchFields");

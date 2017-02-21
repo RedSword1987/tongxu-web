@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.QueryParam;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by higgs on 17/2/19.
@@ -27,9 +29,21 @@ public class TaskControl {
 
     @RequestMapping("/saveTask")
     @ResponseBody
-    public TaskGetdataTaobao batch(@RequestBody OTaskGetdataTaobao taskGetdataTaobao) {
+    public TaskGetdataTaobao saveTask(@RequestBody OTaskGetdataTaobao taskGetdataTaobao) {
+        taskGetdataTaobao.init();
         TaskGetdataTaobao newTaskGetdataTaobao = taskGetdataTaobaoService.save(taskGetdataTaobao);
+
         return newTaskGetdataTaobao;
+    }
+
+    @RequestMapping("/updateTaskuStatus")
+    @ResponseBody
+    public Map<String, Object> updateTaskuStatus(@QueryParam("status") Integer status, HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        String ids = request.getParameter("ids");
+        boolean result1 = taskGetdataTaobaoService.updateTaskuStatus(ids, status);
+        result.put("result", 1);
+        return result;
     }
 
 

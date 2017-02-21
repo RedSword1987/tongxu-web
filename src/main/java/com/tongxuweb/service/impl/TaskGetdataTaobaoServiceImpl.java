@@ -7,10 +7,7 @@ import com.tongxuweb.domain.create.OTaskGetdataTaobao;
 import com.tongxuweb.domain.entity.SearchTaskBean;
 import com.tongxuweb.domain.entity.SearchTaskResultBean;
 import com.tongxuweb.domain.entity.common.PaginationResult;
-import com.tongxuweb.domain.generate.TaskGetdataTaobao;
-import com.tongxuweb.domain.generate.TaskGetdataTaobaoOrder;
-import com.tongxuweb.domain.generate.TaskGetdataTaobaoOrderExample;
-import com.tongxuweb.domain.generate.TaskGetdataTaobaoOrderids;
+import com.tongxuweb.domain.generate.*;
 import com.tongxuweb.service.TaskGetdataTaobaoService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -175,6 +172,21 @@ public class TaskGetdataTaobaoServiceImpl implements TaskGetdataTaobaoService{
             result = taskGetdataTaobaoDao.listTaskResult1Map(searchTaskResultBean);
         }
 
+        return result;
+    }
+
+    public boolean updateTaskuStatus(String ids, Integer status) {
+        boolean result = true;
+        String[] at = ids.split(",");
+        List<Long> idList = new ArrayList<Long>();
+        for (String id : at) {
+            idList.add(Long.valueOf(id));
+        }
+        TaskGetdataTaobaoExample example = new TaskGetdataTaobaoExample();
+        example.createCriteria().andIdIn(idList);
+        TaskGetdataTaobao remp = new TaskGetdataTaobao();
+        remp.setStatus(status);
+        taskGetdataTaobaoDao.updateByExampleSelective(remp, example);
         return result;
     }
 
