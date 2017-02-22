@@ -23,8 +23,8 @@ public class SearchTaskResultBean extends Pagination {
     String logisticsName;
     String logisticsNum;
     String buyerNick;
-    String buyerArea;
-    String order = "desc";
+    String buyerAddress;
+    String order = "asc";
     String sort = "id";
 
     public SearchTaskResultBean(HttpServletRequest request) {
@@ -46,8 +46,8 @@ public class SearchTaskResultBean extends Pagination {
             }
 
             String orderP = request.getParameter("order");
-            if ("asc".equalsIgnoreCase(orderP)) {
-                this.order = "asc";
+            if ("desc".equalsIgnoreCase(orderP)) {
+                this.order = "desc";
             }
 
             String sortP = request.getParameter("sort");
@@ -81,6 +81,8 @@ public class SearchTaskResultBean extends Pagination {
                 this.sort = "buyer_area";
             } else if ("buyerPost".equalsIgnoreCase(sortP)) {
                 this.sort = "buyer_post";
+            } else if ("buyerAddress".equalsIgnoreCase(sortP)) {
+                this.sort = "buyer_address";
             } else if ("payTime".equalsIgnoreCase(sortP)) {
                 this.sort = "pay_time";
             } else if ("sendTime".equalsIgnoreCase(sortP)) {
@@ -90,6 +92,8 @@ public class SearchTaskResultBean extends Pagination {
             } else if ("logisticsLastDesc".equalsIgnoreCase(sortP)) {
                 this.sort = "logistics_last_desc";
             }
+
+
             try {
                 String searchFields = request.getParameter("searchFields");
                 if (!StringUtil.isEmpty(searchFields)) {
@@ -112,16 +116,20 @@ public class SearchTaskResultBean extends Pagination {
                                     logisticsNum = "%" + DbSpecialChar.replaceForSqlMySql(value) + "%";
                                 } else if ("buyerNick".equalsIgnoreCase(key)) {
                                     buyerNick = "%" + DbSpecialChar.replaceForSqlMySql(value) + "%";
-                                } else if ("buyerArea".equalsIgnoreCase(key)) {
-                                    buyerArea = "%" + DbSpecialChar.replaceForSqlMySql(value) + "%";
+                                } else if ("buyerAddress".equalsIgnoreCase(key)) {
+                                    buyerAddress = "%" + DbSpecialChar.replaceForSqlMySql(value) + "%";
                                 }
                             }
                         }
                     }
                 }
+
+
             } catch (Exception e) {
 
             }
+
+
         }
     }
 
@@ -197,12 +205,12 @@ public class SearchTaskResultBean extends Pagination {
         this.buyerNick = buyerNick;
     }
 
-    public String getBuyerArea() {
-        return buyerArea;
+    public String getBuyerAddress() {
+        return buyerAddress;
     }
 
-    public void setBuyerArea(String buyerArea) {
-        this.buyerArea = buyerArea;
+    public void setBuyerAddress(String buyerAddress) {
+        this.buyerAddress = buyerAddress;
     }
 
     public String getOrder() {

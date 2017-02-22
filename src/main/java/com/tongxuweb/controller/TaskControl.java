@@ -9,6 +9,7 @@ import com.tongxuweb.service.TaskGetdataTaobaoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -56,10 +57,10 @@ public class TaskControl {
         PaginationResult result = taskGetdataTaobaoService.listTask(searchTaskBean);
         return result;
     }
-
+//    , @RequestParam(value = "id", required = false) Integer id
     @RequestMapping("/listTaskResult")
     @ResponseBody
-    public PaginationResult listTaskResult(HttpServletRequest request, @QueryParam("id") Integer id) {
+    public PaginationResult listTaskResult(HttpServletRequest request) {
         //@RequestBody
         SearchTaskResultBean searchTaskResultBean = new SearchTaskResultBean(request);
         PaginationResult result = taskGetdataTaobaoService.listTaskResult(searchTaskResultBean);

@@ -17,9 +17,6 @@
     <!-- Font Awesome -->
     <link href="../gentelella-master/vendors/font-awesome/css/font-awesome.min.css?v=20160907"
           rel="stylesheet">
-    <!-- iCheck -->
-    <link href="../gentelella-master/vendors/iCheck/skins/flat/green.css?v=20160907"
-          rel="stylesheet">
     <!-- bootstrap-progressbar -->
     <link href="../gentelella-master/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css?v=20160907"
           rel="stylesheet">
@@ -121,7 +118,7 @@
 
                                 <label class="control-label col-md-2 col-sm-2 col-xs-2">购买者地区 : </label>
                                 <div class="col-md-2 col-sm-2 col-xs-2">
-                                    <input type="text" id="searchForm_buyerArea----1" class="form-control col-md-3 col-xs-3">
+                                    <input type="text" id="searchForm_buyerAddress----1" class="form-control col-md-3 col-xs-3">
                                 </div>
 
                             </div>
@@ -195,6 +192,7 @@
     var idValue=getQueryString("id");
 
     var columns = [
+        {field: "id", title: "ID",  class: "th_id",sortable:"true"},
         {field: "orderinfoId", title: "订单编号",  class: "th_ka",sortable:"true"},
         {field: "orderinfoCreatetime", title: "订单创建时间",  class: "th_ka" ,formatter:formatter_datetime,class:"th_time",sortable:"true"},
         {field: "orderBarText", title: "订单买家状态",  class: "th_100",sortable:"true"},
@@ -209,6 +207,8 @@
         {field: "buyerCity", title: "市",  class: "th_ka",sortable:"true" },
         {field: "buyerArea", title: "区",  class: "th_250" ,sortable:"true"},
         {field: "buyerPost", title: "邮编",  class: "th_ka",sortable:"true" },
+
+        {field: "buyerAddress", title: "详细地址",  class: "th_250",sortable:"true" },
 
         {field: "payTime", title: "支付时间",  class: "th_ka",formatter:formatter_datetime,class:"th_time" ,sortable:"true"},
         {field: "sendTime", title: "发货时间",  class: "th_ka",formatter:formatter_datetime,class:"th_time",sortable:"true" },

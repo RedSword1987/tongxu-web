@@ -42,7 +42,7 @@
 
 
     <sql id="listTaskResultSql1">
-        select * from task_getdata_taobao a where 1=1
+        select * from task_getdata_taobao_order a where 1=1
         <if test="beginDate != null">
             and a.orderinfo_createtime &gt;= #{beginDate}
         </if>
@@ -70,18 +70,14 @@
             or a.buyer_logistics_phone like #{buyerNick}
             )
         </if>
-        <if test="buyerArea != null">
-            and (a.buyer_provice like #{buyerArea}
-            or a.buyer_city like #{buyerArea}
-            or a.buyer_area like #{buyerArea}
-            or a.buyer_post like #{buyerArea}
-            )
+        <if test="buyerAddress != null">
+            and  a.buyer_address like #{buyerAddress}
         </if>
 
     </sql>
 
     <select id="listTaskResult1" resultType="com.tongxuweb.domain.generate.TaskGetdataTaobaoOrder">
-        SELECT * from (<include refid="listTaskResultSql1"/> order by  order by ${sort} ${order})  a limit #{offset},#{limit}
+        SELECT * from (<include refid="listTaskResultSql1"/> order by  ${sort} ${order})  a limit #{offset},#{limit}
     </select>
 
     <select id="countTaskResult1" resultType="java.lang.Integer">
@@ -90,7 +86,12 @@
 
 
     <sql id="listTaskResultSql2">
-        select a.* from task_getdata_taobao_order a ,task_getdata_taobao_orderids b
+        select  a.task_id, a.buyer_id, a.buyer_nick, a.buyer_phonenum, a.buyer_provice, a.buyer_city, a.buyer_area,
+        a.buyer_post, a.buyer_address, a.buyer_logistics_phone, a.orderinfo_createtime, a.orderinfo_id,
+        a.payinfo_actualfee, a.statusinfo_text, a.statusinfo_type, a.create_time, a.pay_time, a.send_time,
+        a.alipay_id, a.order_bar, a.order_bar_text, a.logistics_name, a.logistics_num, a.logistics_num_taobao,
+        a.logistics_last_desc, a.buy_message, a.created_by, a.updated_by, a.created_at, a.updated_at,
+        b.id   from task_getdata_taobao_order a ,task_getdata_taobao_orderids b
         where a.orderinfo_id=b.orderinfo_id
         <if test="orderinfoId != null">
             and a.orderinfo_id like #{orderinfoId}
@@ -113,15 +114,9 @@
             or a.buyer_logistics_phone like #{buyerNick}
             )
         </if>
-        <if test="buyerArea != null">
-            and (a.buyer_provice like #{buyerArea}
-            or a.buyer_city like #{buyerArea}
-            or a.buyer_area like #{buyerArea}
-            or a.buyer_post like #{buyerArea}
-            )
+        <if test="buyerAddress != null">
+            and  a.buyer_address like #{buyerAddress}
         </if>
-
-
         and b.task_id=#{id}
 
     </sql>
