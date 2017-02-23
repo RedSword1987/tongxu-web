@@ -139,5 +139,12 @@
         SELECT * from (<include refid="listTaskResultSql2"/> order by  ${sort} ${order})  a
     </select>
 
+    <select id="list" resultType="com.tongxuweb.domain.create.OTaskGetdataTaobao">
+         SELECT
+            *
+        FROM
+            task_getdata_taobao a
+    </select>
+
 
 </mapper>

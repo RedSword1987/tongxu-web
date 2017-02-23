@@ -7,6 +7,7 @@ import com.tongxuweb.domain.generate.TaskGetdataTaobao;
 import com.tongxuweb.domain.generate.TaskGetdataTaobaoOrder;
 import com.tongxuweb.mapper.generate.TaskGetdataTaobaoMapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
 import java.util.List;
 import java.util.Map;
@@ -35,4 +36,6 @@ public interface TaskGetdataTaobaoDao extends TaskGetdataTaobaoMapper {
     List<Map<String, Object>> listTaskResult1Map(SearchTaskResultBean searchTaskResultBean);
 
     List<Map<String, Object>> listTaskResult2Map(SearchTaskResultBean searchTaskResultBean);
+
+    List<TaskGetdataTaobao> list(RowBounds rowBounds);
 }

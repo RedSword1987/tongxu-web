@@ -8,13 +8,12 @@ public class PLogTable implements Serializable {
     //id
     private Long id;
 
-    //表名
     private String tableName;
 
-    //表Id号
+    private Integer type;
+
     private Long recordId;
 
-    //表变更内容
     private String content;
 
     //创建人
@@ -45,6 +44,14 @@ public class PLogTable implements Serializable {
 
     public void setTableName(String tableName) {
         this.tableName = tableName == null ? null : tableName.trim();
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Long getRecordId() {

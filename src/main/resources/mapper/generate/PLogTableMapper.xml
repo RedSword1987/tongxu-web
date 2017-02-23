@@ -4,6 +4,7 @@
     <resultMap id="BaseResultMap" type="com.tongxuweb.domain.generate.PLogTable">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+        <result column="type" jdbcType="INTEGER" property="type" />
         <result column="record_id" jdbcType="BIGINT" property="recordId" />
         <result column="content" jdbcType="VARCHAR" property="content" />
         <result column="created_by" jdbcType="BIGINT" property="createdBy" />
@@ -70,7 +71,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        id, table_name, record_id, content, created_by, updated_by, created_at, updated_at
+        id, table_name, type, record_id, content, created_by, updated_by, created_at, updated_at
     </sql>
     <select id="selectByExample" parameterType="com.tongxuweb.domain.generate.PLogTableExample" resultMap="BaseResultMap">
         select
@@ -111,6 +112,9 @@
             <if test="tableName != null">
                 table_name,
             </if>
+            <if test="type != null">
+                type,
+            </if>
             <if test="recordId != null">
                 record_id,
             </if>
@@ -133,6 +137,9 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="tableName != null">
                 #{tableName,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
             </if>
             <if test="recordId != null">
                 #{recordId,jdbcType=BIGINT},
@@ -166,6 +173,9 @@
             <if test="record.tableName != null">
                 table_name = #{record.tableName,jdbcType=VARCHAR},
             </if>
+            <if test="record.type != null">
+                type = #{record.type,jdbcType=INTEGER},
+            </if>
             <if test="record.recordId != null">
                 record_id = #{record.recordId,jdbcType=BIGINT},
             </if>
@@ -185,6 +195,9 @@
         <set>
             <if test="tableName != null">
                 table_name = #{tableName,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=INTEGER},
             </if>
             <if test="recordId != null">
                 record_id = #{recordId,jdbcType=BIGINT},

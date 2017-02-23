@@ -9,6 +9,7 @@ import com.tongxuweb.domain.entity.SearchTaskResultBean;
 import com.tongxuweb.domain.entity.common.PaginationResult;
 import com.tongxuweb.domain.generate.*;
 import com.tongxuweb.service.TaskGetdataTaobaoService;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -106,7 +107,7 @@ public class TaskGetdataTaobaoServiceImpl implements TaskGetdataTaobaoService{
     public PaginationResult listTask(SearchTaskBean searchTaskBean) {
         PaginationResult result = new PaginationResult();
 
-
+        List<TaskGetdataTaobao> re1 = taskGetdataTaobaoDao.list(new RowBounds(10, 10));
         List<TaskGetdataTaobao> re = taskGetdataTaobaoDao.listTask(searchTaskBean);
         Integer count = taskGetdataTaobaoDao.countTask(searchTaskBean);
         searchTaskBean.setTotal(count);
