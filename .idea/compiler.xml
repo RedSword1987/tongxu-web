@@ -22,14 +22,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="tongxu-web" />
-      </profile>
-      <profile default="false" name="Annotation profile for mybatis-generator-core" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="true" />
         <module name="mybatis-generator-core" />
+        <module name="tongxu-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

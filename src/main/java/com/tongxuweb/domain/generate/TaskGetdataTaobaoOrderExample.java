@@ -2216,6 +2216,146 @@ public class TaskGetdataTaobaoOrderExample {
             addCriterion("updated_at not between", value1, value2, "updatedAt");
             return (Criteria) this;
         }
+
+        public Criteria andBuyerVirtualPhoneIsNull() {
+            addCriterion("buyer_virtual_phone is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerVirtualPhoneIsNotNull() {
+            addCriterion("buyer_virtual_phone is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerVirtualPhoneEqualTo(String value) {
+            addCriterion("buyer_virtual_phone =", value, "buyerVirtualPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerVirtualPhoneNotEqualTo(String value) {
+            addCriterion("buyer_virtual_phone <>", value, "buyerVirtualPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerVirtualPhoneGreaterThan(String value) {
+            addCriterion("buyer_virtual_phone >", value, "buyerVirtualPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerVirtualPhoneGreaterThanOrEqualTo(String value) {
+            addCriterion("buyer_virtual_phone >=", value, "buyerVirtualPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerVirtualPhoneLessThan(String value) {
+            addCriterion("buyer_virtual_phone <", value, "buyerVirtualPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerVirtualPhoneLessThanOrEqualTo(String value) {
+            addCriterion("buyer_virtual_phone <=", value, "buyerVirtualPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerVirtualPhoneLike(String value) {
+            addCriterion("buyer_virtual_phone like", value, "buyerVirtualPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerVirtualPhoneNotLike(String value) {
+            addCriterion("buyer_virtual_phone not like", value, "buyerVirtualPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerVirtualPhoneIn(List<String> values) {
+            addCriterion("buyer_virtual_phone in", values, "buyerVirtualPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerVirtualPhoneNotIn(List<String> values) {
+            addCriterion("buyer_virtual_phone not in", values, "buyerVirtualPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerVirtualPhoneBetween(String value1, String value2) {
+            addCriterion("buyer_virtual_phone between", value1, value2, "buyerVirtualPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerVirtualPhoneNotBetween(String value1, String value2) {
+            addCriterion("buyer_virtual_phone not between", value1, value2, "buyerVirtualPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerNameIsNull() {
+            addCriterion("buyer_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerNameIsNotNull() {
+            addCriterion("buyer_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerNameEqualTo(String value) {
+            addCriterion("buyer_name =", value, "buyerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerNameNotEqualTo(String value) {
+            addCriterion("buyer_name <>", value, "buyerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerNameGreaterThan(String value) {
+            addCriterion("buyer_name >", value, "buyerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerNameGreaterThanOrEqualTo(String value) {
+            addCriterion("buyer_name >=", value, "buyerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerNameLessThan(String value) {
+            addCriterion("buyer_name <", value, "buyerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerNameLessThanOrEqualTo(String value) {
+            addCriterion("buyer_name <=", value, "buyerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerNameLike(String value) {
+            addCriterion("buyer_name like", value, "buyerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerNameNotLike(String value) {
+            addCriterion("buyer_name not like", value, "buyerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerNameIn(List<String> values) {
+            addCriterion("buyer_name in", values, "buyerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerNameNotIn(List<String> values) {
+            addCriterion("buyer_name not in", values, "buyerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerNameBetween(String value1, String value2) {
+            addCriterion("buyer_name between", value1, value2, "buyerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andBuyerNameNotBetween(String value1, String value2) {
+            addCriterion("buyer_name not between", value1, value2, "buyerName");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

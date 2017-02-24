@@ -14,6 +14,10 @@ import java.util.Map;
  * Created by higgs on 17/2/14.
  */
 public interface TaskGetdataTaobaoService {
+
+
+    TaskGetdataTaobao getOne(Long id);
+
     TaskGetdataTaobao save(OTaskGetdataTaobao taskGetdataTaobao);
 
     List<OTaskGetdataTaobao> getNeedTask();

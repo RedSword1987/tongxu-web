@@ -98,6 +98,11 @@ public class TaskGetdataTaobaoOrder implements Serializable {
     //修改时间
     private Date updatedAt;
 
+    //虚拟手机号
+    private String buyerVirtualPhone;
+
+    private String buyerName;
+
     private String logisticsDesc;
 
     private static final long serialVersionUID = 1L;
@@ -348,6 +353,22 @@ public class TaskGetdataTaobaoOrder implements Serializable {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getBuyerVirtualPhone() {
+        return buyerVirtualPhone;
+    }
+
+    public void setBuyerVirtualPhone(String buyerVirtualPhone) {
+        this.buyerVirtualPhone = buyerVirtualPhone == null ? null : buyerVirtualPhone.trim();
+    }
+
+    public String getBuyerName() {
+        return buyerName;
+    }
+
+    public void setBuyerName(String buyerName) {
+        this.buyerName = buyerName == null ? null : buyerName.trim();
     }
 
     public String getLogisticsDesc() {

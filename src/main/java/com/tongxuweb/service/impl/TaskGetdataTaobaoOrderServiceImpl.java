@@ -54,6 +54,7 @@ public class TaskGetdataTaobaoOrderServiceImpl implements TaskGetdataTaobaoOrder
                     taskGetdataTaobaoOrderDao.updateByPrimaryKeySelective(taskGetdataTaobaoOrder);
                     update++;
                 } else {
+
                     taskGetdataTaobaoOrderDao.insertSelective(taskGetdataTaobaoOrder);
                     insert++;
                 }
@@ -132,11 +133,17 @@ public class TaskGetdataTaobaoOrderServiceImpl implements TaskGetdataTaobaoOrder
             String address = taskGetdataTaobaoOrder.getBuyerAddress();
             String[] arr = address.split("，");
             if (arr.length >= 4) {
+                taskGetdataTaobaoOrder.setBuyerName(arr[0]);
                 if (!StringUtil.isEmpty(arr[1])&&arr[1].length()>3){
                     if (arr[1].startsWith("86-")){
                         arr[1]=arr[1].substring(3);
                     }
                     taskGetdataTaobaoOrder.setBuyerLogisticsPhone(arr[1]);
+                    if (!StringUtil.isEmpty(arr[1])&&arr[1].length()==11){
+                        String s7=arr[1].substring(0,7);
+                        int a = (int)(Math.random()*(9999-1000+1))+1000;
+                        taskGetdataTaobaoOrder.setBuyerVirtualPhone(s7+String.valueOf(a));
+                    }
                 }
 
                 String buyer_post = arr[arr.length - 1].toString();
@@ -150,7 +157,7 @@ public class TaskGetdataTaobaoOrderServiceImpl implements TaskGetdataTaobaoOrder
                     taskGetdataTaobaoOrder.setBuyerCity(buyer_addressArray[1]);
                     taskGetdataTaobaoOrder.setBuyerArea(buyer_address.replace(buyer_addressArray[0], "").replace(buyer_addressArray[1], "").trim());
                 }
-
+                taskGetdataTaobaoOrder.setBuyerAddress(buyer_address);
             }
         }
 

@@ -34,6 +34,10 @@ public class TaskGetdataTaobaoServiceImpl implements TaskGetdataTaobaoService{
     private TaskGetdataTaobaoOrderidsDao taskGetdataTaobaoOrderidsDao;
 
 
+    public TaskGetdataTaobao getOne(Long id) {
+        return taskGetdataTaobaoDao.selectByPrimaryKey(id);
+    }
+
     public OTaskGetdataTaobao save(OTaskGetdataTaobao taskGetdataTaobao) {
         taskGetdataTaobao.setIsMerge(0);
         taskGetdataTaobao.setStatus(1);

@@ -1,19 +1,25 @@
 package com.tongxuweb.controller;
 
 import com.tongxuweb.domain.entity.SearchTaskResultBean;
+import com.tongxuweb.domain.generate.TaskGetdataTaobao;
 import com.tongxuweb.service.TaskGetdataTaobaoService;
 import com.tongxuweb.util.DateUtil;
 import com.tongxuweb.util.ExcelUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by higgs on 17/2/19.
@@ -36,15 +42,25 @@ public class CommonControl {
         searchTaskResultBean.setLimit(100000);
         searchTaskResultBean.setOffset(0);
 
+        String fileName = "ID_" + searchTaskResultBean.getId() + "_" + DateUtil.getTimeStringNow("yyyy-MM-dd");
+        if (searchTaskResultBean.getId() != null) {
+            TaskGetdataTaobao t = taskGetdataTaobaoService.getOne(searchTaskResultBean.getId());
+            if (t != null) {
+                fileName = t.getTaskName();
+            }
+        }
+
+
         List<Map<String, Object>> listResult = taskGetdataTaobaoService.listTaskResultMap(searchTaskResultBean);
 
-        String fileName = "ID_" + searchTaskResultBean.getId() + "_" + DateUtil.getTimeStringNow("yyyy-MM-dd");
-        String columnNames[] = {"订单编号", "订单创建时间", "订单买家状态", "订单卖家状态", "快递公司", "快递号", "淘宝物流编号",
-                "购买者昵称", "注册手机", "收货手机", "省",
-                "市", "区", "邮编", "详细地址", "支付时间", "发货时间", "支付单号", "物流最后状态", "物流明细"};// 列名
-        String keys[] = {"orderinfo_id", "orderinfo_createtime", "order_bar_text", "statusinfo_text",
-                "logistics_name", "logistics_num", "logistics_num_taobao", "buyer_nick", "buyer_phonenum", "buyer_logistics_phone",
-                "buyer_provice", "buyer_city", "buyer_area", "buyer_post", "buyer_address", "pay_time", "send_time", "alipay_id"
+
+        String columnNames[] = {"订单编号", "收货姓名", "详细地址", "虚拟手机", "订单创建时间", "订单买家状态", "订单卖家状态", "快递公司", "快递号", "淘宝物流编号",
+            "购买者昵称", "注册手机", "收货手机", "省",
+            "市", "区", "邮编", "支付时间", "发货时间", "支付单号", "物流最后状态", "物流明细"};// 列名
+        String keys[] = {"orderinfo_id", "buyer_name", "buyer_address", "buyer_virtual_phone", "orderinfo_createtime", "order_bar_text", "statusinfo_text",
+            "logistics_name", "logistics_num", "logistics_num_taobao", "buyer_nick", "buyer_phonenum", "buyer_logistics_phone"
+            , "buyer_provice", "buyer_city", "buyer_area", "buyer_post", "pay_time",
+            "send_time", "alipay_id"
                 , "logistics_last_desc", "logistics_desc"};// map中的key
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         try {

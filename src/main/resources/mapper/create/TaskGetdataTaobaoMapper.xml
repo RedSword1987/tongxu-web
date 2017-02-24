@@ -86,8 +86,9 @@
 
 
     <sql id="listTaskResultSql2">
-        select  a.task_id, a.buyer_id, a.buyer_nick, a.buyer_phonenum, a.buyer_provice, a.buyer_city, a.buyer_area,
-        a.buyer_post, a.buyer_address, a.buyer_logistics_phone, a.orderinfo_createtime, a.orderinfo_id,
+        select  a.task_id, a.buyer_id, a.buyer_nick, a.buyer_phonenum,a.buyer_name, a.buyer_provice,
+        a.buyer_city, a.buyer_area,
+        a.buyer_post, a.buyer_address, a.buyer_logistics_phone,a.buyer_virtual_phone, a.orderinfo_createtime, a.orderinfo_id,
         a.payinfo_actualfee, a.statusinfo_text, a.statusinfo_type, a.create_time, a.pay_time, a.send_time,
         a.alipay_id, a.order_bar, a.order_bar_text, a.logistics_name, a.logistics_num, a.logistics_num_taobao,
         a.logistics_last_desc, a.buy_message, a.created_by, a.updated_by, a.created_at, a.updated_at,
@@ -112,6 +113,7 @@
             and (a.buyer_nick like #{buyerNick}
             or a.buyer_phonenum like #{buyerNick}
             or a.buyer_logistics_phone like #{buyerNick}
+            or a.buyer_virtual_phone like #{buyerNick}
             )
         </if>
         <if test="buyerAddress != null">
