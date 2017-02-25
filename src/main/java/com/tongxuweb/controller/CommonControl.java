@@ -73,7 +73,10 @@ public class CommonControl {
         // 设置response参数，可以打开下载页面
         response.reset();
         response.setContentType("application/vnd.ms-excel;charset=utf-8");
-        response.setHeader("Content-Disposition", "attachment;filename=" + new String((fileName + ".xls").getBytes(), "iso-8859-1"));
+       // response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ".xls");
+        response.setHeader("Content-Disposition", "attachment;filename=" + new String((fileName + ".xls").getBytes
+            ("utf-8"), "iso-8859-1"));
+
         ServletOutputStream out = response.getOutputStream();
         BufferedInputStream bis = null;
         BufferedOutputStream bos = null;
