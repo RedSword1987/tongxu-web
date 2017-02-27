@@ -1,8 +1,6 @@
 package com.tongxuweb.service.interceptor;
 
 
-import com.tongxuweb.domain.generate.PLogTable;
-import com.tongxuweb.mapper.generate.PLogTableMapper;
 import com.tongxuweb.util.JsonUtil;
 import com.tongxuweb.util.StringUtil;
 import org.apache.ibatis.executor.Executor;
@@ -37,8 +35,6 @@ import java.util.regex.Matcher;
 @Service
 public class ShowSqlInterceptor implements Interceptor {
 
-    @Autowired
-    PLogTableMapper pLogTableMapper;
 
     private static final Logger LOGGER_TABLE = LoggerFactory.getLogger("p_log_table");
     private static final Logger LOGGER = LoggerFactory.getLogger(ShowSqlInterceptor.class);
@@ -183,21 +179,21 @@ public class ShowSqlInterceptor implements Interceptor {
     private void saveLog(String name, String sql) {
         String tableName = getTableNameFromSql(sql, name);
         if (!StringUtil.isEmpty(tableName) && !"p_log_table".equalsIgnoreCase(tableName)) {
-            PLogTable log = new PLogTable();
-            log.setContent(sql);
-            log.setTableName(tableName);
-            if (name.startsWith("INSERT")) {
-                log.setType(1);
-            } else if (name.startsWith("UPDATE")) {
-                log.setType(2);
-            } else if (name.startsWith("DELETE")) {
-                log.setType(3);
-            }
-
-            if (log.getType() != null) {
-                LOGGER_TABLE.info(JsonUtil.toJson(log));
-                // pLogTableMapper.insertSelective(log);
-            }
+//            PLogTable log = new PLogTable();
+//            log.setContent(sql);
+//            log.setTableName(tableName);
+//            if (name.startsWith("INSERT")) {
+//                log.setType(1);
+//            } else if (name.startsWith("UPDATE")) {
+//                log.setType(2);
+//            } else if (name.startsWith("DELETE")) {
+//                log.setType(3);
+//            }
+//
+//            if (log.getType() != null) {
+//                LOGGER_TABLE.info(JsonUtil.toJson(log));
+//                // pLogTableMapper.insertSelective(log);
+//            }
 
 
         }

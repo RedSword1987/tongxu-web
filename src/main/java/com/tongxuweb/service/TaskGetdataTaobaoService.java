@@ -33,4 +33,6 @@ public interface TaskGetdataTaobaoService {
 
     boolean updateTaskuStatus(String ids, Integer status);
 
+
+    void update(TaskGetdataTaobao taskGetdataTaobao);
 }

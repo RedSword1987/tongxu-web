@@ -6,17 +6,18 @@ import com.tongxuweb.domain.entity.SearchTaskResultBean;
 import com.tongxuweb.domain.entity.common.PaginationResult;
 import com.tongxuweb.domain.generate.TaskGetdataTaobao;
 import com.tongxuweb.service.TaskGetdataTaobaoService;
+import com.tongxuweb.util.JsonUtil;
+import com.tongxuweb.util.StringUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.QueryParam;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by higgs on 17/2/19.
@@ -47,6 +48,29 @@ public class TaskControl {
         return result;
     }
 
+    @RequestMapping("/updateTaskName")
+    @ResponseBody
+    public Map<String, Object> updateTaskName(@QueryParam("id") Long id, HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        String needUpdateFields = request.getParameter("needUpdateFields");
+        if (!StringUtil.isEmpty(needUpdateFields)) {
+            Map<String, Object> updateFieldsMap = JsonUtil.fromJson(needUpdateFields, JsonUtil.MapString_type);
+            if (updateFieldsMap != null) {
+                String taskName = String.valueOf(updateFieldsMap.get("taskName"));
+                if (!StringUtil.isEmpty(taskName) && id != null) {
+                    TaskGetdataTaobao taskGetdataTaobao = new TaskGetdataTaobao();
+                    taskGetdataTaobao.setId(id);
+                    taskGetdataTaobao.setTaskName(taskName);
+                    taskGetdataTaobaoService.update(taskGetdataTaobao);
+                }
+            }
+        }
+
+        result.put("result", true);
+        result.put("msg", "成功");
+        return result;
+    }
+
 
 
     @RequestMapping("/listTask")
@@ -57,11 +81,9 @@ public class TaskControl {
         PaginationResult result = taskGetdataTaobaoService.listTask(searchTaskBean);
         return result;
     }
-//    , @RequestParam(value = "id", required = false) Integer id
     @RequestMapping("/listTaskResult")
     @ResponseBody
     public PaginationResult listTaskResult(HttpServletRequest request) {
-        //@RequestBody
         SearchTaskResultBean searchTaskResultBean = new SearchTaskResultBean(request);
         PaginationResult result = taskGetdataTaobaoService.listTaskResult(searchTaskResultBean);
         return result;

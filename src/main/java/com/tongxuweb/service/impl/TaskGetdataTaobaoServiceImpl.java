@@ -2,21 +2,22 @@ package com.tongxuweb.service.impl;
 
 import com.tongxuweb.dao.TaskGetdataTaobaoDao;
 import com.tongxuweb.dao.TaskGetdataTaobaoOrderDao;
-import com.tongxuweb.dao.TaskGetdataTaobaoOrderidsDao;
 import com.tongxuweb.domain.create.OTaskGetdataTaobao;
 import com.tongxuweb.domain.entity.SearchTaskBean;
 import com.tongxuweb.domain.entity.SearchTaskResultBean;
 import com.tongxuweb.domain.entity.common.PaginationResult;
-import com.tongxuweb.domain.generate.*;
+import com.tongxuweb.domain.generate.TaskGetdataTaobao;
+import com.tongxuweb.domain.generate.TaskGetdataTaobaoExample;
+import com.tongxuweb.domain.generate.TaskGetdataTaobaoOrder;
 import com.tongxuweb.service.TaskGetdataTaobaoService;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.Resource;
 
 /**
  * Created by higgs on 17/2/14.
@@ -29,9 +30,6 @@ public class TaskGetdataTaobaoServiceImpl implements TaskGetdataTaobaoService{
 
     @Resource
     private TaskGetdataTaobaoOrderDao taskGetdataTaobaoOrderDao;
-
-    @Resource
-    private TaskGetdataTaobaoOrderidsDao taskGetdataTaobaoOrderidsDao;
 
 
     public TaskGetdataTaobao getOne(Long id) {
@@ -55,27 +53,11 @@ public class TaskGetdataTaobaoServiceImpl implements TaskGetdataTaobaoService{
         Long id = taskGetdataTaobao.getId();
         if (id != null && taskGetdataTaobao.getOrderids() != null && taskGetdataTaobao.getOrderids().size() > 0) {
             for (String ids : taskGetdataTaobao.getOrderids()) {
-                TaskGetdataTaobaoOrderids taskGetdataTaobaoOrderids = new TaskGetdataTaobaoOrderids();
-                taskGetdataTaobaoOrderids.setTaskId(id);
-                taskGetdataTaobaoOrderids.setOrderinfoId(ids);
-                taskGetdataTaobaoOrderidsDao.insertSelective(taskGetdataTaobaoOrderids);
 
-
-                {
-                    TaskGetdataTaobaoOrder taskGetdataTaobaoOrder = new TaskGetdataTaobaoOrder();
-                    taskGetdataTaobaoOrder.setOrderinfoId(ids);
-                    taskGetdataTaobaoOrder.setTaskId(id);
-
-                    TaskGetdataTaobaoOrderExample example = new TaskGetdataTaobaoOrderExample();
-                    example.createCriteria().andOrderinfoIdEqualTo(taskGetdataTaobaoOrder.getOrderinfoId());
-                    List<TaskGetdataTaobaoOrder> lli = taskGetdataTaobaoOrderDao.selectByExample(example);
-                    if (lli != null && lli.size() > 0) {
-                        taskGetdataTaobaoOrder.setId(lli.get(0).getId());
-                        taskGetdataTaobaoOrderDao.updateByPrimaryKeySelective(taskGetdataTaobaoOrder);
-                    } else {
-                        taskGetdataTaobaoOrderDao.insertSelective(taskGetdataTaobaoOrder);
-                    }
-                }
+                TaskGetdataTaobaoOrder taskGetdataTaobaoOrder = new TaskGetdataTaobaoOrder();
+                taskGetdataTaobaoOrder.setOrderinfoId(ids);
+                taskGetdataTaobaoOrder.setTaskId(id);
+                taskGetdataTaobaoOrderDao.insertSelective(taskGetdataTaobaoOrder);
 
             }
         }
@@ -193,6 +175,10 @@ public class TaskGetdataTaobaoServiceImpl implements TaskGetdataTaobaoService{
         remp.setStatus(status);
         taskGetdataTaobaoDao.updateByExampleSelective(remp, example);
         return result;
+    }
+
+    public void update(TaskGetdataTaobao taskGetdataTaobao) {
+        taskGetdataTaobaoDao.updateByPrimaryKeySelective(taskGetdataTaobao);
     }
 
 

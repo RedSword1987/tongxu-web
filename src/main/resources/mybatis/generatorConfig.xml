@@ -53,78 +53,12 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-
-        <!-- 指定数据库表 -->
-        <table tableName="p_user">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_role">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_permission">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_resource">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_action">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_user_property">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_user_role">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_role_permission">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_permission_action">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_menu">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_log_operate">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_log_table">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-
-        <table tableName="p_msg_template">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_msg_template_key">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_msg_batch">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_msg">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_msg_key">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_msg_message_channel">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="p_msg_email_channel">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-
-        </table>
-
         <table tableName="task_getdata_taobao">
-            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-        </table>
-        <table tableName="task_getdata_taobao_orderids">
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
         </table>
 
         <table tableName="task_getdata_taobao_order">
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
-
         </table>
 
 

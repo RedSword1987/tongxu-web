@@ -5,11 +5,9 @@ import com.tongxuweb.domain.entity.MainOrder;
 import com.tongxuweb.domain.entity.MainOrders;
 import com.tongxuweb.domain.generate.TaskGetdataTaobaoOrder;
 import com.tongxuweb.domain.generate.TaskGetdataTaobaoOrderExample;
-import com.tongxuweb.mapper.generate.PUserMapper;
 import com.tongxuweb.service.TaskGetdataTaobaoOrderService;
 import com.tongxuweb.util.DateUtil;
 import com.tongxuweb.util.StringUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,7 +45,8 @@ public class TaskGetdataTaobaoOrderServiceImpl implements TaskGetdataTaobaoOrder
             taskGetdataTaobaoOrder.setTaskId(mainOrders.getBatchId());
             if (!StringUtil.isEmpty(taskGetdataTaobaoOrder.getOrderinfoId())) {
                 TaskGetdataTaobaoOrderExample example = new TaskGetdataTaobaoOrderExample();
-                example.createCriteria().andOrderinfoIdEqualTo(taskGetdataTaobaoOrder.getOrderinfoId());
+                example.createCriteria().andOrderinfoIdEqualTo(taskGetdataTaobaoOrder.getOrderinfoId()).
+                    andTaskIdEqualTo(mainOrders.getBatchId());
                 List<TaskGetdataTaobaoOrder> lli = taskGetdataTaobaoOrderDao.selectByExample(example);
                 if (lli != null && lli.size() > 0) {
                     taskGetdataTaobaoOrder.setId(lli.get(0).getId());
@@ -61,7 +60,6 @@ public class TaskGetdataTaobaoOrderServiceImpl implements TaskGetdataTaobaoOrder
             }
         }
 
-        //taskGetdataTaobaoOrderDao.insertBuyer();
         ss.put("insert", insert);
         ss.put("update", update);
         return list.size();
@@ -155,7 +153,14 @@ public class TaskGetdataTaobaoOrderServiceImpl implements TaskGetdataTaobaoOrder
                 if (buyer_addressArray.length >= 3) {
                     taskGetdataTaobaoOrder.setBuyerProvice(buyer_addressArray[0]);
                     taskGetdataTaobaoOrder.setBuyerCity(buyer_addressArray[1]);
-                    taskGetdataTaobaoOrder.setBuyerArea(buyer_address.replace(buyer_addressArray[0], "").replace(buyer_addressArray[1], "").trim());
+
+                    StringBuilder stringBuilder=new StringBuilder();
+                    for (int i=0;i<buyer_addressArray.length;i++){
+                        if (i>1){
+                            stringBuilder.append(buyer_addressArray[i]).append(" ");
+                        }
+                    }
+                    taskGetdataTaobaoOrder.setBuyerArea(stringBuilder.toString().trim());
                 }
                 taskGetdataTaobaoOrder.setBuyerAddress(buyer_address);
             }
