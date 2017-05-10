@@ -50,14 +50,15 @@ public class OTaskGetdataTaobao extends TaskGetdataTaobao {
     }
 
     public void init() {
-        if (1 == getType()) {
+        if (1 == getType() || 3 == getType()) {
             orderids = new ArrayList<String>();
             if (beginDateS != null) {
-                setBeginDate(new Date(DateUtil.convertStringToLong(beginDateS, DateUtil.DATE_PATTERN_YYYY_MM_DD_HH_MM_SS) * 1000));
+                setBeginDate(new Date(DateUtil.convertStringToLong(beginDateS + " 00:00:00", DateUtil.DATE_PATTERN_YYYY_MM_DD_HH_MM_SS) * 1000));
             }
             if (endDateS != null) {
-                setEndDate(new Date(DateUtil.convertStringToLong(endDateS, DateUtil.DATE_PATTERN_YYYY_MM_DD_HH_MM_SS) * 1000));
+                setEndDate(new Date(DateUtil.convertStringToLong(endDateS + " 23:59:59", DateUtil.DATE_PATTERN_YYYY_MM_DD_HH_MM_SS) * 1000));
             }
+
         } else if (2 == getType()) {
             setBeginDate(null);
             setEndDate(null);
@@ -65,7 +66,7 @@ public class OTaskGetdataTaobao extends TaskGetdataTaobao {
             if (!StringUtil.isEmpty(orderIds)) {
                 String[] arr = orderIds.split("[,; \\n\\t]");
                 for (String arrS : arr) {
-                    if (!StringUtil.isEmpty(arrS) && arrS.length() == 16) {
+                    if (!StringUtil.isEmpty(arrS) && arrS.length() >= 16) {
                         orderids.add(arrS);
                     }
                 }

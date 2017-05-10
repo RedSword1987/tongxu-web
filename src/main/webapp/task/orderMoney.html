@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>订单金额汇总</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <!-- HTTP 1.0 -->
+    <meta http-equiv="cache-control" content="no-cache">
+    <!-- Prevent caching at the proxy server -->
+    <meta http-equiv="expires" content="0">
+
+    <link href="../gentelella-master/vendors/bootstrap/dist/css/bootstrap.min.css?v=20160907"
+          rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../gentelella-master/vendors/font-awesome/css/font-awesome.min.css?v=20160907"
+          rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="../gentelella-master/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css?v=20160907"
+          rel="stylesheet">
+    <!-- jVectorMap -->
+    <link href="../gentelella-master/production/css/maps/jquery-jvectormap-2.0.3.css?v=20160907"
+          rel="stylesheet"/>
+    <!-- Custom Theme Style -->
+    <link href="../gentelella-master/production/css/custom.css?v=20160907"
+          rel="stylesheet">
+    <!-- Select2 -->
+    <link href="../gentelella-master/vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css?v=20160907"
+          rel="stylesheet">
+
+    <link href="../gentelella-master/vendors/bootstrap-table/bootstrap-table.css?v=20160907"
+          rel="stylesheet">
+    <!-- showLoading-->
+    <link href="../gentelella-master/vendors/jquery-showLoading/css/showLoading.css?v=20160907"
+          rel="stylesheet">
+    <!-- jquery-confirm-->
+    <link href="../gentelella-master/vendors/jquery-confirm/jquery-confirm.min.css?v=20160907"
+          rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../gentelella-master/production/css/common.css?v=20160907"
+          rel="stylesheet">
+
+
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div role="main">
+            <div class="col-md-12 col-sm-12 col-xs-12" style="min-height: 400px!important;">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>订单成本</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <form id="btn_search_content" style="display: none;" data-parsley-validate
+                              class="form-horizontal form-label-left">
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-2"> 订单编号 :</label>
+
+                                <div class="col-md-3 col-sm-3 col-xs-3">
+                                    <input type="text" id="searchForm_orderinfoId----1"
+                                           class="form-control col-md-3 col-xs-3">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-2">订单买家状态 : </label>
+
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <select id="searchForm_orderBarText----1" class="form-control">
+                                        <option value=""></option>
+                                        <option value="买家下单">买家下单</option>
+                                        <option value="买家付款">买家付款</option>
+                                        <option value="发货">发货</option>
+                                        <option value="买家确认收货">买家确认收货</option>
+                                        <option value="评价">评价</option>
+                                    </select>
+                                </div>
+
+                                <label class="control-label col-md-2 col-sm-2 col-xs-2">订单卖家状态 : </label>
+
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <select id="searchForm_statusinfoText----1" class="form-control">
+                                        <option value=""></option>
+                                        <option value="卖家已发货">等待买家付款</option>
+                                        <option value="卖家已发货">买家已付款</option>
+                                        <option value="卖家已发货">卖家已发货</option>
+                                        <option value="卖家已发货">交易关闭</option>
+                                        <option value="卖家已发货">交易成功</option>
+                                        <option value="卖家已发货">资金保护中</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-8 col-sm-8 col-xs-8  ">
+                                    <button id="btn_search_action" class="btn btn-primary" type="button">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索
+                                    </button>
+
+                                </div>
+                            </div>
+                        </form>
+                        <div id="toolbar" class="btn-group">
+                            <div>
+                                <button id="btn_search" type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索
+                                </button>
+                                <button id="btn_export_xls" type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                                </button>
+                            </div>
+                        </div>
+
+                        <table id="bootstrap-table">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="../gentelella-master/vendors/jquery/dist/jquery.min.js?v=20160907"></script>
+<!-- Bootstrap -->
+<script src="../gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js?v=20160907"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="../gentelella-master/production/js/moment/moment.min.js"></script>
+<script src="../gentelella-master/production/js/datepicker/daterangepicker.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../gentelella-master/production/js/custom.js"></script>
+<!--   -->
+<!--   -->
+<!-- 时间控件  -->
+<script src="../gentelella-master/vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+<script src="../gentelella-master/vendors/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"
+        charset="UTF-8"></script>
+<!--   -->
+<!--   -->
+<!-- showLoading -->
+<script src="../gentelella-master/vendors/jquery-showLoading/js/jquery.showLoading.min.js"></script>
+<!-- jquery-confirm -->
+<script src="../gentelella-master/vendors/jquery-confirm/jquery-confirm.min.js"></script>
+<!--   -->
+<!-- 另外导入 -->
+<script src="../gentelella-master/vendors/bootstrap-table/bootstrap-table.js"></script>
+<script src="../gentelella-master/vendors/bootstrap-table/bootstrap-table-zh-CN.js"></script>
+<script src="../gentelella-master/vendors/jquery-cookie/jquery.cookie.js"></script>
+<!-- 自己项目的js -->
+<script src="../common/js/common.js?v=20160907"></script>
+<script src="../common/js/common_forTable.js?v=20160907"></script>
+<script src="../common/js/common_forModal.js?v=20160907"></script>
+<script src="../common/js/common_ajax.js?v=20160907"></script>
+
+<div id="fakeloader"></div>
+<script type="text/javascript">
+    var localHref = window.location.href;
+    var idValue = getQueryString("id");
+
+    var columns = [
+        {field: "id", title: "ID", class: "th_id", sortable: "true"},
+        {field: "orderinfoId", title: "订单编号", class: "th_ka", sortable: "true"},
+        {
+            field: "orderinfoCreatetime",
+            title: "订单创建时间",
+            class: "th_ka",
+            formatter: formatter_datetime,
+            class: "th_time",
+            sortable: "true"
+        },
+        {field: "orderBarText", title: "订单买家状态", class: "th_100", sortable: "true"},
+        {field: "statusinfoText", title: "订单卖家状态", class: "th_100", sortable: "true"},
+        {field: "logisticsName", title: "快递公司", class: "th_100", sortable: "true"},
+        {field: "logisticsNum", title: "快递", class: "th_ka", sortable: "true"},
+
+
+        {
+            field: "payTime",
+            title: "支付时间",
+            class: "th_ka",
+            formatter: formatter_datetime,
+            class: "th_time",
+            sortable: "true"
+        },
+        {
+            field: "sendTime",
+            title: "发货时间",
+            class: "th_ka",
+            formatter: formatter_datetime,
+            class: "th_time",
+            sortable: "true"
+        }
+
+
+    ];
+
+
+    var idField = "id";
+    var url_prefix = "/task/taobao/";
+    var url_page = url_prefix + "listTaskResult.action?id=" + idValue;
+
+    //此处不需要修改
+    var tableId = "bootstrap-table";
+
+
+    $(function () {
+        //添加按钮
+        $("#btn_search").click(function () {
+            if (!$("#btn_search_content").is(":hidden")) {
+
+            } else {
+
+            }
+
+            $("#btn_search_content").toggle();
+            $("#btn_search_action").unbind("click");
+            $("#btn_search_action").click(function () {
+                $('#bootstrap-table').bootstrapTable("refresh");
+            });
+
+        });
+
+        $("#btn_export_xls").click(function () {
+            $("#exportForm #exportForm_sort").val("");
+            $("#exportForm #exportForm_order").val("");
+            $("#exportForm #exportForm_searchField").val("");
+
+
+            var sortOrder = $('#' + tableId).bootstrapTable('getOptions').sortOrder;
+            var sortName = $('#' + tableId).bootstrapTable('getOptions').sortName;
+            if (!sortName) {
+                sortName = "";
+            }
+            var searchField = getSearchFields();
+
+            var length_ = getObjKeyNums(searchField);
+            if (length_ != 0) {
+                $("#exportForm #exportForm_searchFields").val(JSON.stringify(searchField));
+            }
+            $("#exportForm #exportForm_sort").val(sortName);
+            $("#exportForm #exportForm_order").val(sortOrder);
+            var url = "/common/common_download_xls.action?id=" + idValue;
+            $("#exportForm").attr("action", url);
+            $("#exportForm").submit();
+        });
+
+
+        initPage(tableId, idField, url_page, columns);
+
+        $(window).resize(function () {
+            $('#bootstrap-table').bootstrapTable('resetView');
+        });
+
+    });
+</script>
+<form action="" id="exportForm" method="post" target="_blank" style="display: none;">
+    <input type="hidden" name="sort" id="exportForm_sort">
+    <input type="hidden" name="order" id="exportForm_order">
+    <input type="hidden" name="searchFields" id="exportForm_searchFields">
+</form>
+</body>
+</html>

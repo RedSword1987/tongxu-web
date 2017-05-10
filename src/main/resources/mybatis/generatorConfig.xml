@@ -53,11 +53,71 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
+        <table tableName="p_user">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_user_property">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_role">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_menu">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_user_role">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_role_menu">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+
+        <table tableName="p_log_operate">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="p_log_table">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+
+        <table tableName="task_type">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="task_run">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="task_run_param">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+
+        <table tableName="tb_seller">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="tb_static">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="tb_static_size">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="tb_static_item">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+
+
+
+
         <table tableName="task_getdata_taobao">
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
         </table>
 
         <table tableName="task_getdata_taobao_order">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+
+        <table tableName="taobaoke">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+
+        <table tableName="order_money">
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
         </table>
 

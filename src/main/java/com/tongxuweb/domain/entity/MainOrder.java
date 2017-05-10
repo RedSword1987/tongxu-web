@@ -12,6 +12,7 @@ public class MainOrder {
     private Buyer buyer;
     private Trade trade;
     private Extra extra;
+    private Operations operations;
     private OrderInfo orderInfo;
     private PayInfo payInfo;
     private StatusInfo statusInfo;

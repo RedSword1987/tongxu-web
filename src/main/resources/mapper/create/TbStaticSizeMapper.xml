@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tongxuweb.dao.TbStaticSizeDao">
+
+    <select id="sumSize" resultType="com.tongxuweb.domain.generate.TbStaticSize">
+        SELECT
+        sum(a.size09) size09,
+        sum(a.size10) size10,
+        sum(a.size12) size12,
+        sum(a.size15) size15,
+        sum(a.size18) size18,
+        sum(a.size20) size20
+        FROM
+        tb_static_size a
+        WHERE
+        a.date BETWEEN #{beginDate}
+        AND #{endDate}
+        AND a.seller_id IN (${sellerIds})
+    </select>
+
+
+</mapper>

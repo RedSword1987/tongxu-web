@@ -48,7 +48,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 							typeDesc="订单明细数据"
 						}
 						alert("开始抓数(type:"+typeDesc+") dateBegin:"+begin+",dateEnd:"+end+",batchId:"+taskId+"," );
-						if(1==type){
+						if (3 == type || 1 == type) {
 							 
 							chrome.tabs.sendMessage(tab.id,{"batchId":taskId,"begin":begin,"end":end,"timeInterval":timeInterval,"type":type,"orderId":null}); 
 							

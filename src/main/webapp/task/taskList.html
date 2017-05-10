@@ -165,7 +165,7 @@
 <script type="text/javascript">
 
     var getTypeSelect = function () {
-        var brand_content = ' <option value="2">订单明细数据</option><option value="1">订单主数据</option>';
+        var brand_content = ' <option value="2">订单明细数据</option><option value="1">订单主数据</option><option value="3">订单金额数据</option>';
         return brand_content;
     }
 
@@ -190,6 +190,8 @@
                 return '订单主数据';
             }else if(value=='2'){
                 return '订单明细数据';
+            } else if (value == '3') {
+                return '订单金额数据';
             }
         }
         return value;
@@ -260,13 +262,13 @@
             var now = new Date();
             var dateYes = new Date();
             dateYes.setDate(dateYes.getDate() - 1);
-            var defaultValueDate = dateYes.CCFormat("yyyy-MM-dd hh:mm:ss");
-            var nowDefaultValueDate = now.CCFormat("yyyy-MM-dd hh:mm:ss");
+            var defaultValueDate = -1;
+            var nowDefaultValueDate = -1;
             var getDataFields = [
                 {field: "type", title: "任务类型", require: true, fileType: 10, select_content: getTypeSelect()},
                 {field: "taskName", title: "任务名称", require: true},
-                {field: "beginDateS", title: "开始日期", require: true, fileType: 23, defaultValue: defaultValueDate},
-                {field: "endDateS", title: "结束日期", require: true, fileType: 23, defaultValue: nowDefaultValueDate},
+                {field: "beginDateS", title: "开始日期", require: true, fileType: 3, defaultValue: defaultValueDate},
+                {field: "endDateS", title: "结束日期", require: true, fileType: 3, defaultValue: nowDefaultValueDate},
                 {field: "orderIds", title: "订单编号", require: true, fileType: 27},
 
             ];
@@ -293,10 +295,10 @@
                 if (2 == type_value &&  ''==orderIds) {
                     alert("订单编号 不可为空");
                     check_ = 0;
-                }else if(1 == type_value &&  ''==beginDate){
+                } else if (2 != type_value && '' == beginDate) {
                     alert("开始日期 不可为空");
                     check_ = 0;
-                }else if(1 == type_value &&  ''==endDate){
+                } else if (2 != type_value && '' == endDate) {
                     alert("结束日期 不可为空");
                     check_ = 0;
                 }
@@ -304,8 +306,8 @@
                 var getDataFields = [
                     {field: "type", title: "任务类型", require: true, fileType: 10, select_content: getTypeSelect()},
                     {field: "taskName", title: "任务名称", require: true},
-                    {field: "beginDateS", title: "开始日期" , fileType: 23, defaultValue: defaultValueDate},
-                    {field: "endDateS", title: "结束日期" , fileType: 23, defaultValue: nowDefaultValueDate},
+                    {field: "beginDateS", title: "开始日期", fileType: 3, defaultValue: defaultValueDate},
+                    {field: "endDateS", title: "结束日期", fileType: 3, defaultValue: nowDefaultValueDate},
                     {field: "orderIds", title: "订单编号" , fileType: 27},
                 ];
 
@@ -370,7 +372,7 @@
     });
 
     function initTypeChoose(typeValue) {
-        if (1 == typeValue) {
+        if (1 == typeValue || 3 == typeValue) {
             $("#form-group-beginDateS").show();
             $("#form-group-endDateS").show();
             $("#form-group-orderIds").hide();
