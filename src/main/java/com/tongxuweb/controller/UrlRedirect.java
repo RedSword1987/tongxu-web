@@ -1,9 +1,7 @@
 package com.tongxuweb.controller;
 
-import com.tongxuweb.domain.generate.TbSeller;
-import com.tongxuweb.domain.generate.TbSellerExample;
-import com.tongxuweb.domain.generate.TbStaticItem;
-import com.tongxuweb.domain.generate.TbStaticSize;
+import com.tongxuweb.dao.TaskTypeDao;
+import com.tongxuweb.domain.generate.*;
 import com.tongxuweb.mapper.generate.TbSellerMapper;
 import com.tongxuweb.service.TbStaticService;
 import org.springframework.stereotype.Controller;
@@ -27,6 +25,9 @@ public class UrlRedirect {
 
     @Resource
     private TbSellerMapper tbSellerMapper;
+
+    @Resource
+    private TaskTypeDao taskTypeDao;
 
     @RequestMapping("/login")
     public String login(HttpServletRequest request) {
@@ -58,8 +59,85 @@ public class UrlRedirect {
 
     @RequestMapping("/taskType")
     public String taskType(HttpServletRequest request) {
-        return "jsp/task/taskType";
+        return "jsp/setting/taskType";
     }
+
+
+    @RequestMapping("/taskRunMain")
+    public String taskRunMain(HttpServletRequest request) {
+        String code = "main";
+        request.setAttribute("code", code);
+        TaskTypeExample ex = new TaskTypeExample();
+        ex.createCriteria().andCodeEqualTo(code);
+        List<TaskType> li = taskTypeDao.selectByExample(ex);
+        if (li.size() > 0) {
+            request.setAttribute("name", li.get(0).getName());
+        }
+        return "jsp/task/taskRun";
+    }
+
+    @RequestMapping("/taskRunWuliu")
+    public String taskRunWuliu(HttpServletRequest request) {
+        String code = "wuliu";
+        request.setAttribute("code", code);
+        TaskTypeExample ex = new TaskTypeExample();
+        ex.createCriteria().andCodeEqualTo(code);
+        List<TaskType> li = taskTypeDao.selectByExample(ex);
+        if (li.size() > 0) {
+            request.setAttribute("name", li.get(0).getName());
+        }
+        return "jsp/task/taskRun";
+    }
+
+    @RequestMapping("/taskRunMoney")
+    public String taskRunMoney(HttpServletRequest request) {
+        String code = "money";
+        request.setAttribute("code", code);
+        TaskTypeExample ex = new TaskTypeExample();
+        ex.createCriteria().andCodeEqualTo(code);
+        List<TaskType> li = taskTypeDao.selectByExample(ex);
+        if (li.size() > 0) {
+            request.setAttribute("name", li.get(0).getName());
+        }
+        return "jsp/task/taskRun";
+    }
+
+    @RequestMapping("/tbStatic")
+    public String tbStatic(HttpServletRequest request) {
+        return "jsp/tb/tbStatic";
+    }
+
+    @RequestMapping("/tbStaticItem")
+    public String tbStaticItem(HttpServletRequest request) {
+        return "jsp/tb/tbStaticItem";
+    }
+
+    @RequestMapping("/tbStaticSize")
+    public String tbStaticSize(HttpServletRequest request) {
+        return "jsp/tb/tbStaticSize";
+    }
+
+
+    @RequestMapping("/tbOrder")
+    public String tbOrder(HttpServletRequest request) {
+        return "jsp/tb/tbOrder";
+    }
+
+    @RequestMapping("/tbOrderWuliu")
+    public String tbOrderWuliu(HttpServletRequest request) {
+        return "jsp/tb/tbOrderWuliu";
+    }
+
+    @RequestMapping("/tbOrderMoney")
+    public String tbOrderMoney(HttpServletRequest request) {
+        return "jsp/tb/tbOrderMoney";
+    }
+
+    @RequestMapping("/handStatic")
+    public String handStatic(HttpServletRequest request) {
+        return "jsp/tb/handStatic";
+    }
+
 
 
 }

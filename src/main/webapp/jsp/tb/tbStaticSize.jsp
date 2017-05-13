@@ -18,7 +18,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>${name}</h2>
+            <h2>店铺日尺码</h2>
 
             <div class="clearfix"></div>
           </div>
@@ -36,38 +36,26 @@
 <%@include file="../../common/include/modal.jsp" %>
 <script type="text/javascript">
 
-  function formatterStatus(value,row,index){
-    if(value){
-      value=value+'';
-      if(value==1){
-        return "待执行";
-      }else if(value==2){
-        return "成功";
-      }else if(value==3){
-        return "失败";
-      }
-    }
-    return value;
-  }
 
 
 
   var columns = [
-    {field: "id", title: "ID"},
-    {field: "taskName", title: "执行名称"},
-    {field: "status", title: "状态",formatter:formatterStatus},
-    {field: "beginDate", title: "开始时间", formatter: formatter_datetime, class: "th_time"},
-    {field: "endDate", title: "结束时间", formatter: formatter_datetime, class: "th_time"},
-
-    {field: "createdAt", title: "创建时间", formatter: formatter_datetime, class: "th_time"}
+    {field: "sellerName", title: "店铺名称"},
+    {field: "date", title: "销售日期"},
+    {field: "size09", title: "床宽0.9"},
+    {field: "size10", title: "床宽1.0"},
+    {field: "size12", title: "床宽1.2"},
+    {field: "size15", title: "床宽1.5"},
+    {field: "size18", title: "床宽1.8"},
+    {field: "size20", title: "床宽2.0"}
   ];
 
 
 
 
   var idField = "id";
-  var url_prefix = "${pageContext.request.contextPath}/taskType/";
-  var url_page = url_prefix + "taskRunPage.action?code=${code}";
+  var url_prefix = "${pageContext.request.contextPath}/tb/";
+  var url_page = url_prefix + "tbStaticSize.action";
 
   //此处不需要修改
   var tableId = "bootstrap-table";

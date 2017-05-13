@@ -1,6 +1,8 @@
 package com.tongxuweb.domain.entity.common;
 
-import com.tongxuweb.domain.entity.SearchTaskBean;
+import com.tongxuweb.util.StringUtil;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by higgs on 17/2/14.
@@ -13,6 +15,28 @@ public class Pagination {
     private Integer limit = 0;
     private Integer total = 0;
     private Integer offset = 0;
+
+    public Pagination() {
+
+    }
+
+    public Pagination(HttpServletRequest request) {
+        if (request != null) {
+            String length = request.getParameter("limit");
+            String start = request.getParameter("offset");
+            if (StringUtil.isEmpty(length)) {
+                setLimit(10);
+            } else {
+                setLimit(Integer.valueOf(length));
+            }
+            if (StringUtil.isEmpty(start)) {
+                setOffset(0);
+            } else {
+                setOffset(Integer.valueOf(start));
+            }
+        }
+    }
+
 
     public Integer getOffset() {
         return offset;

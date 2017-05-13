@@ -18,7 +18,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>${name}</h2>
+            <h2>订单主数据</h2>
 
             <div class="clearfix"></div>
           </div>
@@ -36,38 +36,27 @@
 <%@include file="../../common/include/modal.jsp" %>
 <script type="text/javascript">
 
-  function formatterStatus(value,row,index){
-    if(value){
-      value=value+'';
-      if(value==1){
-        return "待执行";
-      }else if(value==2){
-        return "成功";
-      }else if(value==3){
-        return "失败";
-      }
-    }
-    return value;
-  }
-
-
 
   var columns = [
-    {field: "id", title: "ID"},
-    {field: "taskName", title: "执行名称"},
-    {field: "status", title: "状态",formatter:formatterStatus},
-    {field: "beginDate", title: "开始时间", formatter: formatter_datetime, class: "th_time"},
-    {field: "endDate", title: "结束时间", formatter: formatter_datetime, class: "th_time"},
+    {field: "date", title: "日期"},
+    {field: "orderinfoId", title: "单号"},
+    {field: "title", title: "货品"},
+    {field: "payinfoActualfee", title: "支付金额"},
+    {field: "statusinfoText", title: "状态"},
+    {field: "payTime", title: "付款时间"},
+    {field: "buyerNick", title: "购买人昵称"},
+    {field: "itemNum", title: "货品数量"},
 
-    {field: "createdAt", title: "创建时间", formatter: formatter_datetime, class: "th_time"}
+
+    {field: "finalMoney", title: "净利润"}
   ];
 
 
 
 
   var idField = "id";
-  var url_prefix = "${pageContext.request.contextPath}/taskType/";
-  var url_page = url_prefix + "taskRunPage.action?code=${code}";
+  var url_prefix = "${pageContext.request.contextPath}/tb/";
+  var url_page = url_prefix + "tbOrder.action";
 
   //此处不需要修改
   var tableId = "bootstrap-table";

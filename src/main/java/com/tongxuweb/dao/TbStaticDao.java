@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
- * Created by higgs on 17/5/8.
  */
 public interface TbStaticDao extends TbStaticMapper {
     @Select("select * from tb_static a where a.seller_id in(${sellerIds}) and a.date between #{beginDate} and #{endDate}")
@@ -17,4 +16,10 @@ public interface TbStaticDao extends TbStaticMapper {
     List<TbStatic> listBySellerAndDate(@Param("sellerIds") String sellerIds,
                                        @Param("beginDate") String beginDate,
                                        @Param("endDate") String endDate);
+
+    Integer staticItemNum(@Param("date") String date, @Param("sellerId") String sellerId);
+
+    Double staticPayinfoActualfee(@Param("date") String date, @Param("sellerId") String sellerId);
+
+    Double staticMoneyFinalMoney(@Param("date") String date, @Param("sellerId") String sellerId);
 }

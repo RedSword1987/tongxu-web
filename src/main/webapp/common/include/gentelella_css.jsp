@@ -24,7 +24,7 @@
 <!-- Select2 -->
 <link href="${pageContext.request.contextPath}/gentelella-master/vendors/select2/dist/css/select2.min.css?v=20160907"
       rel="stylesheet">
-<link href="${pageContext.request.contextPath}/gentelella-master/vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css?v=20160907"
+<link href="${pageContext.request.contextPath}/gentelella-master/vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css?v=20170512"
       rel="stylesheet">
 
 <link href="${pageContext.request.contextPath}/gentelella-master/vendors/bootstrap-table/bootstrap-table.css?v=20160907"

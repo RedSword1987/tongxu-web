@@ -27,6 +27,14 @@ public class SessionFilter extends OncePerRequestFilter {
             add("common/css");
             add("gentelella-master");
             add("p/login");
+            //
+
+            add("common_download_xls");
+            add("fetchData");
+            add("taobaoke");
+            add("task/taobao");
+            add("task/");
+
         }
     };
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tongxuweb.dao.TbStaticItemDao">
+
+    <select id="staticData" resultType="com.tongxuweb.domain.generate.TbStaticItem">
+		SELECT
+
+		b.sku_text_colour item_name,
+		count(b.id) item_num,
+		count(DISTINCT b.orderinfo_id) item_order
+	FROM
+		tb_order a,
+		tb_order_item b
+	WHERE
+		a.orderinfo_id = b.orderinfo_id
+	AND a. STATUS = 1
+	AND a.date = #{date}
+	and a.seller_id=#{sellerId}
+	GROUP BY
+
+		b.sku_text_colour;
+
+	</select>
+
+
+</mapper>

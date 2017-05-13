@@ -21,29 +21,35 @@
                         <a href="javascript:;">订单数据<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li>
-                                <a href="1">订单主数据</a>
+                                <a href="${pageContext.request.contextPath}/url/tbOrder.action">订单主数据</a>
                             </li>
-                            <li><a href="1">订单物流数据</a></li>
-                            <li><a href="1">订单金额数据</a></li>
+                            <li><a href="${pageContext.request.contextPath}/url/tbOrderWuliu.action">订单物流数据</a></li>
+                            <li><a href="${pageContext.request.contextPath}/url/tbOrderMoney.action">订单金额数据</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/url/taskType.action">任务管理<span class="fa fa-chevron-down"></span></a>
+                        <a href="javascript:;">任务管理<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li>
-                                <a href="1">订单主数据任务</a>
+                                <a href="${pageContext.request.contextPath}/url/taskRunMain.action">订单主数据任务</a>
                             </li>
-                            <li><a href="1">订单物流数据任务</a></li>
-                            <li><a href="1">订单金额数据任务</a></li>
+                            <li><a href="${pageContext.request.contextPath}/url/taskRunWuliu.action">订单物流数据任务</a></li>
+                            <li><a href="${pageContext.request.contextPath}/url/taskRunMoney.action">订单金额数据任务</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:;">统计报表<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="1">付款金额</a></li>
-                            <li><a href="1">总订单</a></li>
-                            <li><a href="1">付款订单</a></li>
-                            <li><a href="1">产品销量</a></li>
+                            <li><a href="${pageContext.request.contextPath}/url/tbStatic.action">店铺日统计汇总</a></li>
+                            <li><a href="${pageContext.request.contextPath}/url/tbStaticSize.action">店铺日尺码</a></li>
+                            <li><a href="${pageContext.request.contextPath}/url/tbStaticItem.action">店铺日产品销量</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">配置管理<span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="${pageContext.request.contextPath}/url/taskType.action">任务类型</a></li>
+                            <li><a href="${pageContext.request.contextPath}/url/handStatic.action">手动统计</a></li>
                         </ul>
                     </li>
 

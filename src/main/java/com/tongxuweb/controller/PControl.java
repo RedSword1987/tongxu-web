@@ -44,6 +44,7 @@ public class PControl {
             pUser.setLoginPass(null);
             result.put("loginName", pUser.getUserName());
             request.getSession().setAttribute("user_bean", pUser);
+            request.getSession().setAttribute("user_name", pUser.getUserName());
             result.put("result", true);
 
             //

@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by higgs on 17/5/8.
@@ -17,4 +16,7 @@ public interface TbStaticItemDao extends TbStaticItemMapper {
     @ResultType(TbStaticItem.class)
     List<TbStaticItem> selectTopOrderByNum(@Param("sellerIds") String sellerIds,
                                                   @Param("date") String date);
+
+    List<TbStaticItem> staticData(@Param("date") String date,
+                                  @Param("sellerId") String sellerId);
 }

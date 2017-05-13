@@ -101,6 +101,12 @@
         <table tableName="tb_static_item">
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
         </table>
+        <table tableName="tb_order">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+        <table tableName="tb_order_item">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
 
 
 

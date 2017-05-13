@@ -18,5 +18,21 @@
         AND a.seller_id IN (${sellerIds})
     </select>
 
+    <select id="staticData" resultType="com.tongxuweb.domain.create.StaticSizeResult">
+       SELECT
+        b.sku_text_size size,
+        count(b.id) cc
+    FROM
+        tb_order a,
+        tb_order_item b
+    WHERE
+        a.orderinfo_id = b.orderinfo_id
+    AND a. STATUS = 1
+    AND a.date = #{date}
+    AND a.seller_id =  #{sellerId}
+    GROUP BY
+        b.sku_text_size;
+    </select>
+
 
 </mapper>

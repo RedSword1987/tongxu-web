@@ -18,7 +18,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>错误信息</h2>
+                        <h2>任务类型</h2>
 
                         <div class="clearfix"></div>
                     </div>
@@ -40,13 +40,13 @@
     var columns = [
         {field: "name", title: "任务名称" },
         {field: "code", title: "任务编码"},
-        {field: "createdAt", title: "创建时间", sortable: "true", formatter: formatter_datetime, class: "th_time"}
+        {field: "createdAt", title: "创建时间",  formatter: formatter_datetime, class: "th_time"}
     ];
 
 
     var idField = "id";
     var url_prefix = "${pageContext.request.contextPath}/taskType/";
-    var url_page = url_prefix + "commonPage.action";
+    var url_page = url_prefix + "taskTypePage.action";
 
     //此处不需要修改
     var tableId = "bootstrap-table";
