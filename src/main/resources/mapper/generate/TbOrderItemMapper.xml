@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tongxuweb.mapper.generate.TbOrderItemMapper">
+    <resultMap id="BaseResultMap" type="com.tongxuweb.domain.generate.TbOrderItem">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="orderinfo_id" jdbcType="VARCHAR" property="orderinfoId" />
+        <result column="CODE" jdbcType="VARCHAR" property="code" />
+        <result column="item_id" jdbcType="VARCHAR" property="itemId" />
+        <result column="sku_text_size" jdbcType="VARCHAR" property="skuTextSize" />
+        <result column="sku_text_colour" jdbcType="VARCHAR" property="skuTextColour" />
+        <result column="item_jinhuo" jdbcType="DECIMAL" property="itemJinhuo" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="seller_id" jdbcType="VARCHAR" property="sellerId" />
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, orderinfo_id, CODE, item_id, sku_text_size, sku_text_colour, item_jinhuo, created_at, 
+        seller_id
+    </sql>
+    <select id="selectByExample" parameterType="com.tongxuweb.domain.generate.TbOrderItemExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from tb_order_item
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select 
+        <include refid="Base_Column_List" />
+        from tb_order_item
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from tb_order_item
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.tongxuweb.domain.generate.TbOrderItemExample">
+        delete from tb_order_item
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insertSelective" parameterType="com.tongxuweb.domain.generate.TbOrderItem">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into tb_order_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderinfoId != null">
+                orderinfo_id,
+            </if>
+            <if test="code != null">
+                CODE,
+            </if>
+            <if test="itemId != null">
+                item_id,
+            </if>
+            <if test="skuTextSize != null">
+                sku_text_size,
+            </if>
+            <if test="skuTextColour != null">
+                sku_text_colour,
+            </if>
+            <if test="itemJinhuo != null">
+                item_jinhuo,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="sellerId != null">
+                seller_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderinfoId != null">
+                #{orderinfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="itemId != null">
+                #{itemId,jdbcType=VARCHAR},
+            </if>
+            <if test="skuTextSize != null">
+                #{skuTextSize,jdbcType=VARCHAR},
+            </if>
+            <if test="skuTextColour != null">
+                #{skuTextColour,jdbcType=VARCHAR},
+            </if>
+            <if test="itemJinhuo != null">
+                #{itemJinhuo,jdbcType=DECIMAL},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sellerId != null">
+                #{sellerId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.tongxuweb.domain.generate.TbOrderItemExample" resultType="java.lang.Integer">
+        select count(*) from tb_order_item
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update tb_order_item
+        <set>
+            <if test="record.orderinfoId != null">
+                orderinfo_id = #{record.orderinfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.code != null">
+                CODE = #{record.code,jdbcType=VARCHAR},
+            </if>
+            <if test="record.itemId != null">
+                item_id = #{record.itemId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.skuTextSize != null">
+                sku_text_size = #{record.skuTextSize,jdbcType=VARCHAR},
+            </if>
+            <if test="record.skuTextColour != null">
+                sku_text_colour = #{record.skuTextColour,jdbcType=VARCHAR},
+            </if>
+            <if test="record.itemJinhuo != null">
+                item_jinhuo = #{record.itemJinhuo,jdbcType=DECIMAL},
+            </if>
+            <if test="record.sellerId != null">
+                seller_id = #{record.sellerId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.tongxuweb.domain.generate.TbOrderItem">
+        update tb_order_item
+        <set>
+            <if test="orderinfoId != null">
+                orderinfo_id = #{orderinfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                CODE = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="itemId != null">
+                item_id = #{itemId,jdbcType=VARCHAR},
+            </if>
+            <if test="skuTextSize != null">
+                sku_text_size = #{skuTextSize,jdbcType=VARCHAR},
+            </if>
+            <if test="skuTextColour != null">
+                sku_text_colour = #{skuTextColour,jdbcType=VARCHAR},
+            </if>
+            <if test="itemJinhuo != null">
+                item_jinhuo = #{itemJinhuo,jdbcType=DECIMAL},
+            </if>
+            <if test="sellerId != null">
+                seller_id = #{sellerId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

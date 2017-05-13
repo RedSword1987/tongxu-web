@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tongxuweb.mapper.generate.OrderMoneyMapper">
+    <resultMap id="BaseResultMap" type="com.tongxuweb.domain.generate.OrderMoney">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="task_id" jdbcType="BIGINT" property="taskId" />
+        <result column="orderinfo_id" jdbcType="VARCHAR" property="orderinfoId" />
+        <result column="CODE" jdbcType="VARCHAR" property="code" />
+        <result column="item_id" jdbcType="VARCHAR" property="itemId" />
+        <result column="payinfo_actualfee" jdbcType="DECIMAL" property="payinfoActualfee" />
+        <result column="item_jinhuo" jdbcType="DECIMAL" property="itemJinhuo" />
+        <result column="item_zhenping" jdbcType="DECIMAL" property="itemZhenping" />
+        <result column="yunyin_yongjin" jdbcType="DECIMAL" property="yunyinYongjin" />
+        <result column="yunyin_fuwufei" jdbcType="DECIMAL" property="yunyinFuwufei" />
+        <result column="yunyin_koudian" jdbcType="DECIMAL" property="yunyinKoudian" />
+        <result column="yunyin_youhuiquan" jdbcType="DECIMAL" property="yunyinYouhuiquan" />
+        <result column="yunyin_teshu" jdbcType="DECIMAL" property="yunyinTeshu" />
+        <result column="wuliu_kuaidi" jdbcType="DECIMAL" property="wuliuKuaidi" />
+        <result column="wuliu_changku" jdbcType="DECIMAL" property="wuliuChangku" />
+        <result column="wuliu_baozhuang" jdbcType="DECIMAL" property="wuliuBaozhuang" />
+        <result column="wuliu_yunfeixian" jdbcType="DECIMAL" property="wuliuYunfeixian" />
+        <result column="final_money" jdbcType="DECIMAL" property="finalMoney" />
+        <result column="orderinfo_createtime" jdbcType="VARCHAR" property="orderinfoCreatetime" />
+        <result column="pay_time" jdbcType="VARCHAR" property="payTime" />
+        <result column="statusinfo_text" jdbcType="VARCHAR" property="statusinfoText" />
+        <result column="statusinfo_type" jdbcType="VARCHAR" property="statusinfoType" />
+        <result column="sku_text_size" jdbcType="VARCHAR" property="skuTextSize" />
+        <result column="sku_text_colour" jdbcType="VARCHAR" property="skuTextColour" />
+        <result column="seller_id" jdbcType="VARCHAR" property="sellerId" />
+        <result column="seller_name" jdbcType="VARCHAR" property="sellerName" />
+        <result column="tag_info" jdbcType="VARCHAR" property="tagInfo" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, task_id, orderinfo_id, CODE, item_id, payinfo_actualfee, item_jinhuo, item_zhenping, 
+        yunyin_yongjin, yunyin_fuwufei, yunyin_koudian, yunyin_youhuiquan, yunyin_teshu, 
+        wuliu_kuaidi, wuliu_changku, wuliu_baozhuang, wuliu_yunfeixian, final_money, orderinfo_createtime, 
+        pay_time, statusinfo_text, statusinfo_type, sku_text_size, sku_text_colour, seller_id, 
+        seller_name, tag_info, created_at
+    </sql>
+    <select id="selectByExample" parameterType="com.tongxuweb.domain.generate.OrderMoneyExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from order_money
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select 
+        <include refid="Base_Column_List" />
+        from order_money
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from order_money
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.tongxuweb.domain.generate.OrderMoneyExample">
+        delete from order_money
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insertSelective" parameterType="com.tongxuweb.domain.generate.OrderMoney">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into order_money
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="taskId != null">
+                task_id,
+            </if>
+            <if test="orderinfoId != null">
+                orderinfo_id,
+            </if>
+            <if test="code != null">
+                CODE,
+            </if>
+            <if test="itemId != null">
+                item_id,
+            </if>
+            <if test="payinfoActualfee != null">
+                payinfo_actualfee,
+            </if>
+            <if test="itemJinhuo != null">
+                item_jinhuo,
+            </if>
+            <if test="itemZhenping != null">
+                item_zhenping,
+            </if>
+            <if test="yunyinYongjin != null">
+                yunyin_yongjin,
+            </if>
+            <if test="yunyinFuwufei != null">
+                yunyin_fuwufei,
+            </if>
+            <if test="yunyinKoudian != null">
+                yunyin_koudian,
+            </if>
+            <if test="yunyinYouhuiquan != null">
+                yunyin_youhuiquan,
+            </if>
+            <if test="yunyinTeshu != null">
+                yunyin_teshu,
+            </if>
+            <if test="wuliuKuaidi != null">
+                wuliu_kuaidi,
+            </if>
+            <if test="wuliuChangku != null">
+                wuliu_changku,
+            </if>
+            <if test="wuliuBaozhuang != null">
+                wuliu_baozhuang,
+            </if>
+            <if test="wuliuYunfeixian != null">
+                wuliu_yunfeixian,
+            </if>
+            <if test="finalMoney != null">
+                final_money,
+            </if>
+            <if test="orderinfoCreatetime != null">
+                orderinfo_createtime,
+            </if>
+            <if test="payTime != null">
+                pay_time,
+            </if>
+            <if test="statusinfoText != null">
+                statusinfo_text,
+            </if>
+            <if test="statusinfoType != null">
+                statusinfo_type,
+            </if>
+            <if test="skuTextSize != null">
+                sku_text_size,
+            </if>
+            <if test="skuTextColour != null">
+                sku_text_colour,
+            </if>
+            <if test="sellerId != null">
+                seller_id,
+            </if>
+            <if test="sellerName != null">
+                seller_name,
+            </if>
+            <if test="tagInfo != null">
+                tag_info,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="taskId != null">
+                #{taskId,jdbcType=BIGINT},
+            </if>
+            <if test="orderinfoId != null">
+                #{orderinfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="itemId != null">
+                #{itemId,jdbcType=VARCHAR},
+            </if>
+            <if test="payinfoActualfee != null">
+                #{payinfoActualfee,jdbcType=DECIMAL},
+            </if>
+            <if test="itemJinhuo != null">
+                #{itemJinhuo,jdbcType=DECIMAL},
+            </if>
+            <if test="itemZhenping != null">
+                #{itemZhenping,jdbcType=DECIMAL},
+            </if>
+            <if test="yunyinYongjin != null">
+                #{yunyinYongjin,jdbcType=DECIMAL},
+            </if>
+            <if test="yunyinFuwufei != null">
+                #{yunyinFuwufei,jdbcType=DECIMAL},
+            </if>
+            <if test="yunyinKoudian != null">
+                #{yunyinKoudian,jdbcType=DECIMAL},
+            </if>
+            <if test="yunyinYouhuiquan != null">
+                #{yunyinYouhuiquan,jdbcType=DECIMAL},
+            </if>
+            <if test="yunyinTeshu != null">
+                #{yunyinTeshu,jdbcType=DECIMAL},
+            </if>
+            <if test="wuliuKuaidi != null">
+                #{wuliuKuaidi,jdbcType=DECIMAL},
+            </if>
+            <if test="wuliuChangku != null">
+                #{wuliuChangku,jdbcType=DECIMAL},
+            </if>
+            <if test="wuliuBaozhuang != null">
+                #{wuliuBaozhuang,jdbcType=DECIMAL},
+            </if>
+            <if test="wuliuYunfeixian != null">
+                #{wuliuYunfeixian,jdbcType=DECIMAL},
+            </if>
+            <if test="finalMoney != null">
+                #{finalMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="orderinfoCreatetime != null">
+                #{orderinfoCreatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="payTime != null">
+                #{payTime,jdbcType=VARCHAR},
+            </if>
+            <if test="statusinfoText != null">
+                #{statusinfoText,jdbcType=VARCHAR},
+            </if>
+            <if test="statusinfoType != null">
+                #{statusinfoType,jdbcType=VARCHAR},
+            </if>
+            <if test="skuTextSize != null">
+                #{skuTextSize,jdbcType=VARCHAR},
+            </if>
+            <if test="skuTextColour != null">
+                #{skuTextColour,jdbcType=VARCHAR},
+            </if>
+            <if test="sellerId != null">
+                #{sellerId,jdbcType=VARCHAR},
+            </if>
+            <if test="sellerName != null">
+                #{sellerName,jdbcType=VARCHAR},
+            </if>
+            <if test="tagInfo != null">
+                #{tagInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.tongxuweb.domain.generate.OrderMoneyExample" resultType="java.lang.Integer">
+        select count(*) from order_money
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update order_money
+        <set>
+            <if test="record.taskId != null">
+                task_id = #{record.taskId,jdbcType=BIGINT},
+            </if>
+            <if test="record.orderinfoId != null">
+                orderinfo_id = #{record.orderinfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.code != null">
+                CODE = #{record.code,jdbcType=VARCHAR},
+            </if>
+            <if test="record.itemId != null">
+                item_id = #{record.itemId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.payinfoActualfee != null">
+                payinfo_actualfee = #{record.payinfoActualfee,jdbcType=DECIMAL},
+            </if>
+            <if test="record.itemJinhuo != null">
+                item_jinhuo = #{record.itemJinhuo,jdbcType=DECIMAL},
+            </if>
+            <if test="record.itemZhenping != null">
+                item_zhenping = #{record.itemZhenping,jdbcType=DECIMAL},
+            </if>
+            <if test="record.yunyinYongjin != null">
+                yunyin_yongjin = #{record.yunyinYongjin,jdbcType=DECIMAL},
+            </if>
+            <if test="record.yunyinFuwufei != null">
+                yunyin_fuwufei = #{record.yunyinFuwufei,jdbcType=DECIMAL},
+            </if>
+            <if test="record.yunyinKoudian != null">
+                yunyin_koudian = #{record.yunyinKoudian,jdbcType=DECIMAL},
+            </if>
+            <if test="record.yunyinYouhuiquan != null">
+                yunyin_youhuiquan = #{record.yunyinYouhuiquan,jdbcType=DECIMAL},
+            </if>
+            <if test="record.yunyinTeshu != null">
+                yunyin_teshu = #{record.yunyinTeshu,jdbcType=DECIMAL},
+            </if>
+            <if test="record.wuliuKuaidi != null">
+                wuliu_kuaidi = #{record.wuliuKuaidi,jdbcType=DECIMAL},
+            </if>
+            <if test="record.wuliuChangku != null">
+                wuliu_changku = #{record.wuliuChangku,jdbcType=DECIMAL},
+            </if>
+            <if test="record.wuliuBaozhuang != null">
+                wuliu_baozhuang = #{record.wuliuBaozhuang,jdbcType=DECIMAL},
+            </if>
+            <if test="record.wuliuYunfeixian != null">
+                wuliu_yunfeixian = #{record.wuliuYunfeixian,jdbcType=DECIMAL},
+            </if>
+            <if test="record.finalMoney != null">
+                final_money = #{record.finalMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="record.orderinfoCreatetime != null">
+                orderinfo_createtime = #{record.orderinfoCreatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.payTime != null">
+                pay_time = #{record.payTime,jdbcType=VARCHAR},
+            </if>
+            <if test="record.statusinfoText != null">
+                statusinfo_text = #{record.statusinfoText,jdbcType=VARCHAR},
+            </if>
+            <if test="record.statusinfoType != null">
+                statusinfo_type = #{record.statusinfoType,jdbcType=VARCHAR},
+            </if>
+            <if test="record.skuTextSize != null">
+                sku_text_size = #{record.skuTextSize,jdbcType=VARCHAR},
+            </if>
+            <if test="record.skuTextColour != null">
+                sku_text_colour = #{record.skuTextColour,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sellerId != null">
+                seller_id = #{record.sellerId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sellerName != null">
+                seller_name = #{record.sellerName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.tagInfo != null">
+                tag_info = #{record.tagInfo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.tongxuweb.domain.generate.OrderMoney">
+        update order_money
+        <set>
+            <if test="taskId != null">
+                task_id = #{taskId,jdbcType=BIGINT},
+            </if>
+            <if test="orderinfoId != null">
+                orderinfo_id = #{orderinfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null">
+                CODE = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="itemId != null">
+                item_id = #{itemId,jdbcType=VARCHAR},
+            </if>
+            <if test="payinfoActualfee != null">
+                payinfo_actualfee = #{payinfoActualfee,jdbcType=DECIMAL},
+            </if>
+            <if test="itemJinhuo != null">
+                item_jinhuo = #{itemJinhuo,jdbcType=DECIMAL},
+            </if>
+            <if test="itemZhenping != null">
+                item_zhenping = #{itemZhenping,jdbcType=DECIMAL},
+            </if>
+            <if test="yunyinYongjin != null">
+                yunyin_yongjin = #{yunyinYongjin,jdbcType=DECIMAL},
+            </if>
+            <if test="yunyinFuwufei != null">
+                yunyin_fuwufei = #{yunyinFuwufei,jdbcType=DECIMAL},
+            </if>
+            <if test="yunyinKoudian != null">
+                yunyin_koudian = #{yunyinKoudian,jdbcType=DECIMAL},
+            </if>
+            <if test="yunyinYouhuiquan != null">
+                yunyin_youhuiquan = #{yunyinYouhuiquan,jdbcType=DECIMAL},
+            </if>
+            <if test="yunyinTeshu != null">
+                yunyin_teshu = #{yunyinTeshu,jdbcType=DECIMAL},
+            </if>
+            <if test="wuliuKuaidi != null">
+                wuliu_kuaidi = #{wuliuKuaidi,jdbcType=DECIMAL},
+            </if>
+            <if test="wuliuChangku != null">
+                wuliu_changku = #{wuliuChangku,jdbcType=DECIMAL},
+            </if>
+            <if test="wuliuBaozhuang != null">
+                wuliu_baozhuang = #{wuliuBaozhuang,jdbcType=DECIMAL},
+            </if>
+            <if test="wuliuYunfeixian != null">
+                wuliu_yunfeixian = #{wuliuYunfeixian,jdbcType=DECIMAL},
+            </if>
+            <if test="finalMoney != null">
+                final_money = #{finalMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="orderinfoCreatetime != null">
+                orderinfo_createtime = #{orderinfoCreatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="payTime != null">
+                pay_time = #{payTime,jdbcType=VARCHAR},
+            </if>
+            <if test="statusinfoText != null">
+                statusinfo_text = #{statusinfoText,jdbcType=VARCHAR},
+            </if>
+            <if test="statusinfoType != null">
+                statusinfo_type = #{statusinfoType,jdbcType=VARCHAR},
+            </if>
+            <if test="skuTextSize != null">
+                sku_text_size = #{skuTextSize,jdbcType=VARCHAR},
+            </if>
+            <if test="skuTextColour != null">
+                sku_text_colour = #{skuTextColour,jdbcType=VARCHAR},
+            </if>
+            <if test="sellerId != null">
+                seller_id = #{sellerId,jdbcType=VARCHAR},
+            </if>
+            <if test="sellerName != null">
+                seller_name = #{sellerName,jdbcType=VARCHAR},
+            </if>
+            <if test="tagInfo != null">
+                tag_info = #{tagInfo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tongxuweb.mapper.generate.TbStaticMapper">
+    <resultMap id="BaseResultMap" type="com.tongxuweb.domain.generate.TbStatic">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="date" jdbcType="VARCHAR" property="date" />
+        <result column="seller_id" jdbcType="VARCHAR" property="sellerId" />
+        <result column="pay_num" jdbcType="INTEGER" property="payNum" />
+        <result column="pay_items" jdbcType="INTEGER" property="payItems" />
+        <result column="payinfo_actualfee" jdbcType="DECIMAL" property="payinfoActualfee" />
+        <result column="final_money" jdbcType="DECIMAL" property="finalMoney" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="seller_name" jdbcType="VARCHAR" property="sellerName" />
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, date, seller_id, pay_num, pay_items, payinfo_actualfee, final_money, created_at, 
+        seller_name
+    </sql>
+    <select id="selectByExample" parameterType="com.tongxuweb.domain.generate.TbStaticExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from tb_static
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select 
+        <include refid="Base_Column_List" />
+        from tb_static
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from tb_static
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.tongxuweb.domain.generate.TbStaticExample">
+        delete from tb_static
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insertSelective" parameterType="com.tongxuweb.domain.generate.TbStatic">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into tb_static
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="date != null">
+                date,
+            </if>
+            <if test="sellerId != null">
+                seller_id,
+            </if>
+            <if test="payNum != null">
+                pay_num,
+            </if>
+            <if test="payItems != null">
+                pay_items,
+            </if>
+            <if test="payinfoActualfee != null">
+                payinfo_actualfee,
+            </if>
+            <if test="finalMoney != null">
+                final_money,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="sellerName != null">
+                seller_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="date != null">
+                #{date,jdbcType=VARCHAR},
+            </if>
+            <if test="sellerId != null">
+                #{sellerId,jdbcType=VARCHAR},
+            </if>
+            <if test="payNum != null">
+                #{payNum,jdbcType=INTEGER},
+            </if>
+            <if test="payItems != null">
+                #{payItems,jdbcType=INTEGER},
+            </if>
+            <if test="payinfoActualfee != null">
+                #{payinfoActualfee,jdbcType=DECIMAL},
+            </if>
+            <if test="finalMoney != null">
+                #{finalMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sellerName != null">
+                #{sellerName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.tongxuweb.domain.generate.TbStaticExample" resultType="java.lang.Integer">
+        select count(*) from tb_static
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update tb_static
+        <set>
+            <if test="record.date != null">
+                date = #{record.date,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sellerId != null">
+                seller_id = #{record.sellerId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.payNum != null">
+                pay_num = #{record.payNum,jdbcType=INTEGER},
+            </if>
+            <if test="record.payItems != null">
+                pay_items = #{record.payItems,jdbcType=INTEGER},
+            </if>
+            <if test="record.payinfoActualfee != null">
+                payinfo_actualfee = #{record.payinfoActualfee,jdbcType=DECIMAL},
+            </if>
+            <if test="record.finalMoney != null">
+                final_money = #{record.finalMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="record.sellerName != null">
+                seller_name = #{record.sellerName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.tongxuweb.domain.generate.TbStatic">
+        update tb_static
+        <set>
+            <if test="date != null">
+                date = #{date,jdbcType=VARCHAR},
+            </if>
+            <if test="sellerId != null">
+                seller_id = #{sellerId,jdbcType=VARCHAR},
+            </if>
+            <if test="payNum != null">
+                pay_num = #{payNum,jdbcType=INTEGER},
+            </if>
+            <if test="payItems != null">
+                pay_items = #{payItems,jdbcType=INTEGER},
+            </if>
+            <if test="payinfoActualfee != null">
+                payinfo_actualfee = #{payinfoActualfee,jdbcType=DECIMAL},
+            </if>
+            <if test="finalMoney != null">
+                final_money = #{finalMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="sellerName != null">
+                seller_name = #{sellerName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>
