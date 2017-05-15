@@ -228,72 +228,72 @@ public class TaskRunParamExample {
         }
 
         public Criteria andKeyEnIsNull() {
-            addCriterion("KEY_en is null");
+            addCriterion("key_en is null");
             return (Criteria) this;
         }
 
         public Criteria andKeyEnIsNotNull() {
-            addCriterion("KEY_en is not null");
+            addCriterion("key_en is not null");
             return (Criteria) this;
         }
 
         public Criteria andKeyEnEqualTo(String value) {
-            addCriterion("KEY_en =", value, "keyEn");
+            addCriterion("key_en =", value, "keyEn");
             return (Criteria) this;
         }
 
         public Criteria andKeyEnNotEqualTo(String value) {
-            addCriterion("KEY_en <>", value, "keyEn");
+            addCriterion("key_en <>", value, "keyEn");
             return (Criteria) this;
         }
 
         public Criteria andKeyEnGreaterThan(String value) {
-            addCriterion("KEY_en >", value, "keyEn");
+            addCriterion("key_en >", value, "keyEn");
             return (Criteria) this;
         }
 
         public Criteria andKeyEnGreaterThanOrEqualTo(String value) {
-            addCriterion("KEY_en >=", value, "keyEn");
+            addCriterion("key_en >=", value, "keyEn");
             return (Criteria) this;
         }
 
         public Criteria andKeyEnLessThan(String value) {
-            addCriterion("KEY_en <", value, "keyEn");
+            addCriterion("key_en <", value, "keyEn");
             return (Criteria) this;
         }
 
         public Criteria andKeyEnLessThanOrEqualTo(String value) {
-            addCriterion("KEY_en <=", value, "keyEn");
+            addCriterion("key_en <=", value, "keyEn");
             return (Criteria) this;
         }
 
         public Criteria andKeyEnLike(String value) {
-            addCriterion("KEY_en like", value, "keyEn");
+            addCriterion("key_en like", value, "keyEn");
             return (Criteria) this;
         }
 
         public Criteria andKeyEnNotLike(String value) {
-            addCriterion("KEY_en not like", value, "keyEn");
+            addCriterion("key_en not like", value, "keyEn");
             return (Criteria) this;
         }
 
         public Criteria andKeyEnIn(List<String> values) {
-            addCriterion("KEY_en in", values, "keyEn");
+            addCriterion("key_en in", values, "keyEn");
             return (Criteria) this;
         }
 
         public Criteria andKeyEnNotIn(List<String> values) {
-            addCriterion("KEY_en not in", values, "keyEn");
+            addCriterion("key_en not in", values, "keyEn");
             return (Criteria) this;
         }
 
         public Criteria andKeyEnBetween(String value1, String value2) {
-            addCriterion("KEY_en between", value1, value2, "keyEn");
+            addCriterion("key_en between", value1, value2, "keyEn");
             return (Criteria) this;
         }
 
         public Criteria andKeyEnNotBetween(String value1, String value2) {
-            addCriterion("KEY_en not between", value1, value2, "keyEn");
+            addCriterion("key_en not between", value1, value2, "keyEn");
             return (Criteria) this;
         }
 
@@ -364,6 +364,76 @@ public class TaskRunParamExample {
 
         public Criteria andKeyCnNotBetween(String value1, String value2) {
             addCriterion("key_cn not between", value1, value2, "keyCn");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyValueIsNull() {
+            addCriterion("key_value is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyValueIsNotNull() {
+            addCriterion("key_value is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyValueEqualTo(String value) {
+            addCriterion("key_value =", value, "keyValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyValueNotEqualTo(String value) {
+            addCriterion("key_value <>", value, "keyValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyValueGreaterThan(String value) {
+            addCriterion("key_value >", value, "keyValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyValueGreaterThanOrEqualTo(String value) {
+            addCriterion("key_value >=", value, "keyValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyValueLessThan(String value) {
+            addCriterion("key_value <", value, "keyValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyValueLessThanOrEqualTo(String value) {
+            addCriterion("key_value <=", value, "keyValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyValueLike(String value) {
+            addCriterion("key_value like", value, "keyValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyValueNotLike(String value) {
+            addCriterion("key_value not like", value, "keyValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyValueIn(List<String> values) {
+            addCriterion("key_value in", values, "keyValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyValueNotIn(List<String> values) {
+            addCriterion("key_value not in", values, "keyValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyValueBetween(String value1, String value2) {
+            addCriterion("key_value between", value1, value2, "keyValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andKeyValueNotBetween(String value1, String value2) {
+            addCriterion("key_value not between", value1, value2, "keyValue");
             return (Criteria) this;
         }
 

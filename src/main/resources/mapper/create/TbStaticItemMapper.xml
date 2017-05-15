@@ -6,7 +6,7 @@
 		SELECT
 
 		b.sku_text_colour item_name,
-		count(b.id) item_num,
+		sum(b.num) item_num,
 		count(DISTINCT b.orderinfo_id) item_order
 	FROM
 		tb_order a,

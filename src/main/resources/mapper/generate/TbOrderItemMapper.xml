@@ -4,13 +4,14 @@
     <resultMap id="BaseResultMap" type="com.tongxuweb.domain.generate.TbOrderItem">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="orderinfo_id" jdbcType="VARCHAR" property="orderinfoId" />
-        <result column="CODE" jdbcType="VARCHAR" property="code" />
+        <result column="code" jdbcType="VARCHAR" property="code" />
         <result column="item_id" jdbcType="VARCHAR" property="itemId" />
         <result column="sku_text_size" jdbcType="VARCHAR" property="skuTextSize" />
         <result column="sku_text_colour" jdbcType="VARCHAR" property="skuTextColour" />
         <result column="item_jinhuo" jdbcType="DECIMAL" property="itemJinhuo" />
-        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
         <result column="seller_id" jdbcType="VARCHAR" property="sellerId" />
+        <result column="num" jdbcType="INTEGER" property="num" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -71,8 +72,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        id, orderinfo_id, CODE, item_id, sku_text_size, sku_text_colour, item_jinhuo, created_at, 
-        seller_id
+        id, orderinfo_id, code, item_id, sku_text_size, sku_text_colour, item_jinhuo, seller_id, 
+        num, created_at
     </sql>
     <select id="selectByExample" parameterType="com.tongxuweb.domain.generate.TbOrderItemExample" resultMap="BaseResultMap">
         select
@@ -114,7 +115,7 @@
                 orderinfo_id,
             </if>
             <if test="code != null">
-                CODE,
+                code,
             </if>
             <if test="itemId != null">
                 item_id,
@@ -128,11 +129,14 @@
             <if test="itemJinhuo != null">
                 item_jinhuo,
             </if>
-            <if test="createdAt != null">
-                created_at,
-            </if>
             <if test="sellerId != null">
                 seller_id,
+            </if>
+            <if test="num != null">
+                num,
+            </if>
+            <if test="createdAt != null">
+                created_at,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -154,11 +158,14 @@
             <if test="itemJinhuo != null">
                 #{itemJinhuo,jdbcType=DECIMAL},
             </if>
-            <if test="createdAt != null">
-                #{createdAt,jdbcType=TIMESTAMP},
-            </if>
             <if test="sellerId != null">
                 #{sellerId,jdbcType=VARCHAR},
+            </if>
+            <if test="num != null">
+                #{num,jdbcType=INTEGER},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
@@ -175,7 +182,7 @@
                 orderinfo_id = #{record.orderinfoId,jdbcType=VARCHAR},
             </if>
             <if test="record.code != null">
-                CODE = #{record.code,jdbcType=VARCHAR},
+                code = #{record.code,jdbcType=VARCHAR},
             </if>
             <if test="record.itemId != null">
                 item_id = #{record.itemId,jdbcType=VARCHAR},
@@ -192,6 +199,9 @@
             <if test="record.sellerId != null">
                 seller_id = #{record.sellerId,jdbcType=VARCHAR},
             </if>
+            <if test="record.num != null">
+                num = #{record.num,jdbcType=INTEGER},
+            </if>
         </set>
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause" />
@@ -204,7 +214,7 @@
                 orderinfo_id = #{orderinfoId,jdbcType=VARCHAR},
             </if>
             <if test="code != null">
-                CODE = #{code,jdbcType=VARCHAR},
+                code = #{code,jdbcType=VARCHAR},
             </if>
             <if test="itemId != null">
                 item_id = #{itemId,jdbcType=VARCHAR},
@@ -220,6 +230,9 @@
             </if>
             <if test="sellerId != null">
                 seller_id = #{sellerId,jdbcType=VARCHAR},
+            </if>
+            <if test="num != null">
+                num = #{num,jdbcType=INTEGER},
             </if>
         </set>
         where id = #{id,jdbcType=BIGINT}

@@ -17,6 +17,9 @@ public class TaskRunParam implements Serializable {
     //参数描述
     private String keyCn;
 
+    //参数值
+    private String keyValue;
+
     //参数值类型 1:input->String 2:textarea 3:input->integer
     private Integer valueType;
 
@@ -34,9 +37,6 @@ public class TaskRunParam implements Serializable {
 
     //修改时间
     private Date updatedAt;
-
-    //参数值
-    private String keyValue;
 
     private static final long serialVersionUID = 1L;
 
@@ -70,6 +70,14 @@ public class TaskRunParam implements Serializable {
 
     public void setKeyCn(String keyCn) {
         this.keyCn = keyCn == null ? null : keyCn.trim();
+    }
+
+    public String getKeyValue() {
+        return keyValue;
+    }
+
+    public void setKeyValue(String keyValue) {
+        this.keyValue = keyValue == null ? null : keyValue.trim();
     }
 
     public Integer getValueType() {
@@ -118,13 +126,5 @@ public class TaskRunParam implements Serializable {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public String getKeyValue() {
-        return keyValue;
-    }
-
-    public void setKeyValue(String keyValue) {
-        this.keyValue = keyValue == null ? null : keyValue.trim();
     }
 }

@@ -239,72 +239,72 @@ public class TbOrderItemExample {
         }
 
         public Criteria andCodeIsNull() {
-            addCriterion("CODE is null");
+            addCriterion("code is null");
             return (Criteria) this;
         }
 
         public Criteria andCodeIsNotNull() {
-            addCriterion("CODE is not null");
+            addCriterion("code is not null");
             return (Criteria) this;
         }
 
         public Criteria andCodeEqualTo(String value) {
-            addCriterion("CODE =", value, "code");
+            addCriterion("code =", value, "code");
             return (Criteria) this;
         }
 
         public Criteria andCodeNotEqualTo(String value) {
-            addCriterion("CODE <>", value, "code");
+            addCriterion("code <>", value, "code");
             return (Criteria) this;
         }
 
         public Criteria andCodeGreaterThan(String value) {
-            addCriterion("CODE >", value, "code");
+            addCriterion("code >", value, "code");
             return (Criteria) this;
         }
 
         public Criteria andCodeGreaterThanOrEqualTo(String value) {
-            addCriterion("CODE >=", value, "code");
+            addCriterion("code >=", value, "code");
             return (Criteria) this;
         }
 
         public Criteria andCodeLessThan(String value) {
-            addCriterion("CODE <", value, "code");
+            addCriterion("code <", value, "code");
             return (Criteria) this;
         }
 
         public Criteria andCodeLessThanOrEqualTo(String value) {
-            addCriterion("CODE <=", value, "code");
+            addCriterion("code <=", value, "code");
             return (Criteria) this;
         }
 
         public Criteria andCodeLike(String value) {
-            addCriterion("CODE like", value, "code");
+            addCriterion("code like", value, "code");
             return (Criteria) this;
         }
 
         public Criteria andCodeNotLike(String value) {
-            addCriterion("CODE not like", value, "code");
+            addCriterion("code not like", value, "code");
             return (Criteria) this;
         }
 
         public Criteria andCodeIn(List<String> values) {
-            addCriterion("CODE in", values, "code");
+            addCriterion("code in", values, "code");
             return (Criteria) this;
         }
 
         public Criteria andCodeNotIn(List<String> values) {
-            addCriterion("CODE not in", values, "code");
+            addCriterion("code not in", values, "code");
             return (Criteria) this;
         }
 
         public Criteria andCodeBetween(String value1, String value2) {
-            addCriterion("CODE between", value1, value2, "code");
+            addCriterion("code between", value1, value2, "code");
             return (Criteria) this;
         }
 
         public Criteria andCodeNotBetween(String value1, String value2) {
-            addCriterion("CODE not between", value1, value2, "code");
+            addCriterion("code not between", value1, value2, "code");
             return (Criteria) this;
         }
 
@@ -578,66 +578,6 @@ public class TbOrderItemExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreatedAtIsNull() {
-            addCriterion("created_at is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedAtIsNotNull() {
-            addCriterion("created_at is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedAtEqualTo(Date value) {
-            addCriterion("created_at =", value, "createdAt");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedAtNotEqualTo(Date value) {
-            addCriterion("created_at <>", value, "createdAt");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedAtGreaterThan(Date value) {
-            addCriterion("created_at >", value, "createdAt");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedAtGreaterThanOrEqualTo(Date value) {
-            addCriterion("created_at >=", value, "createdAt");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedAtLessThan(Date value) {
-            addCriterion("created_at <", value, "createdAt");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedAtLessThanOrEqualTo(Date value) {
-            addCriterion("created_at <=", value, "createdAt");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedAtIn(List<Date> values) {
-            addCriterion("created_at in", values, "createdAt");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedAtNotIn(List<Date> values) {
-            addCriterion("created_at not in", values, "createdAt");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedAtBetween(Date value1, Date value2) {
-            addCriterion("created_at between", value1, value2, "createdAt");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedAtNotBetween(Date value1, Date value2) {
-            addCriterion("created_at not between", value1, value2, "createdAt");
-            return (Criteria) this;
-        }
-
         public Criteria andSellerIdIsNull() {
             addCriterion("seller_id is null");
             return (Criteria) this;
@@ -705,6 +645,126 @@ public class TbOrderItemExample {
 
         public Criteria andSellerIdNotBetween(String value1, String value2) {
             addCriterion("seller_id not between", value1, value2, "sellerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumIsNull() {
+            addCriterion("num is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumIsNotNull() {
+            addCriterion("num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumEqualTo(Integer value) {
+            addCriterion("num =", value, "num");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumNotEqualTo(Integer value) {
+            addCriterion("num <>", value, "num");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumGreaterThan(Integer value) {
+            addCriterion("num >", value, "num");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("num >=", value, "num");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumLessThan(Integer value) {
+            addCriterion("num <", value, "num");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumLessThanOrEqualTo(Integer value) {
+            addCriterion("num <=", value, "num");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumIn(List<Integer> values) {
+            addCriterion("num in", values, "num");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumNotIn(List<Integer> values) {
+            addCriterion("num not in", values, "num");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumBetween(Integer value1, Integer value2) {
+            addCriterion("num between", value1, value2, "num");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("num not between", value1, value2, "num");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedAtIsNull() {
+            addCriterion("created_at is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedAtIsNotNull() {
+            addCriterion("created_at is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedAtEqualTo(Date value) {
+            addCriterion("created_at =", value, "createdAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedAtNotEqualTo(Date value) {
+            addCriterion("created_at <>", value, "createdAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedAtGreaterThan(Date value) {
+            addCriterion("created_at >", value, "createdAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedAtGreaterThanOrEqualTo(Date value) {
+            addCriterion("created_at >=", value, "createdAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedAtLessThan(Date value) {
+            addCriterion("created_at <", value, "createdAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedAtLessThanOrEqualTo(Date value) {
+            addCriterion("created_at <=", value, "createdAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedAtIn(List<Date> values) {
+            addCriterion("created_at in", values, "createdAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedAtNotIn(List<Date> values) {
+            addCriterion("created_at not in", values, "createdAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedAtBetween(Date value1, Date value2) {
+            addCriterion("created_at between", value1, value2, "createdAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedAtNotBetween(Date value1, Date value2) {
+            addCriterion("created_at not between", value1, value2, "createdAt");
             return (Criteria) this;
         }
     }

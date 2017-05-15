@@ -1,7 +1,10 @@
 package com.tongxuweb.service;
 
+import com.tongxuweb.domain.entity.MainOrders;
 import com.tongxuweb.domain.entity.common.Pagination;
 import com.tongxuweb.domain.entity.common.PaginationResult;
+
+import java.util.Map;
 
 /**
  */
@@ -19,5 +22,6 @@ public interface TbService {
     PaginationResult tbOrderMoneyPage(Pagination pagination);
 
     void refreshStatic(String beginDate, String endDate);
+
 
 }

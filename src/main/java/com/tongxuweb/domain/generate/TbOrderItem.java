@@ -27,11 +27,14 @@ public class TbOrderItem implements Serializable {
     //商品进货价
     private BigDecimal itemJinhuo;
 
-    //创建时间
-    private Date createdAt;
-
     //店铺id
     private String sellerId;
+
+    //产品数量
+    private Integer num;
+
+    //创建时间
+    private Date createdAt;
 
     private static final long serialVersionUID = 1L;
 
@@ -91,19 +94,27 @@ public class TbOrderItem implements Serializable {
         this.itemJinhuo = itemJinhuo;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public String getSellerId() {
         return sellerId;
     }
 
     public void setSellerId(String sellerId) {
         this.sellerId = sellerId == null ? null : sellerId.trim();
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

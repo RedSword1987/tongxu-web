@@ -80,12 +80,4 @@ public class TaobaoController {
         return ss;
     }
 
-    @RequestMapping("/orders/trade")
-    @ResponseBody
-    public Map<String, Object> saveTrade(@RequestBody MainOrders mainOrders) {
-        Map<String, Object> ss = new HashMap<String, Object>();
-        Integer result = taskGetdataTaobaoOrderService.saveTradeAll(mainOrders, ss);
-        ss.put("count", result);
-        return ss;
-    }
 }

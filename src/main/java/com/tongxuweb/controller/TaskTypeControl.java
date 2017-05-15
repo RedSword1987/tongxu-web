@@ -1,6 +1,5 @@
 package com.tongxuweb.controller;
 
-import com.tongxuweb.domain.entity.SearchTaskBean;
 import com.tongxuweb.domain.entity.common.Pagination;
 import com.tongxuweb.domain.entity.common.PaginationResult;
 import com.tongxuweb.service.TaskTypeService;

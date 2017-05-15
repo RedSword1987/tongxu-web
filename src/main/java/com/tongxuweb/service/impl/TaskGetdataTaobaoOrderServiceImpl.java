@@ -65,9 +65,6 @@ public class TaskGetdataTaobaoOrderServiceImpl implements TaskGetdataTaobaoOrder
         return list.size();
     }
 
-    public Integer saveTradeAll(MainOrders mainOrders, Map<String, Object> ss) {
-        return null;
-    }
 
 
     private List<TaskGetdataTaobaoOrder> convert(MainOrders mainOrders) {

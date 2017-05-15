@@ -14,8 +14,6 @@ public interface TaskRunParamMapper {
 
     int insertSelective(TaskRunParam record);
 
-    List<TaskRunParam> selectByExampleWithBLOBs(TaskRunParamExample example);
-
     List<TaskRunParam> selectByExample(TaskRunParamExample example);
 
     TaskRunParam selectByPrimaryKey(Long id);

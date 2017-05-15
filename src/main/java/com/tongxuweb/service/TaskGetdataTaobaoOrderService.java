@@ -14,6 +14,5 @@ public interface TaskGetdataTaobaoOrderService {
 
     Integer saveAll(MainOrders mainOrders, Map<String, Object> ss);
 
-    Integer saveTradeAll(MainOrders mainOrders, Map<String, Object> ss);
 
 }

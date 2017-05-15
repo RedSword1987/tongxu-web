@@ -34,6 +34,7 @@ public class SessionFilter extends OncePerRequestFilter {
             add("taobaoke");
             add("task/taobao");
             add("task/");
+            add("outSide");
 
         }
     };
@@ -47,15 +48,25 @@ public class SessionFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        boolean doFilter = true;
+        boolean doFilter = false;
+
         // 请求的uri
         String path = request.getContextPath();
         String uri = request.getRequestURI();
         String res = uri.substring(path.length() + 1);
 
+
         if (res == null || "".equalsIgnoreCase(res.trim())) {
             doFilter = false;
         }
+
+
+        if (res.toLowerCase().endsWith(".action") || res.toLowerCase().endsWith(".jsp") ||
+                res.toLowerCase().endsWith(".json")) {
+            doFilter = true;
+        }
+
+
 
         // uri中包含background时才进行过滤
         // 是否过滤

@@ -4,17 +4,15 @@
     <resultMap id="BaseResultMap" type="com.tongxuweb.domain.generate.TaskRunParam">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="task_run_id" jdbcType="BIGINT" property="taskRunId" />
-        <result column="KEY_en" jdbcType="VARCHAR" property="keyEn" />
+        <result column="key_en" jdbcType="VARCHAR" property="keyEn" />
         <result column="key_cn" jdbcType="VARCHAR" property="keyCn" />
+        <result column="key_value" jdbcType="VARCHAR" property="keyValue" />
         <result column="value_type" jdbcType="INTEGER" property="valueType" />
         <result column="type" jdbcType="INTEGER" property="type" />
         <result column="created_by" jdbcType="BIGINT" property="createdBy" />
         <result column="updated_by" jdbcType="BIGINT" property="updatedBy" />
         <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
         <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
-    </resultMap>
-    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tongxuweb.domain.generate.TaskRunParam">
-        <result column="key_value" jdbcType="LONGVARCHAR" property="keyValue" />
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -75,28 +73,9 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        id, task_run_id, KEY_en, key_cn, value_type, type, created_by, updated_by, created_at, 
-        updated_at
+        id, task_run_id, key_en, key_cn, key_value, value_type, type, created_by, updated_by, 
+        created_at, updated_at
     </sql>
-    <sql id="Blob_Column_List">
-        key_value
-    </sql>
-    <select id="selectByExampleWithBLOBs" parameterType="com.tongxuweb.domain.generate.TaskRunParamExample" resultMap="ResultMapWithBLOBs">
-        select
-        <if test="distinct">
-            distinct
-        </if>
-        <include refid="Base_Column_List" />
-        ,
-        <include refid="Blob_Column_List" />
-        from task_run_param
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause" />
-        </if>
-        <if test="orderByClause != null">
-            order by ${orderByClause}
-        </if>
-    </select>
     <select id="selectByExample" parameterType="com.tongxuweb.domain.generate.TaskRunParamExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -111,11 +90,9 @@
             order by ${orderByClause}
         </if>
     </select>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select 
         <include refid="Base_Column_List" />
-        ,
-        <include refid="Blob_Column_List" />
         from task_run_param
         where id = #{id,jdbcType=BIGINT}
     </select>
@@ -139,10 +116,13 @@
                 task_run_id,
             </if>
             <if test="keyEn != null">
-                KEY_en,
+                key_en,
             </if>
             <if test="keyCn != null">
                 key_cn,
+            </if>
+            <if test="keyValue != null">
+                key_value,
             </if>
             <if test="valueType != null">
                 value_type,
@@ -162,9 +142,6 @@
             <if test="updatedAt != null">
                 updated_at,
             </if>
-            <if test="keyValue != null">
-                key_value,
-            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="taskRunId != null">
@@ -175,6 +152,9 @@
             </if>
             <if test="keyCn != null">
                 #{keyCn,jdbcType=VARCHAR},
+            </if>
+            <if test="keyValue != null">
+                #{keyValue,jdbcType=VARCHAR},
             </if>
             <if test="valueType != null">
                 #{valueType,jdbcType=INTEGER},
@@ -194,9 +174,6 @@
             <if test="updatedAt != null">
                 #{updatedAt,jdbcType=TIMESTAMP},
             </if>
-            <if test="keyValue != null">
-                #{keyValue,jdbcType=LONGVARCHAR},
-            </if>
         </trim>
     </insert>
     <select id="countByExample" parameterType="com.tongxuweb.domain.generate.TaskRunParamExample" resultType="java.lang.Integer">
@@ -212,10 +189,13 @@
                 task_run_id = #{record.taskRunId,jdbcType=BIGINT},
             </if>
             <if test="record.keyEn != null">
-                KEY_en = #{record.keyEn,jdbcType=VARCHAR},
+                key_en = #{record.keyEn,jdbcType=VARCHAR},
             </if>
             <if test="record.keyCn != null">
                 key_cn = #{record.keyCn,jdbcType=VARCHAR},
+            </if>
+            <if test="record.keyValue != null">
+                key_value = #{record.keyValue,jdbcType=VARCHAR},
             </if>
             <if test="record.valueType != null">
                 value_type = #{record.valueType,jdbcType=INTEGER},
@@ -225,9 +205,6 @@
             </if>
             <if test="record.updatedBy != null">
                 updated_by = #{record.updatedBy,jdbcType=BIGINT},
-            </if>
-            <if test="record.keyValue != null">
-                key_value = #{record.keyValue,jdbcType=LONGVARCHAR},
             </if>
         </set>
         <if test="_parameter != null">
@@ -241,10 +218,13 @@
                 task_run_id = #{taskRunId,jdbcType=BIGINT},
             </if>
             <if test="keyEn != null">
-                KEY_en = #{keyEn,jdbcType=VARCHAR},
+                key_en = #{keyEn,jdbcType=VARCHAR},
             </if>
             <if test="keyCn != null">
                 key_cn = #{keyCn,jdbcType=VARCHAR},
+            </if>
+            <if test="keyValue != null">
+                key_value = #{keyValue,jdbcType=VARCHAR},
             </if>
             <if test="valueType != null">
                 value_type = #{valueType,jdbcType=INTEGER},
@@ -254,9 +234,6 @@
             </if>
             <if test="updatedBy != null">
                 updated_by = #{updatedBy,jdbcType=BIGINT},
-            </if>
-            <if test="keyValue != null">
-                key_value = #{keyValue,jdbcType=LONGVARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=BIGINT}

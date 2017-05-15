@@ -21,7 +21,7 @@
     <select id="staticData" resultType="com.tongxuweb.domain.create.StaticSizeResult">
        SELECT
         b.sku_text_size size,
-        count(b.id) cc
+        sum(b.num) cc
     FROM
         tb_order a,
         tb_order_item b

@@ -7,7 +7,7 @@ var pageSize=100;
   
 chrome.extension.onMessage.addListener(
     function(request, sender, sendResponse) {
-		var type=request.type;
+		var code=request.code;
 		var orderId=request.orderId;
 		var dateBegin=request.begin;
 		var dateEnd=request.end;
@@ -16,17 +16,14 @@ chrome.extension.onMessage.addListener(
 		
 		
 		
-		//alert("开始抓数(type:"+typeDesc+") dateBegin:"+dateBegin+",dateEnd:"+dateEnd+",batchId:"+batchId+"," );
-        getData(dateBegin,dateEnd,1,batchId,type,orderId);
+        getData(dateBegin,dateEnd,1,batchId,code,orderId);
     }
 );
 
-function getData(dateBegin,dateEnd,pageNum,batchId,type,orderId){
-	if(2==type&&orderId){
+function getData(dateBegin,dateEnd,pageNum,batchId,code,orderId){
+	if(orderId){
 		dateBegin=0;
 		dateEnd=0;
-	}else{
-		orderId=null;
 	}
 	
 	var prePageNo=pageNum;
@@ -75,7 +72,7 @@ function getData(dateBegin,dateEnd,pageNum,batchId,type,orderId){
 						for(iii=0;iii<data.mainOrders.length;iii++){
 							var id__=data.mainOrders[iii].id;
 							
-							if(2==type&&orderId){
+							if(code=='wuliu'&&orderId){
 								 
 								$.ajax({
 									type: "get",
@@ -188,10 +185,10 @@ function getData(dateBegin,dateEnd,pageNum,batchId,type,orderId){
 							 setTimeout(function () { 
 							   getData(dateBegin,dateEnd,pageNum+1,batchId)
 							}, timeInterval*1000);
-						} 
-						 
-					 
-						 
+						} else{
+
+						}
+
 					}
 				}
 		    },
@@ -268,10 +265,7 @@ function getSendInfo(htmlData){
 				}
 			}
 	}
-	
-	return result;					 
-		
-	 
+	return result;
 }
 
 

@@ -12,7 +12,7 @@ public class MainOrder {
     private Buyer buyer;
     private Trade trade;
     private Extra extra;
-    private Operations operations;
+    private List<Operation> operations;
     private OrderInfo orderInfo;
     private PayInfo payInfo;
     private StatusInfo statusInfo;
@@ -80,5 +80,13 @@ public class MainOrder {
 
     public void setSubOrders(List<SubOrder> subOrders) {
         this.subOrders = subOrders;
+    }
+
+    public List<Operation> getOperations() {
+        return operations;
+    }
+
+    public void setOperations(List<Operation> operations) {
+        this.operations = operations;
     }
 }

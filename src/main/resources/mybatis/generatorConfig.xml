@@ -87,6 +87,7 @@
         </table>
         <table tableName="task_run_param">
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+            <columnOverride column="key_value" jdbcType="VARCHAR"/>
         </table>
 
         <table tableName="tb_seller">

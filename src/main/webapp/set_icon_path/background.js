@@ -1,12 +1,18 @@
 var urlPre_t="http://www.nttongxu.com/";
-var urlPre_local="http://localhost:8080/";
+var urlPre_local="http://localhost:8089/";
 
-var urlPre=urlPre_t;
+
+var getNeedTask="outSide/getNeedTask.action";
+var finishTask="outSide/finishTask.action";
+var saveOrders="outSide/saveOrders.action";
+
+var urlPre=urlPre_local;
 
 chrome.extension.onMessage.addListener(
     function(request, sender, sendResponse) {
 		//alert("back 收到1条消息");
         saveData(request);
+		finishTask(request.batchId,2)
     }
 );
 
@@ -17,13 +23,10 @@ var timeInterval=11;
 
 // 当点击插件按钮的时候开始执行
 chrome.browserAction.onClicked.addListener(function(tab) {
-	
-	
-		
 		$.ajax({
 		    type: "post",
 			contentType: "application/json",
-		    url: urlPre+"fetchData/getNeedTask.action",
+		    url: urlPre+getNeedTask,
 		    dataType: "json",
 		    timeout:   20000,
 		    success: function (responseData) {
@@ -33,6 +36,9 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 					var data=responseData.tasklist;
 					$.each(data,function(i,task){
 						var taskId=task.id;
+						var code=task.code;
+
+
 						var begin=new Date();
 						var end=new Date();
 						if(task.beginDate){
@@ -41,25 +47,22 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 						if(task.endDate){
 							end=task.endDate;
 						}
-						var typeDesc="订单主数据"
-						var type=task.type;
-						
-						if(2==type){
-							typeDesc="订单明细数据"
-						}
+
+						var typeDesc=code
+
 						alert("开始抓数(type:"+typeDesc+") dateBegin:"+begin+",dateEnd:"+end+",batchId:"+taskId+"," );
-						if (3 == type || 1 == type) {
-							 
-							chrome.tabs.sendMessage(tab.id,{"batchId":taskId,"begin":begin,"end":end,"timeInterval":timeInterval,"type":type,"orderId":null}); 
-							
-						}else if(2==type){
+						if ("main"==code) {
+							finishTask(data.batchId,4);
+							chrome.tabs.sendMessage(tab.id,{"batchId":taskId,"begin":begin,"end":end,"timeInterval":timeInterval,"code":code,"orderId":null});
+						}else if("wuliu"==code){
+							finishTask(data.batchId,4);
 							if(task.orderids&&$(task.orderids).size()>0){
 								getOrderDetail(tab.id,
 									{"batchId":taskId,
 									"begin":begin,
 									"end":end,
 									"timeInterval":timeInterval,
-									"type":type},
+									"code":code},
 									0,
 									task.orderids);
 							}
@@ -89,16 +92,18 @@ function getOrderDetail(tab_id,data,index_,orderids){
 			console.info(new Date());
 			getOrderDetail(tab_id,data,index_,orderids);
 		}, timeInterval*1000);
+	}else{
+		finishTask(data.batchId,2);
 	}
 }
 
 
-function finishTask(taskId){
-	var dataJson={"id":taskId};
+function finishTask(taskId,status){
+	var dataJson={"id":taskId,"status":status};
 	$.ajax({
 		type: "post",
 		contentType: "application/json",
-		url: urlPre+"fetchData/finishTask.action",
+		url: urlPre+finishTask,
 		data: JSON.stringify(dataJson),
 		dataType: "json",
 		timeout:   20000,
@@ -116,7 +121,7 @@ function saveData(request){
 	$.ajax({
 		    type: "post",
 			contentType: "application/json",
-		    url: urlPre+"fetchData/orders.action",
+		    url: urlPre+saveOrders,
 		    data: requestData,
 		    dataType: "json",
 		    timeout:   20000,

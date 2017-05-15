@@ -7,19 +7,12 @@ import com.tongxuweb.domain.entity.mainOrder.subOrder.PriceInfo;
  * Created by higgs on 17/2/14.
  */
 public class SubOrder {
-    private String quantity;
+    private Integer quantity;
     private PriceInfo priceInfo;
 
     private ItemInfo itemInfo;
 
 
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
 
     public PriceInfo getPriceInfo() {
         return priceInfo;
@@ -35,5 +28,14 @@ public class SubOrder {
 
     public void setItemInfo(ItemInfo itemInfo) {
         this.itemInfo = itemInfo;
+    }
+
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }
