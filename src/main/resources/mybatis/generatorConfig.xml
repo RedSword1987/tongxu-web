@@ -93,6 +93,9 @@
         <table tableName="tb_seller">
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
         </table>
+        <table tableName="tb_item">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
         <table tableName="tb_static">
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
         </table>

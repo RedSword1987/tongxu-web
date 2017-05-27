@@ -1,14 +1,10 @@
 package com.tongxuweb.service.impl;
 
-import com.tongxuweb.dao.TbOrderDao;
-import com.tongxuweb.dao.TbStaticDao;
-import com.tongxuweb.dao.TbStaticItemDao;
-import com.tongxuweb.dao.TbStaticSizeDao;
+import com.tongxuweb.dao.*;
 import com.tongxuweb.domain.create.StaticSizeResult;
 import com.tongxuweb.domain.entity.common.Pagination;
 import com.tongxuweb.domain.entity.common.PaginationResult;
 import com.tongxuweb.domain.generate.*;
-import com.tongxuweb.mapper.generate.TbSellerMapper;
 import com.tongxuweb.service.TbService;
 import com.tongxuweb.util.DateUtil;
 import org.springframework.stereotype.Service;
@@ -27,11 +23,18 @@ public class TbServiceImpl implements TbService {
     @Resource
     private TbStaticDao tbStaticDao;
 
-    @Resource
-    private TbSellerMapper tbSellerMapper;
 
     @Resource
     private TbOrderDao tbOrderDao;
+
+    @Resource
+    private TbOrderItemDao tbOrderItemDao;
+
+    @Resource
+    private TbSellerDao tbSellerDao;
+
+    @Resource
+    private TbItemDao tbItemDao;
 
 
     @Resource
@@ -140,7 +143,7 @@ public class TbServiceImpl implements TbService {
 
         TbSellerExample example = new TbSellerExample();
         example.createCriteria().andSellerStatusEqualTo(1);
-        List<TbSeller> li = tbSellerMapper.selectByExample(example);
+        List<TbSeller> li = tbSellerDao.selectByExample(example);
 
         //yyyy-MM-dd 数据格式
         for (String date : dates) {
@@ -164,6 +167,10 @@ public class TbServiceImpl implements TbService {
                 TbOrderExample ex = new TbOrderExample();
                 ex.createCriteria().andSellerIdEqualTo(tbSeller.getSellerId()).andDateEqualTo(date).andStatusEqualTo(1);
                 Integer payNum = tbOrderDao.countByExample(ex);
+                if (payNum <= 0) {
+                    return;
+                }
+
                 Integer itemNum = tbStaticDao.staticItemNum(date, tbSeller.getSellerId());
                 Double payinfoActualfee = tbStaticDao.staticPayinfoActualfee(date, tbSeller.getSellerId());
                 Double moneyFinalMoney = tbStaticDao.staticMoneyFinalMoney(date, tbSeller.getSellerId());
@@ -221,6 +228,84 @@ public class TbServiceImpl implements TbService {
             }
         }
 
+    }
+
+    public PaginationResult tbSellerPage(Pagination pagination) {
+        PaginationResult result = new PaginationResult();
+        TbSellerExample ex = new TbSellerExample();
+        ex.setOrderByClause("id desc limit " + pagination.getOffset() + "," + pagination.getLimit());
+        List<TbSeller> re = tbSellerDao.selectByExample(ex);
+
+        Integer count = tbSellerDao.countByExample(ex);
+        pagination.setTotal(count);
+
+        result.setPagination(pagination);
+        result.setRows(re);
+        return result;
+    }
+
+    public PaginationResult tbItemPage(Pagination pagination) {
+        PaginationResult result = new PaginationResult();
+        TbItemExample ex = new TbItemExample();
+        ex.setOrderByClause("id desc limit " + pagination.getOffset() + "," + pagination.getLimit());
+        List<TbItem> re = tbItemDao.selectByExample(ex);
+
+        Integer count = tbItemDao.countByExample(ex);
+        pagination.setTotal(count);
+
+        result.setPagination(pagination);
+        result.setRows(re);
+        return result;
+    }
+
+    public int tbItemImport() {
+        return tbItemDao.tbItemImport();
+    }
+
+    public int tbSellerImport() {
+        return tbSellerDao.tbSellerImport();
+    }
+
+    public int tbItemRefreshPrice() {
+        //1.更新所有订单里面的price
+        int r1 = tbOrderItemDao.refreshPrice();
+        //2.更新订单的成本
+        int r2 = tbOrderDao.refreshPrice();
+        //3.更新订单的净利润
+        int r3 = tbOrderDao.refreshFinalMoney();
+        return r3;
+    }
+
+    public void tbSellerAdd(TbSeller tbSeller) {
+        tbSellerDao.insertSelective(tbSeller);
+    }
+
+    public void tbSellerDelete(List<Long> ids) {
+        if (ids.size() > 0) {
+            TbSellerExample ex = new TbSellerExample();
+            ex.createCriteria().andIdIn(ids);
+            tbSellerDao.deleteByExample(ex);
+        }
+    }
+
+    public void tbSellerUpdate(TbSeller tbSeller) {
+        tbSellerDao.updateByPrimaryKeySelective(tbSeller);
+    }
+
+    public void tbItemAdd(TbItem tbItem) {
+        tbItemDao.insertSelective(tbItem);
+    }
+
+    public void tbItemDelete(List<Long> ids) {
+        if (ids.size() > 0) {
+            TbItemExample ex = new TbItemExample();
+            ex.createCriteria().andIdIn(ids);
+            tbItemDao.deleteByExample(ex);
+        }
+    }
+
+    public void tbItemUpdate(TbItem tbItem) {
+        tbItemDao.updateByPrimaryKeySelective(tbItem);
     }
 
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tongxuweb.dao.TbOrderDao">
+
+    <update id="refreshPrice">
+		UPDATE tb_order a
+		INNER JOIN (
+		SELECT
+		orderinfo_id,
+		sum(a.item_jinhuo) item_jinhuo
+		FROM
+		tb_order_item a
+		GROUP BY
+		a.orderinfo_id
+		) b ON a.orderinfo_id = b.orderinfo_id
+		SET a.money_item_jinhuo = b.item_jinhuo
+	</update>
+
+    <update id="refreshFinalMoney">
+		UPDATE tb_order set money_final_money
+		=(payinfo_actualfee
+		-money_item_jinhuo
+		-money_item_zhenping
+		-money_yunyin_yongjin
+		-money_yunyin_fuwufei
+		-money_yunyin_koudian
+		-money_yunyin_youhuiquan
+		-money_yunyin_teshu
+		-money_wuliu_kuaidi
+		-money_wuliu_changku
+		-money_wuliu_baozhuang
+		-money_wuliu_yunfeixian)
+
+	</update>
+
+
+</mapper>

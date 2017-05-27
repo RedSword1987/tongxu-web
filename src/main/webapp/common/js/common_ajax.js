@@ -71,23 +71,28 @@ function common_add(addFields_p,url_add,table_id_p){
 //ajax删除动作
 function common_delete(url_del_p,ids,idField,table_id_p){
 	$.confirm({
-	    title: '确认修改',
-	    content: "确认修改所选项状态吗？",
+		title: '确认删除',
+		content: "确认删除所选项吗？",
 	    confirm: function(){
 	    	showLoading();
+			var idArray = new Array();
+			var objType = getObjType(ids);
+			if ("string" == objType) {
+				idArray = ids.split(",");
+			} else if ("array" == objType) {
+				idArray = ids;
+			}
+
 	    	$.ajax({
 	    	    type: "post",
 	    	    url: url_del_p,
-	    	    data: {
-	    	    	ids: ids,
-	    	    	idField:idField
-	    	    },
+				data: JSON.stringify(idArray),
+				contentType: "application/json",
 	    	    dataType: "json",
 	    	    timeout:   20000,
 	    	    success: function (data) {
 	    	    	hideLoading();
 					$('#'+table_id_p).bootstrapTable("refresh");
-	    			 
 	    	    },
 	    	    error: function (e) {
 	    	    	hideLoading();
@@ -144,7 +149,7 @@ function common_update(obj,updateFields_p,url_update,table_id_p,idField_p){
 		if(!value.isShow){
 			var newValue;
 			if(value.fileType&&value.fileType=="5"){
-				newValue = $('input[name="radio_'+value.field+'"]:checked').val();
+				newValue = $('input[name="radio_' + value.field + '"]:checked').val() * 1;
 			}else{
 				newValue=$.trim($("#updateForm_"+value.field).val());
 			}
@@ -189,18 +194,21 @@ function common_update(obj,updateFields_p,url_update,table_id_p,idField_p){
 	}
 	
 	if(check){
-		var param={};
-		param[idField_p]=obj[idField_p];
-		param.idField=idField_p;
-		param.needUpdateFields= JSON.stringify(needUpdateFields);  
+		needUpdateFields.id = obj[idField_p];
+		//var param={};
+		//param[idField_p]=obj[idField_p];
+		//param.idField=idField_p;
+		//param.needUpdateFields= JSON.stringify(needUpdateFields);
 		
 		showLoading();
-		
+
+
 		$.ajax({
                     type: "post",
                     url: url_update,
-                    data: param,
+			data: JSON.stringify(needUpdateFields),
                     dataType: "json",
+			contentType: "application/json",
                     timeout:   20000,
                     success: function (data) {
                     	hideLoading();

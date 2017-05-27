@@ -133,6 +133,16 @@ public class UrlRedirect {
         return "jsp/tb/tbOrderMoney";
     }
 
+    @RequestMapping("/storeManage")
+    public String storeManage(HttpServletRequest request) {
+        return "jsp/setting/storeManage";
+    }
+
+    @RequestMapping("/itemManage")
+    public String itemManage(HttpServletRequest request) {
+        return "jsp/setting/itemManage";
+    }
+
     @RequestMapping("/handStatic")
     public String handStatic(HttpServletRequest request) {
         return "jsp/tb/handStatic";

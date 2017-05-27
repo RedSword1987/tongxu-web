@@ -22,10 +22,6 @@
 
             <div class="clearfix"></div>
           </div>
-          <div class="x_content">
-            <table id="bootstrap-table">
-            </table>
-          </div>
         </div>
       </div>
     </div>

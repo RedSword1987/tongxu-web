@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tongxuweb.dao.TbSellerDao">
+
+    <update id="tbSellerImport">
+		insert into tb_seller(seller_id)
+SELECT
+	a.seller_id
+FROM
+	(
+		SELECT DISTINCT
+			seller_id
+		FROM
+			tb_order
+	) a
+WHERE
+	a.seller_id NOT IN (
+		SELECT
+			seller_id
+		FROM
+			tb_seller
+	)
+	</update>
+
+
+</mapper>

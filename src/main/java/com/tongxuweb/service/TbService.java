@@ -1,10 +1,11 @@
 package com.tongxuweb.service;
 
-import com.tongxuweb.domain.entity.MainOrders;
 import com.tongxuweb.domain.entity.common.Pagination;
 import com.tongxuweb.domain.entity.common.PaginationResult;
+import com.tongxuweb.domain.generate.TbItem;
+import com.tongxuweb.domain.generate.TbSeller;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  */
@@ -23,5 +24,26 @@ public interface TbService {
 
     void refreshStatic(String beginDate, String endDate);
 
+    PaginationResult tbSellerPage(Pagination pagination);
+
+    PaginationResult tbItemPage(Pagination pagination);
+
+    int tbItemImport();
+
+    int tbSellerImport();
+
+    int tbItemRefreshPrice();
+
+    void tbSellerAdd(TbSeller tbSeller);
+
+    void tbSellerDelete(List<Long> ids);
+
+    void tbSellerUpdate(TbSeller tbSeller);
+
+    void tbItemAdd(TbItem tbItem);
+
+    void tbItemDelete(List<Long> ids);
+
+    void tbItemUpdate(TbItem tbItem);
 
 }

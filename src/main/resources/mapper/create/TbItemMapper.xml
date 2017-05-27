@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tongxuweb.dao.TbItemDao">
+
+    <update id="tbItemImport">
+		insert into tb_item(sku_text_colour,sku_text_size)
+		SELECT
+			a.sku_text_colour,a.sku_text_size
+		FROM
+			(
+				SELECT
+					a.*, b.sku_text_colour sku_text_colour1,
+					b.sku_text_size sku_text_size1
+				FROM
+					(
+						SELECT
+							sku_text_colour,
+							sku_text_size
+						FROM
+							tb_order_item
+						WHERE
+							sku_text_colour IS NOT NULL
+						AND sku_text_size IS NOT NULL
+						GROUP BY
+							sku_text_colour,
+							sku_text_size
+					) a
+				LEFT JOIN tb_item b ON a.sku_text_colour = b.sku_text_colour
+				AND a.sku_text_size = b.sku_text_size
+			) a
+		WHERE
+			a.sku_text_colour1 IS NULL
+		OR a.sku_text_size1 IS NULL
+	</update>
+
+
+</mapper>

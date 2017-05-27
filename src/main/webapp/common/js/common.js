@@ -113,3 +113,26 @@ function getQueryString(name) {
 	}
 	return null;
 }
+
+function getObjType(ooo) {
+	var gettype = Object.prototype.toString;
+	var objS = gettype.call(ooo);
+	if (objS == "[object String]") {
+		return "string";
+	} else if (objS == "[object Number]") {
+		return "number";
+	} else if (objS == "[object Boolean]") {
+		return "boolean";
+	} else if (objS == "[object Undefined]") {
+		return "undefined";
+	} else if (objS == "[object Null]") {
+		return "null";
+	} else if (objS == "[object Object]") {
+		return "object";
+	} else if (objS == "[object Array]") {
+		return "array";
+	} else if (objS == "[object Function]") {
+		return "function";
+	}
+	return "";
+}

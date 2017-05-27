@@ -48,6 +48,8 @@
                     <li>
                         <a href="javascript:;">配置管理<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
+                            <li><a href="${pageContext.request.contextPath}/url/storeManage.action">门店管理</a></li>
+                            <li><a href="${pageContext.request.contextPath}/url/itemManage.action">商品管理</a></li>
                             <li><a href="${pageContext.request.contextPath}/url/taskType.action">任务类型</a></li>
                             <li><a href="${pageContext.request.contextPath}/url/handStatic.action">手动统计</a></li>
                         </ul>
