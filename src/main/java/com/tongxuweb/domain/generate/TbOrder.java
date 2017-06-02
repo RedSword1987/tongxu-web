@@ -6,151 +6,107 @@ import java.util.Date;
 
 public class TbOrder implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     //id
     private Long id;
-
     //日期 yyyy-MM-dd
     private String date;
-
     //任务id
     private Long taskId;
-
     //购买人id
     private String buyerId;
-
     //购买人昵称
     private String buyerNick;
-
     //购买人手机
     private String buyerPhonenum;
-
     //虚拟手机号
     private String buyerVirtualPhone;
-
     //收获姓名
     private String buyerName;
-
     //省
     private String buyerProvice;
-
     //市
     private String buyerCity;
-
     //区号
     private String buyerArea;
-
     //邮编
     private String buyerPost;
-
     //地址合集
     private String buyerAddress;
-
     //物流里填的手机号
     private String buyerLogisticsPhone;
-
     //购买者留言
     private String buyMessage;
-
     //订单创建时间
     private String orderinfoCreatetime;
-
     //订单编号
     private String orderinfoId;
-
     //状态说明
     private String statusinfoText;
-
     //状态类型
     private String statusinfoType;
-
     //创建时间
     private String createTime;
-
     //付款时间
     private String payTime;
-
     //发货时间
     private String sendTime;
-
     //支付宝交易号
     private String alipayId;
-
     //订单阶段
     private String orderBar;
-
     //订单阶段说明
     private String orderBarText;
-
     //快递名称
     private String logisticsName;
-
     //快递编号
     private String logisticsNum;
-
     //淘宝物流编号
     private String logisticsNumTaobao;
-
     //物流最后信息
     private String logisticsLastDesc;
-
     //付款金额*佣金比例（一般是30%）
     private BigDecimal moneyYunyinYongjin;
-
     //付款金额*6%
     private BigDecimal moneyYunyinFuwufei;
-
     //扣点费
     private BigDecimal moneyYunyinKoudian;
-
     //优惠券
     private BigDecimal moneyYunyinYouhuiquan;
-
     //特殊费用
     private BigDecimal moneyYunyinTeshu;
-
     //快递费
     private BigDecimal moneyWuliuKuaidi;
-
     //仓库人工费
     private BigDecimal moneyWuliuChangku;
-
     //包装费
     private BigDecimal moneyWuliuBaozhuang;
-
     //运费险
     private BigDecimal moneyWuliuYunfeixian;
-
     //最后所得
     private BigDecimal moneyFinalMoney;
-
     //标记信息
     private String tagInfo;
-
     //物品数量
     private Integer itemNum;
-
     //创建时间
     private Date createdAt;
-
     //修改时间
     private Date updatedAt;
-
     //标题
     private String title;
-
     //0:无效订单 1:有效
     private Integer status;
-
     //实际支付金额
     private BigDecimal payinfoActualfee;
-
     //店铺id
     private String sellerId;
-
+    //商品进货价
+    private BigDecimal moneyItemJinhuo;
+    //赠品进货价
+    private BigDecimal moneyItemZhenping;
     //淘宝物流编号
     private String logisticsDesc;
-
-    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;
@@ -526,6 +482,22 @@ public class TbOrder implements Serializable {
 
     public void setSellerId(String sellerId) {
         this.sellerId = sellerId == null ? null : sellerId.trim();
+    }
+
+    public BigDecimal getMoneyItemJinhuo() {
+        return moneyItemJinhuo;
+    }
+
+    public void setMoneyItemJinhuo(BigDecimal moneyItemJinhuo) {
+        this.moneyItemJinhuo = moneyItemJinhuo;
+    }
+
+    public BigDecimal getMoneyItemZhenping() {
+        return moneyItemZhenping;
+    }
+
+    public void setMoneyItemZhenping(BigDecimal moneyItemZhenping) {
+        this.moneyItemZhenping = moneyItemZhenping;
     }
 
     public String getLogisticsDesc() {

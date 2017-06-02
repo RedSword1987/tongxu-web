@@ -3,6 +3,7 @@ package com.tongxuweb.controller;
 import com.tongxuweb.domain.entity.common.Pagination;
 import com.tongxuweb.domain.entity.common.PaginationResult;
 import com.tongxuweb.domain.generate.TbItem;
+import com.tongxuweb.domain.generate.TbOrderStatusInfo;
 import com.tongxuweb.domain.generate.TbSeller;
 import com.tongxuweb.service.TbService;
 import org.springframework.stereotype.Controller;
@@ -201,6 +202,60 @@ public class TbControl {
         return result;
     }
 
+
+    @RequestMapping("/order/statusInfoPage")
+    @ResponseBody
+    public PaginationResult orderStatusInfoPage(HttpServletRequest request) {
+        Pagination pagination = new Pagination(request);
+        PaginationResult result = tbService.orderStatusInfoPage(pagination);
+        return result;
+
+    }
+
+    @RequestMapping("/order/statusInfoAdd")
+    @ResponseBody
+    public TbOrderStatusInfo statusInfoAdd(@RequestBody TbOrderStatusInfo tbOrderStatusInfo, HttpServletRequest request) {
+        tbService.statusInfoAdd(tbOrderStatusInfo);
+        return tbOrderStatusInfo;
+    }
+
+    @RequestMapping("/order/statusInfoDelete")
+    @ResponseBody
+    public Map<String, Object> statusInfoDelete(@RequestBody List<Long> ids, HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("result", true);
+        result.put("msg", "成功");
+        tbService.statusInfoDelete(ids);
+        return result;
+    }
+
+    @RequestMapping("/order/statusInfoUpdate")
+    @ResponseBody
+    public Map<String, Object> statusInfoUpdate(@RequestBody TbOrderStatusInfo tbOrderStatusInfo, HttpServletRequest request) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("result", true);
+        result.put("msg", "成功");
+        tbService.statusInfoUpdate(tbOrderStatusInfo);
+        return result;
+    }
+
+    @RequestMapping("/order/statusInfoImport")
+    @ResponseBody
+    public Map<String, Object> statusInfoImport() {
+        Map<String, Object> result = new HashMap<String, Object>();
+        int re = tbService.statusInfoImport();
+        result.put("result", re);
+        return result;
+    }
+
+    @RequestMapping("/order/statusInfoRefreshOrder")
+    @ResponseBody
+    public Map<String, Object> statusInfoRefreshOrder() {
+        Map<String, Object> result = new HashMap<String, Object>();
+        int re = tbService.statusInfoRefreshOrder();
+        result.put("result", re);
+        return result;
+    }
 
 
 

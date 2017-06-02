@@ -23,7 +23,6 @@ public class TbServiceImpl implements TbService {
     @Resource
     private TbStaticDao tbStaticDao;
 
-
     @Resource
     private TbOrderDao tbOrderDao;
 
@@ -36,12 +35,14 @@ public class TbServiceImpl implements TbService {
     @Resource
     private TbItemDao tbItemDao;
 
-
     @Resource
     private TbStaticItemDao tbStaticItemDao;
 
     @Resource
     private TbStaticSizeDao tbStaticSizeDao;
+
+    @Resource
+    private TbOrderStatusInfoDao tbOrderStatusInfoDao;
 
     public PaginationResult tbStaticPage(Pagination pagination) {
         PaginationResult result = new PaginationResult();
@@ -308,4 +309,41 @@ public class TbServiceImpl implements TbService {
         tbItemDao.updateByPrimaryKeySelective(tbItem);
     }
 
+    public PaginationResult orderStatusInfoPage(Pagination pagination) {
+        PaginationResult result = new PaginationResult();
+        TbOrderStatusInfoExample ex = new TbOrderStatusInfoExample();
+        ex.setOrderByClause("id desc limit " + pagination.getOffset() + "," + pagination.getLimit());
+        List<TbOrderStatusInfo> re = tbOrderStatusInfoDao.selectByExample(ex);
+
+        Integer count = tbOrderStatusInfoDao.countByExample(ex);
+        pagination.setTotal(count);
+
+        result.setPagination(pagination);
+        result.setRows(re);
+        return result;
+    }
+
+    public void statusInfoAdd(TbOrderStatusInfo tbOrderStatusInfo) {
+        tbOrderStatusInfoDao.insertSelective(tbOrderStatusInfo);
+    }
+
+    public void statusInfoDelete(List<Long> ids) {
+        if (ids.size() > 0) {
+            TbOrderStatusInfoExample ex = new TbOrderStatusInfoExample();
+            ex.createCriteria().andIdIn(ids);
+            tbOrderStatusInfoDao.deleteByExample(ex);
+        }
+    }
+
+    public void statusInfoUpdate(TbOrderStatusInfo tbOrderStatusInfo) {
+        tbOrderStatusInfoDao.updateByPrimaryKeySelective(tbOrderStatusInfo);
+    }
+
+    public int statusInfoImport() {
+        return tbOrderStatusInfoDao.autoImport();
+    }
+
+    public int statusInfoRefreshOrder() {
+        return tbOrderStatusInfoDao.statusInfoRefreshOrder();
+    }
 }

@@ -19,8 +19,12 @@ function getCookie(cname) {
 
 function formatter_datetime(value,row,index){  
 	 if(value){
-		 value=value+'';
+
 		 if(value.indexOf("-")==-1){
+			 var date_l = new Date(value);
+			 var time = date_l.CCFormat("yyyy-MM-dd hh:mm:ss");
+			 return time;
+		 } else if (chechInt(value)) {
 			 var date_l = new Date(value*1);
 			 var time = date_l.CCFormat("yyyy-MM-dd hh:mm:ss");
 			 return time;
@@ -135,4 +139,19 @@ function getObjType(ooo) {
 		return "function";
 	}
 	return "";
+}
+
+
+function formatterTaskStatus(value, row, index) {
+	if (value) {
+		value = value + '';
+		if (value == 1) {
+			return "待执行(<a href='https://myseller.taobao.com/seller_admin.htm' target='_blank'>去抓数<a>)";
+		} else if (value == 2) {
+			return "成功";
+		} else if (value == 3) {
+			return "失败";
+		}
+	}
+	return value;
 }

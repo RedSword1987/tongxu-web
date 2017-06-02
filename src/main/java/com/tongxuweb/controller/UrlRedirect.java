@@ -73,7 +73,7 @@ public class UrlRedirect {
         if (li.size() > 0) {
             request.setAttribute("name", li.get(0).getName());
         }
-        return "jsp/task/taskRun";
+        return "jsp/task/taskRunMain";
     }
 
     @RequestMapping("/taskRunWuliu")
@@ -86,7 +86,7 @@ public class UrlRedirect {
         if (li.size() > 0) {
             request.setAttribute("name", li.get(0).getName());
         }
-        return "jsp/task/taskRun";
+        return "jsp/task/taskRunWuliu";
     }
 
     @RequestMapping("/taskRunMoney")
@@ -99,7 +99,7 @@ public class UrlRedirect {
         if (li.size() > 0) {
             request.setAttribute("name", li.get(0).getName());
         }
-        return "jsp/task/taskRun";
+        return "jsp/task/taskRunMoney";
     }
 
     @RequestMapping("/tbStatic")
@@ -146,6 +146,12 @@ public class UrlRedirect {
     @RequestMapping("/handStatic")
     public String handStatic(HttpServletRequest request) {
         return "jsp/tb/handStatic";
+    }
+
+
+    @RequestMapping("/tbOrderStatusInfo")
+    public String tbOrderStatusInfo(HttpServletRequest request) {
+        return "jsp/setting/tbOrderStatusInfo";
     }
 
 

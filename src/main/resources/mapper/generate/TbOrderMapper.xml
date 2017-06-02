@@ -49,6 +49,8 @@
         <result column="status" jdbcType="INTEGER" property="status" />
         <result column="payinfo_actualfee" jdbcType="DECIMAL" property="payinfoActualfee" />
         <result column="seller_id" jdbcType="VARCHAR" property="sellerId" />
+        <result column="money_item_jinhuo" jdbcType="DECIMAL" property="moneyItemJinhuo"/>
+        <result column="money_item_zhenping" jdbcType="DECIMAL" property="moneyItemZhenping"/>
     </resultMap>
     <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tongxuweb.domain.generate.TbOrder">
         <result column="logistics_desc" jdbcType="LONGVARCHAR" property="logisticsDesc" />
@@ -118,8 +120,9 @@
         create_time, pay_time, send_time, alipay_id, order_bar, order_bar_text, logistics_name, 
         logistics_num, logistics_num_taobao, logistics_last_desc, money_yunyin_yongjin, money_yunyin_fuwufei, 
         money_yunyin_koudian, money_yunyin_youhuiquan, money_yunyin_teshu, money_wuliu_kuaidi, 
-        money_wuliu_changku, money_wuliu_baozhuang, money_wuliu_yunfeixian, money_final_money, 
-        tag_info, item_num, created_at, updated_at, title, status, payinfo_actualfee, seller_id
+        money_wuliu_changku, money_wuliu_baozhuang, money_wuliu_yunfeixian, money_final_money,
+        tag_info, item_num, created_at, updated_at, title, status, payinfo_actualfee, seller_id,
+        money_item_jinhuo, money_item_zhenping
     </sql>
     <sql id="Blob_Column_List">
         logistics_desc
@@ -316,6 +319,12 @@
             <if test="sellerId != null">
                 seller_id,
             </if>
+            <if test="moneyItemJinhuo != null">
+                money_item_jinhuo,
+            </if>
+            <if test="moneyItemZhenping != null">
+                money_item_zhenping,
+            </if>
             <if test="logisticsDesc != null">
                 logistics_desc,
             </if>
@@ -458,6 +467,12 @@
             </if>
             <if test="sellerId != null">
                 #{sellerId,jdbcType=VARCHAR},
+            </if>
+            <if test="moneyItemJinhuo != null">
+                #{moneyItemJinhuo,jdbcType=DECIMAL},
+            </if>
+            <if test="moneyItemZhenping != null">
+                #{moneyItemZhenping,jdbcType=DECIMAL},
             </if>
             <if test="logisticsDesc != null">
                 #{logisticsDesc,jdbcType=LONGVARCHAR},
@@ -605,6 +620,12 @@
             <if test="record.sellerId != null">
                 seller_id = #{record.sellerId,jdbcType=VARCHAR},
             </if>
+            <if test="record.moneyItemJinhuo != null">
+                money_item_jinhuo = #{record.moneyItemJinhuo,jdbcType=DECIMAL},
+            </if>
+            <if test="record.moneyItemZhenping != null">
+                money_item_zhenping = #{record.moneyItemZhenping,jdbcType=DECIMAL},
+            </if>
             <if test="record.logisticsDesc != null">
                 logistics_desc = #{record.logisticsDesc,jdbcType=LONGVARCHAR},
             </if>
@@ -747,6 +768,12 @@
             </if>
             <if test="sellerId != null">
                 seller_id = #{sellerId,jdbcType=VARCHAR},
+            </if>
+            <if test="moneyItemJinhuo != null">
+                money_item_jinhuo = #{moneyItemJinhuo,jdbcType=DECIMAL},
+            </if>
+            <if test="moneyItemZhenping != null">
+                money_item_zhenping = #{moneyItemZhenping,jdbcType=DECIMAL},
             </if>
             <if test="logisticsDesc != null">
                 logistics_desc = #{logisticsDesc,jdbcType=LONGVARCHAR},

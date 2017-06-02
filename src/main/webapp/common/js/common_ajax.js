@@ -153,8 +153,8 @@ function common_update(obj,updateFields_p,url_update,table_id_p,idField_p){
 			}else{
 				newValue=$.trim($("#updateForm_"+value.field).val());
 			}
-			
-			if(newValue==''){
+
+			if (newValue == '' && newValue != 0) {
 				if(value.require&&check){
 					check=false;
 					alert(value.title+" 不可为空");

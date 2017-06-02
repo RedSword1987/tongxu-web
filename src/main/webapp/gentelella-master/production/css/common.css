@@ -1,5 +1,9 @@
 
- .searchInput{height: 27px;padding: 0px;border: 1"}
+.searchInput {
+    height: 27px;
+    padding: 0px;
+    border: 1px
+}
 
 .table th.th_store_name {
   min-width: 110px!important;
@@ -15,3 +19,4 @@
 #btn_search_action  {
 	margin-left: 400px!important;
 }
+

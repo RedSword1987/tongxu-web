@@ -111,8 +111,9 @@
         <table tableName="tb_order_item">
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
         </table>
-
-
+        <table tableName="tb_order_status_info">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
 
 
         <table tableName="task_getdata_taobao">

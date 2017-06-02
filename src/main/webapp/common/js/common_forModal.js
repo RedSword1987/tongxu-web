@@ -139,67 +139,69 @@ function initUpdateModal(obj,updateFields ){
 	
 	var updateContent="";
 	$.each(updateFields,function(i,value){
-		 updateContent+='<div class="form-group">';
-		 updateContent+='<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">'+value.title;
-		 if(value.require){
-			 updateContent+=' <span class="required">*</span>';
-		 }
-		 updateContent+='</label>';
-		 updateContent+='<div class="col-md-6 col-sm-6 col-xs-12">';
-		 var field_value=obj[value.field];
-		 if(field_value==null){
-			 field_value="";
-		 }
-		 if(value.isShow){
-			 if(field_value!=null&&field_value!=''){
-				 updateContent+='<div class="control-label" style="text-align: left;" >'+field_value+'</div>';
-			 }else{
-				 updateContent+='';
-			 }
-		 }else{
-			 if(3==value.fileType){
-				 updateContent+='<div id="'+value.field+'-date" class="input-group date form_date  col-md-12 col-sm-12 col-xs-12" data-date="'+field_value+'" data-date-format="yyyy-mm-dd" data-link-field="updateForm_'+value.field+'"  data-link-format="yyyy-mm-dd">';
-				 updateContent+='<input class="form-control" size="16" type="text"   readonly value="'+field_value+'"> <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>';
-				 updateContent+='</div>';
-				 updateContent+='<input type="hidden" id="updateForm_'+value.field+'" value="'+field_value+'"/> ';
-			 }else if(13==value.fileType){
-				 updateContent+='<div id="'+value.field+'-date" class="input-group date form_date  col-md-12 col-sm-12 col-xs-12" data-date="'+field_value+'" data-date-format="hh:ii:ss" data-link-field="updateForm_'+value.field+'"  data-link-format="hh:ii:ss">';
-				 updateContent+='<input class="form-control" size="16" type="text"   readonly value="'+field_value+'"> <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>';
-				 updateContent+='</div>';
-				 updateContent+='<input type="hidden" id="updateForm_'+value.field+'" value="'+field_value+'"/> ';
-			 }else if(5==value.fileType){
-				 updateContent+='<div style="margin-top: 5px; ">是:<input type="radio" class="flat" name="radio_'+value.field+'" id="updateForm_'+value.field+'_1" value="1"   style="margin-right: 15px!important;"/> ';
-				 updateContent+='    否:<input type="radio" class="flat" name="radio_'+value.field+'" id="updateForm_'+value.field+'_0" value="0"  /></div> ';
-			 } else if(10==value.fileType){
-				 var select_content=value.select_content;
-				 updateContent+='<select id="updateForm_'+value.field+'" class="form-control">';
-				 updateContent+=select_content;
-				 updateContent+='</select>';
-	         
-			 }else if(11==value.fileType){
-				 var select_content=value.select_content;
-				 updateContent+='<select id="updateForm_'+value.field+'" class="select2_multiple form-control col-md-7 col-xs-12" multiple="multiple"  style="width: 100%">';
-				 updateContent+=select_content;
-				 updateContent+='</select>';
-	         
-			 }else if(6==value.fileType){
-				 if((field_value!=null&&field_value!='')||((typeof(field_value)=="number"||typeof(field_value)=="string")&&field_value=='0')){
-					 updateContent+='<input type="password"  id="updateForm_'+value.field+'"  value="'+field_value+'"  class="form-control col-md-7 col-xs-12">';
-				 }else{
-					 updateContent+='<input type="password"  id="updateForm_'+value.field+'"  value=""  class="form-control col-md-7 col-xs-12">';
-				 }
-			 }else{
-				 if((field_value!=null&&field_value!='')||((typeof(field_value)=="number"||typeof(field_value)=="string")&&field_value=='0')){
-					 updateContent+='<input type="text"  id="updateForm_'+value.field+'"  value="'+field_value+'"  class="form-control col-md-7 col-xs-12">';
-				 }else{
-					 updateContent+='<input type="text"  id="updateForm_'+value.field+'"  value=""  class="form-control col-md-7 col-xs-12">';
-				 }
-			 }
-		 }
-		
-		 
-		 updateContent+='</div>';
-		 updateContent+='</div>';
+		updateContent += '<div class="form-group">';
+		updateContent += '<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">' + value.title;
+		if (value.require) {
+			updateContent += ' <span class="required">*</span>';
+		}
+		updateContent += '</label>';
+		updateContent += '<div class="col-md-6 col-sm-6 col-xs-12">';
+		var field_value = obj[value.field];
+		if (field_value == null) {
+			field_value = "";
+		}
+		if (value.isShow) {
+			if (field_value != null && field_value != '') {
+				updateContent += '<div class="control-label" style="text-align: left;" >' + field_value + '</div>';
+			} else {
+				updateContent += '';
+			}
+		} else {
+			if (3 == value.fileType) {
+				updateContent += '<div id="' + value.field + '-date" class="input-group date form_date  col-md-12 col-sm-12 col-xs-12" data-date="' + field_value + '" data-date-format="yyyy-mm-dd" data-link-field="updateForm_' + value.field + '"  data-link-format="yyyy-mm-dd">';
+				updateContent += '<input class="form-control" size="16" type="text"   readonly value="' + field_value + '"> <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>';
+				updateContent += '</div>';
+				updateContent += '<input type="hidden" id="updateForm_' + value.field + '" value="' + field_value + '"/> ';
+			} else if (13 == value.fileType) {
+				updateContent += '<div id="' + value.field + '-date" class="input-group date form_date  col-md-12 col-sm-12 col-xs-12" data-date="' + field_value + '" data-date-format="hh:ii:ss" data-link-field="updateForm_' + value.field + '"  data-link-format="hh:ii:ss">';
+				updateContent += '<input class="form-control" size="16" type="text"   readonly value="' + field_value + '"> <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>';
+				updateContent += '</div>';
+				updateContent += '<input type="hidden" id="updateForm_' + value.field + '" value="' + field_value + '"/> ';
+			} else if (5 == value.fileType) {
+				updateContent += '<div style="margin-top: 5px; ">是:<input type="radio" class="flat" name="radio_' + value.field + '" id="updateForm_' + value.field + '_1" value="1"   style="margin-right: 15px!important;"/> ';
+				updateContent += '    否:<input type="radio" class="flat" name="radio_' + value.field + '" id="updateForm_' + value.field + '_0" value="0"  /></div> ';
+			} else if (10 == value.fileType) {
+				var select_content = value.select_content;
+				updateContent += '<select id="updateForm_' + value.field + '" class="form-control">';
+				updateContent += select_content;
+				updateContent += '</select>';
+
+			} else if (11 == value.fileType) {
+				var select_content = value.select_content;
+				updateContent += '<select id="updateForm_' + value.field + '" class="select2_multiple form-control col-md-7 col-xs-12" multiple="multiple"  style="width: 100%">';
+				updateContent += select_content;
+				updateContent += '</select>';
+
+			} else if (6 == value.fileType) {
+				if ((field_value != null && field_value != '') || ((typeof(field_value) == "number" || typeof(field_value) == "string") && field_value == '0')) {
+					updateContent += '<input type="password"  id="updateForm_' + value.field + '"  value="' + field_value + '"  class="form-control col-md-7 col-xs-12">';
+				} else {
+					updateContent += '<input type="password"  id="updateForm_' + value.field + '"  value=""  class="form-control col-md-7 col-xs-12">';
+				}
+			} else if (27 == value.fileType) {
+				updateContent += '<textarea type="textarea" rows="3"   id="updateForm_' + value.field + '" class="form-control col-md-7 col-xs-12"></textarea>';
+			} else {
+				if ((field_value != null && field_value != '') || ((typeof(field_value) == "number" || typeof(field_value) == "string") && field_value == '0')) {
+					updateContent += '<input type="text"  id="updateForm_' + value.field + '"  value="' + field_value + '"  class="form-control col-md-7 col-xs-12">';
+				} else {
+					updateContent += '<input type="text"  id="updateForm_' + value.field + '"  value=""  class="form-control col-md-7 col-xs-12">';
+				}
+			}
+		}
+
+
+		updateContent += '</div>';
+		updateContent += '</div>';
 	 });
 	 
 	$("#updateModal_form").html(updateContent);

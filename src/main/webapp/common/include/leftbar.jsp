@@ -33,8 +33,9 @@
                             <li>
                                 <a href="${pageContext.request.contextPath}/url/taskRunMain.action">订单主数据任务</a>
                             </li>
+                            <li><a href="${pageContext.request.contextPath}/url/taskRunMoney.action">订单明细数据任务</a></li>
                             <li><a href="${pageContext.request.contextPath}/url/taskRunWuliu.action">订单物流数据任务</a></li>
-                            <li><a href="${pageContext.request.contextPath}/url/taskRunMoney.action">订单金额数据任务</a></li>
+
                         </ul>
                     </li>
                     <li>
@@ -51,6 +52,7 @@
                             <li><a href="${pageContext.request.contextPath}/url/storeManage.action">门店管理</a></li>
                             <li><a href="${pageContext.request.contextPath}/url/itemManage.action">商品管理</a></li>
                             <li><a href="${pageContext.request.contextPath}/url/taskType.action">任务类型</a></li>
+                            <li><a href="${pageContext.request.contextPath}/url/tbOrderStatusInfo.action">订单状态</a></li>
                             <li><a href="${pageContext.request.contextPath}/url/handStatic.action">手动统计</a></li>
                         </ul>
                     </li>

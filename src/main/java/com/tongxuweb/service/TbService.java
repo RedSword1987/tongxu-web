@@ -3,6 +3,7 @@ package com.tongxuweb.service;
 import com.tongxuweb.domain.entity.common.Pagination;
 import com.tongxuweb.domain.entity.common.PaginationResult;
 import com.tongxuweb.domain.generate.TbItem;
+import com.tongxuweb.domain.generate.TbOrderStatusInfo;
 import com.tongxuweb.domain.generate.TbSeller;
 
 import java.util.List;
@@ -45,5 +46,17 @@ public interface TbService {
     void tbItemDelete(List<Long> ids);
 
     void tbItemUpdate(TbItem tbItem);
+
+    PaginationResult orderStatusInfoPage(Pagination pagination);
+
+    void statusInfoAdd(TbOrderStatusInfo tbOrderStatusInfo);
+
+    void statusInfoDelete(List<Long> ids);
+
+    void statusInfoUpdate(TbOrderStatusInfo tbOrderStatusInfo);
+
+    int statusInfoImport();
+
+    int statusInfoRefreshOrder();
 
 }

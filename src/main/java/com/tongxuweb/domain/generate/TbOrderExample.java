@@ -17,20 +17,20 @@ public class TbOrderExample {
         oredCriteria = new ArrayList<Criteria>();
     }
 
-    public void setOrderByClause(String orderByClause) {
-        this.orderByClause = orderByClause;
-    }
-
     public String getOrderByClause() {
         return orderByClause;
     }
 
-    public void setDistinct(boolean distinct) {
-        this.distinct = distinct;
+    public void setOrderByClause(String orderByClause) {
+        this.orderByClause = orderByClause;
     }
 
     public boolean isDistinct() {
         return distinct;
+    }
+
+    public void setDistinct(boolean distinct) {
+        this.distinct = distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -3227,6 +3227,126 @@ public class TbOrderExample {
             addCriterion("seller_id not between", value1, value2, "sellerId");
             return (Criteria) this;
         }
+
+        public Criteria andMoneyItemJinhuoIsNull() {
+            addCriterion("money_item_jinhuo is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemJinhuoIsNotNull() {
+            addCriterion("money_item_jinhuo is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemJinhuoEqualTo(BigDecimal value) {
+            addCriterion("money_item_jinhuo =", value, "moneyItemJinhuo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemJinhuoNotEqualTo(BigDecimal value) {
+            addCriterion("money_item_jinhuo <>", value, "moneyItemJinhuo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemJinhuoGreaterThan(BigDecimal value) {
+            addCriterion("money_item_jinhuo >", value, "moneyItemJinhuo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemJinhuoGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("money_item_jinhuo >=", value, "moneyItemJinhuo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemJinhuoLessThan(BigDecimal value) {
+            addCriterion("money_item_jinhuo <", value, "moneyItemJinhuo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemJinhuoLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("money_item_jinhuo <=", value, "moneyItemJinhuo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemJinhuoIn(List<BigDecimal> values) {
+            addCriterion("money_item_jinhuo in", values, "moneyItemJinhuo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemJinhuoNotIn(List<BigDecimal> values) {
+            addCriterion("money_item_jinhuo not in", values, "moneyItemJinhuo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemJinhuoBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("money_item_jinhuo between", value1, value2, "moneyItemJinhuo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemJinhuoNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("money_item_jinhuo not between", value1, value2, "moneyItemJinhuo");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemZhenpingIsNull() {
+            addCriterion("money_item_zhenping is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemZhenpingIsNotNull() {
+            addCriterion("money_item_zhenping is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemZhenpingEqualTo(BigDecimal value) {
+            addCriterion("money_item_zhenping =", value, "moneyItemZhenping");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemZhenpingNotEqualTo(BigDecimal value) {
+            addCriterion("money_item_zhenping <>", value, "moneyItemZhenping");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemZhenpingGreaterThan(BigDecimal value) {
+            addCriterion("money_item_zhenping >", value, "moneyItemZhenping");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemZhenpingGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("money_item_zhenping >=", value, "moneyItemZhenping");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemZhenpingLessThan(BigDecimal value) {
+            addCriterion("money_item_zhenping <", value, "moneyItemZhenping");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemZhenpingLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("money_item_zhenping <=", value, "moneyItemZhenping");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemZhenpingIn(List<BigDecimal> values) {
+            addCriterion("money_item_zhenping in", values, "moneyItemZhenping");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemZhenpingNotIn(List<BigDecimal> values) {
+            addCriterion("money_item_zhenping not in", values, "moneyItemZhenping");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemZhenpingBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("money_item_zhenping between", value1, value2, "moneyItemZhenping");
+            return (Criteria) this;
+        }
+
+        public Criteria andMoneyItemZhenpingNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("money_item_zhenping not between", value1, value2, "moneyItemZhenping");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -3254,38 +3374,6 @@ public class TbOrderExample {
         private boolean listValue;
 
         private String typeHandler;
-
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
-        }
 
         protected Criterion(String condition) {
             super();
@@ -3321,6 +3409,38 @@ public class TbOrderExample {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
+        }
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
         }
     }
 }
