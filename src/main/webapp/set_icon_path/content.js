@@ -14,10 +14,41 @@ chrome.extension.onMessage.addListener(
 		var batchId=request.batchId;
 		timeInterval=request.timeInterval;
 
-
-		getData(dateBegin,dateEnd,1,batchId,code,orderId);
+		if ('money' == code) {
+			getDetailData(batchId, orderId)
+		} else {
+			getData(dateBegin, dateEnd, 1, batchId, code, orderId);
+		}
     }
 );
+
+function getDetailData(batchId, orderId) {
+	$.ajax({
+		type: "get",
+		asyn: false,
+		url: "https://trade.taobao.com/trade/detail/trade_order_detail.htm?biz_order_id=" + orderId,
+		timeout: 20000,
+		success: function (htmlData) {
+			var result = getSendInfo(htmlData);
+			var data = {};
+			data.batchId = batchId;
+			var mainOrders = new Array();
+			mainOrders[0] = {};
+			mainOrders[0].trade = result;
+			mainOrders[0].id = orderId;
+			data.mainOrders = mainOrders;
+
+			chrome.extension.sendMessage(data, function (response) {
+			});
+		},
+		error: function (e) {
+		}
+	});
+
+}
+
+
+
 
 function getData(dateBegin,dateEnd,pageNum,batchId,code,orderId){
 	if(orderId){

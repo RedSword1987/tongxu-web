@@ -146,8 +146,11 @@ function formatterTaskStatus(value, row, index) {
 	if (value) {
 		value = value + '';
 		if (value == 1) {
-			return "待执行(<a href='https://myseller.taobao.com/seller_admin.htm' target='_blank'>去抓数<a>)";
+			return "待执行 (<a href='https://myseller.taobao.com/seller_admin.htm' target='_blank'>去抓数<a>)";
 		} else if (value == 2) {
+			if (row && row.code && "wuliu" == row.code) {
+				return "成功 (<a href='/url/taskRunWuliuResult.action?id=" + row.id + "' target='_blank'>查看结果<a>)";
+			}
 			return "成功";
 		} else if (value == 3) {
 			return "失败";

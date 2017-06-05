@@ -33,5 +33,15 @@
 
 	</update>
 
+	<select id="listOrders" resultType="java.util.Map">
+		select * from tb_order a WHERE
+		a.orderinfo_id IN
+		<foreach collection="orderList" item="item" open="(" separator=","
+				 close=")">
+			#{item}
+		</foreach>
+
+	</select>
+
 
 </mapper>

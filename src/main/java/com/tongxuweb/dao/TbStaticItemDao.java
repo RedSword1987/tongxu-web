@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
- * Created by higgs on 17/5/8.
  */
 public interface TbStaticItemDao extends TbStaticItemMapper {
     @Select("select * from tb_static_item a where a.seller_id in(${sellerIds}) and a.date=#{date} order by item_num desc,item_name limit 8 ")

@@ -5,7 +5,6 @@ import com.tongxuweb.domain.generate.TaskRun;
 import java.util.Map;
 
 /**
- * Created by higgs on 17/5/15.
  */
 public class TaskRunExtend extends TaskRun {
 

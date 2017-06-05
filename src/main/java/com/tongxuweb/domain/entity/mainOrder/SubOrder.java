@@ -4,7 +4,6 @@ import com.tongxuweb.domain.entity.mainOrder.subOrder.ItemInfo;
 import com.tongxuweb.domain.entity.mainOrder.subOrder.PriceInfo;
 
 /**
- * Created by higgs on 17/2/14.
  */
 public class SubOrder {
     private Integer quantity;

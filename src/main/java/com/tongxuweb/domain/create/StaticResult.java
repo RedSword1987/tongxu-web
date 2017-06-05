@@ -1,7 +1,6 @@
 package com.tongxuweb.domain.create;
 
 /**
- * Created by higgs on 17/5/12.
  */
 public class StaticResult {
     String sellerId;

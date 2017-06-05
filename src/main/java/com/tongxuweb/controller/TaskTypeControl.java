@@ -7,6 +7,7 @@ import com.tongxuweb.service.TaskTypeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -16,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by higgs on 17/2/19.
  */
 @Controller
 @RequestMapping("/taskType")
@@ -71,6 +71,14 @@ public class TaskTypeControl{
         return result;
     }
 
+
+    @RequestMapping("/taskRunWuliuResultPage")
+    @ResponseBody
+    public PaginationResult taskRunWuliuResultPage(@RequestParam Long id, HttpServletRequest request) {
+        Pagination pagination = new Pagination(request);
+        PaginationResult result = taskTypeService.taskRunWuliuResultPage(pagination, id);
+        return result;
+    }
 
 
 

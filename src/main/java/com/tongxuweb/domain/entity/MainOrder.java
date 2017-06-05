@@ -5,7 +5,6 @@ import com.tongxuweb.domain.entity.mainOrder.*;
 import java.util.List;
 
 /**
- * Created by higgs on 17/2/14.
  */
 public class MainOrder {
     private String id;

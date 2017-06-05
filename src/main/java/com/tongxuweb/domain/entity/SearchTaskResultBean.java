@@ -10,13 +10,9 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * Created by higgs on 17/2/20.
  */
 public class SearchTaskResultBean extends Pagination {
 
-    private Long id;
-    private Date beginDate;
-    private Date endDate;
     String orderinfoId;
     String orderBarText;
     String statusinfoText;
@@ -26,6 +22,9 @@ public class SearchTaskResultBean extends Pagination {
     String buyerAddress;
     String order = "asc";
     String sort = "id";
+    private Long id;
+    private Date beginDate;
+    private Date endDate;
 
     public SearchTaskResultBean(HttpServletRequest request) {
         if (request != null) {

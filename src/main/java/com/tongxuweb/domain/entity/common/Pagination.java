@@ -5,7 +5,6 @@ import com.tongxuweb.util.StringUtil;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by higgs on 17/2/14.
  */
 public class Pagination {
 

@@ -3,7 +3,6 @@ package com.tongxuweb.util;
 import org.springframework.cache.annotation.Cacheable;
 
 /**
- * Created by higgs on 16/12/1.
  */
 public class TestCache {
     @Cacheable("testCache")

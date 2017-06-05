@@ -6,12 +6,10 @@ import com.tongxuweb.domain.entity.SearchTaskResultBean;
 import com.tongxuweb.domain.entity.common.PaginationResult;
 import com.tongxuweb.domain.generate.TaskGetdataTaobao;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by higgs on 17/2/14.
  */
 public interface TaskGetdataTaobaoService {
 

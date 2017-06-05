@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by higgs on 17/2/19.
  */
 public class OTaskGetdataTaobao extends TaskGetdataTaobao {
     List<String> orderids;

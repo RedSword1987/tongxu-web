@@ -9,6 +9,7 @@ import com.tongxuweb.domain.entity.common.KeyMap;
 import com.tongxuweb.domain.entity.mainOrder.Operation;
 import com.tongxuweb.domain.entity.mainOrder.SubOrder;
 import com.tongxuweb.domain.generate.*;
+import com.tongxuweb.service.TbService;
 import com.tongxuweb.service.interceptor.OutSideService;
 import com.tongxuweb.util.StringUtil;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,12 @@ public class OutSideServiceImpl implements OutSideService {
     private TbOrderDao tbOrderDao;
 
     @Resource
+    private TbItemDao tbItemDao;
+
+    @Resource
+    private TbSellerDao tbSellerDao;
+
+    @Resource
     private TbOrderItemDao tbOrderItemDao;
 
     @Resource
@@ -39,6 +46,114 @@ public class OutSideServiceImpl implements OutSideService {
 
     @Resource
     private TaskRunParamDao taskRunParamDao;
+
+    @Resource
+    private TbService tbService;
+
+    @Resource
+    private TbOrderStatusInfoDao tbOrderStatusInfoDao;
+
+    private static void initStatus(TbOrderExtend tbOrderExtend) {
+        if (tbOrderExtend != null && tbOrderExtend.getStatusinfoText() != null) {
+            if ("交易关闭".equals(tbOrderExtend.getStatusinfoText())) {
+                tbOrderExtend.setStatus(0);
+            } else if ("等待买家付款".equals(tbOrderExtend.getStatusinfoText())) {
+                tbOrderExtend.setStatus(0);
+            } else if ("买家已付款".equals(tbOrderExtend.getStatusinfoText())) {
+                tbOrderExtend.setStatus(1);
+            } else if ("卖家已发货".equals(tbOrderExtend.getStatusinfoText())) {
+                tbOrderExtend.setStatus(1);
+            } else if ("交易成功".equals(tbOrderExtend.getStatusinfoText())) {
+                tbOrderExtend.setStatus(1);
+            } else if ("资金保护中".equals(tbOrderExtend.getStatusinfoText())) {
+                tbOrderExtend.setStatus(1);
+            }
+        }
+
+    }
+
+    private static void initTbOrderMoney(TbOrderExtend tbOrderExtend) {
+        if (tbOrderExtend != null) {
+            if (tbOrderExtend.getPayinfoActualfee() != null) {
+                tbOrderExtend.setMoneyYunyinYongjin(new BigDecimal(tbOrderExtend.getPayinfoActualfee().doubleValue() * 0.3));
+                tbOrderExtend.setMoneyYunyinFuwufei(new BigDecimal(tbOrderExtend.getPayinfoActualfee().doubleValue() * 0.06));
+
+
+                Double finalMoney = tbOrderExtend.getPayinfoActualfee().doubleValue();
+                if (tbOrderExtend.getMoneyYunyinYongjin() != null) {
+                    finalMoney = finalMoney - tbOrderExtend.getMoneyYunyinYongjin().doubleValue();
+                }
+                if (tbOrderExtend.getMoneyYunyinFuwufei() != null) {
+                    finalMoney = finalMoney - tbOrderExtend.getMoneyYunyinFuwufei().doubleValue();
+                }
+                if (tbOrderExtend.getMoneyYunyinKoudian() != null) {
+                    finalMoney = finalMoney - tbOrderExtend.getMoneyYunyinKoudian().doubleValue();
+                }
+                if (tbOrderExtend.getMoneyYunyinYouhuiquan() != null) {
+                    finalMoney = finalMoney - tbOrderExtend.getMoneyYunyinYouhuiquan().doubleValue();
+                }
+                if (tbOrderExtend.getMoneyYunyinTeshu() != null) {
+                    finalMoney = finalMoney - tbOrderExtend.getMoneyYunyinTeshu().doubleValue();
+                }
+                if (tbOrderExtend.getMoneyWuliuKuaidi() != null) {
+                    finalMoney = finalMoney - tbOrderExtend.getMoneyWuliuKuaidi().doubleValue();
+                }
+                if (tbOrderExtend.getMoneyWuliuChangku() != null) {
+                    finalMoney = finalMoney - tbOrderExtend.getMoneyWuliuChangku().doubleValue();
+                }
+                if (tbOrderExtend.getMoneyWuliuBaozhuang() != null) {
+                    finalMoney = finalMoney - tbOrderExtend.getMoneyWuliuBaozhuang().doubleValue();
+                }
+                if (tbOrderExtend.getMoneyWuliuYunfeixian() != null) {
+                    finalMoney = finalMoney - tbOrderExtend.getMoneyWuliuYunfeixian().doubleValue();
+                }
+
+                tbOrderExtend.setMoneyFinalMoney(new BigDecimal(finalMoney));
+            }
+        }
+    }
+
+    private static void initTaskGetdataTaobaoOrder(TbOrderExtend tbOrderExtend) {
+        if (tbOrderExtend != null && !StringUtil.isEmpty(tbOrderExtend.getBuyerAddress())) {
+            String address = tbOrderExtend.getBuyerAddress();
+            String[] arr = address.split("，");
+            if (arr.length >= 4) {
+                tbOrderExtend.setBuyerName(arr[0]);
+                if (!StringUtil.isEmpty(arr[1]) && arr[1].length() > 3) {
+                    if (arr[1].startsWith("86-")) {
+                        arr[1] = arr[1].substring(3);
+                    }
+                    tbOrderExtend.setBuyerLogisticsPhone(arr[1]);
+                    if (!StringUtil.isEmpty(arr[1]) && arr[1].length() == 11) {
+                        String s7 = arr[1].substring(0, 7);
+                        int a = (int) (Math.random() * (9999 - 1000 + 1)) + 1000;
+                        tbOrderExtend.setBuyerVirtualPhone(s7 + String.valueOf(a));
+                    }
+                }
+
+                String buyer_post = arr[arr.length - 1].toString();
+                if (buyer_post.length() == 6) {
+                    tbOrderExtend.setBuyerPost(buyer_post);
+                }
+                String buyer_address = arr[arr.length - 2];
+                String[] buyer_addressArray = buyer_address.split(" ");
+                if (buyer_addressArray.length >= 3) {
+                    tbOrderExtend.setBuyerProvice(buyer_addressArray[0]);
+                    tbOrderExtend.setBuyerCity(buyer_addressArray[1]);
+
+                    StringBuilder stringBuilder = new StringBuilder();
+                    for (int i = 0; i < buyer_addressArray.length; i++) {
+                        if (i > 1) {
+                            stringBuilder.append(buyer_addressArray[i]).append(" ");
+                        }
+                    }
+                    tbOrderExtend.setBuyerArea(stringBuilder.toString().trim());
+                }
+                tbOrderExtend.setBuyerAddress(buyer_address);
+            }
+        }
+
+    }
 
     public Integer saveOrders(MainOrders mainOrders, Map<String, Object> ss) {
         Integer insert = 0;
@@ -69,6 +184,16 @@ public class OutSideServiceImpl implements OutSideService {
 
         ss.put("insert", insert);
         ss.put("update", update);
+
+
+        if (insert > 0) {
+            tbSellerDao.tbSellerImport();
+            tbItemDao.tbItemImport();
+            tbOrderStatusInfoDao.statusInfoRefreshOrder();
+            tbOrderStatusInfoDao.autoImport();
+
+            tbService.tbItemRefreshPrice();
+        }
         return list.size();
     }
 
@@ -107,7 +232,6 @@ public class OutSideServiceImpl implements OutSideService {
         return taskRunDao.updateByPrimaryKeySelective(taskRun);
     }
 
-
     private List<TbOrderExtend> convert(MainOrders mainOrders) {
         List<TbOrderExtend> list = new ArrayList<TbOrderExtend>();
         if (mainOrders.getMainOrders() != null) {
@@ -129,6 +253,9 @@ public class OutSideServiceImpl implements OutSideService {
                         tbOrderExtend.setPayTime(mainOrder.getTrade().getPayTime());
                         tbOrderExtend.setSendTime(mainOrder.getTrade().getSendTime());
 
+                        if (!StringUtil.isEmpty(mainOrder.getTrade().getPayTime()) && mainOrder.getTrade().getPayTime().length() > 11) {
+                            tbOrderExtend.setDate(mainOrder.getTrade().getPayTime().substring(0, 10));
+                        }
 
                         tbOrderExtend.setLogisticsDesc(mainOrder.getTrade().getLogisticsDesc());
                         tbOrderExtend.setLogisticsLastDesc(mainOrder.getTrade().getLogisticsLastDesc());
@@ -211,109 +338,6 @@ public class OutSideServiceImpl implements OutSideService {
 
 
         return list;
-
-    }
-
-    private static void initStatus(TbOrderExtend tbOrderExtend) {
-        if (tbOrderExtend != null && tbOrderExtend.getStatusinfoText() != null) {
-            if ("交易关闭".equals(tbOrderExtend.getStatusinfoText())) {
-                tbOrderExtend.setStatus(0);
-            } else if ("等待买家付款".equals(tbOrderExtend.getStatusinfoText())) {
-                tbOrderExtend.setStatus(0);
-            } else if ("买家已付款".equals(tbOrderExtend.getStatusinfoText())) {
-                tbOrderExtend.setStatus(1);
-            } else if ("卖家已发货".equals(tbOrderExtend.getStatusinfoText())) {
-                tbOrderExtend.setStatus(1);
-            } else if ("交易成功".equals(tbOrderExtend.getStatusinfoText())) {
-                tbOrderExtend.setStatus(1);
-            } else if ("资金保护中".equals(tbOrderExtend.getStatusinfoText())) {
-                tbOrderExtend.setStatus(1);
-            }
-        }
-
-    }
-
-    private static void initTbOrderMoney(TbOrderExtend tbOrderExtend) {
-        if (tbOrderExtend != null) {
-            if (tbOrderExtend.getPayinfoActualfee() != null) {
-                tbOrderExtend.setMoneyYunyinYongjin(new BigDecimal(tbOrderExtend.getPayinfoActualfee().doubleValue() * 0.3));
-                tbOrderExtend.setMoneyYunyinFuwufei(new BigDecimal(tbOrderExtend.getPayinfoActualfee().doubleValue() * 0.06));
-
-
-                Double finalMoney = tbOrderExtend.getPayinfoActualfee().doubleValue();
-                if (tbOrderExtend.getMoneyYunyinYongjin() != null) {
-                    finalMoney = finalMoney - tbOrderExtend.getMoneyYunyinYongjin().doubleValue();
-                }
-                if (tbOrderExtend.getMoneyYunyinFuwufei() != null) {
-                    finalMoney = finalMoney - tbOrderExtend.getMoneyYunyinFuwufei().doubleValue();
-                }
-                if (tbOrderExtend.getMoneyYunyinKoudian() != null) {
-                    finalMoney = finalMoney - tbOrderExtend.getMoneyYunyinKoudian().doubleValue();
-                }
-                if (tbOrderExtend.getMoneyYunyinYouhuiquan() != null) {
-                    finalMoney = finalMoney - tbOrderExtend.getMoneyYunyinYouhuiquan().doubleValue();
-                }
-                if (tbOrderExtend.getMoneyYunyinTeshu() != null) {
-                    finalMoney = finalMoney - tbOrderExtend.getMoneyYunyinTeshu().doubleValue();
-                }
-                if (tbOrderExtend.getMoneyWuliuKuaidi() != null) {
-                    finalMoney = finalMoney - tbOrderExtend.getMoneyWuliuKuaidi().doubleValue();
-                }
-                if (tbOrderExtend.getMoneyWuliuChangku() != null) {
-                    finalMoney = finalMoney - tbOrderExtend.getMoneyWuliuChangku().doubleValue();
-                }
-                if (tbOrderExtend.getMoneyWuliuBaozhuang() != null) {
-                    finalMoney = finalMoney - tbOrderExtend.getMoneyWuliuBaozhuang().doubleValue();
-                }
-                if (tbOrderExtend.getMoneyWuliuYunfeixian() != null) {
-                    finalMoney = finalMoney - tbOrderExtend.getMoneyWuliuYunfeixian().doubleValue();
-                }
-
-                tbOrderExtend.setMoneyFinalMoney(new BigDecimal(finalMoney));
-            }
-        }
-    }
-
-
-    private static void initTaskGetdataTaobaoOrder(TbOrderExtend tbOrderExtend) {
-        if (tbOrderExtend != null && !StringUtil.isEmpty(tbOrderExtend.getBuyerAddress())) {
-            String address = tbOrderExtend.getBuyerAddress();
-            String[] arr = address.split("，");
-            if (arr.length >= 4) {
-                tbOrderExtend.setBuyerName(arr[0]);
-                if (!StringUtil.isEmpty(arr[1]) && arr[1].length() > 3) {
-                    if (arr[1].startsWith("86-")) {
-                        arr[1] = arr[1].substring(3);
-                    }
-                    tbOrderExtend.setBuyerLogisticsPhone(arr[1]);
-                    if (!StringUtil.isEmpty(arr[1]) && arr[1].length() == 11) {
-                        String s7 = arr[1].substring(0, 7);
-                        int a = (int) (Math.random() * (9999 - 1000 + 1)) + 1000;
-                        tbOrderExtend.setBuyerVirtualPhone(s7 + String.valueOf(a));
-                    }
-                }
-
-                String buyer_post = arr[arr.length - 1].toString();
-                if (buyer_post.length() == 6) {
-                    tbOrderExtend.setBuyerPost(buyer_post);
-                }
-                String buyer_address = arr[arr.length - 2];
-                String[] buyer_addressArray = buyer_address.split(" ");
-                if (buyer_addressArray.length >= 3) {
-                    tbOrderExtend.setBuyerProvice(buyer_addressArray[0]);
-                    tbOrderExtend.setBuyerCity(buyer_addressArray[1]);
-
-                    StringBuilder stringBuilder = new StringBuilder();
-                    for (int i = 0; i < buyer_addressArray.length; i++) {
-                        if (i > 1) {
-                            stringBuilder.append(buyer_addressArray[i]).append(" ");
-                        }
-                    }
-                    tbOrderExtend.setBuyerArea(stringBuilder.toString().trim());
-                }
-                tbOrderExtend.setBuyerAddress(buyer_address);
-            }
-        }
 
     }
 }

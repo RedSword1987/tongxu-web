@@ -3,6 +3,7 @@ package com.tongxuweb.service.impl;
 import com.tongxuweb.dao.TaskRunDao;
 import com.tongxuweb.dao.TaskRunParamDao;
 import com.tongxuweb.dao.TaskTypeDao;
+import com.tongxuweb.dao.TbOrderDao;
 import com.tongxuweb.domain.create.DTaskRun;
 import com.tongxuweb.domain.entity.common.Pagination;
 import com.tongxuweb.domain.entity.common.PaginationResult;
@@ -19,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by higgs on 17/5/11.
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -30,6 +30,10 @@ public class TaskTypeServiceImpl implements TaskTypeService {
 
     @Resource
     private TaskRunDao taskRunDao;
+
+    @Resource
+    private TbOrderDao tbOrderDao;
+
 
     @Resource
     private TaskRunParamDao taskRunParamDao;
@@ -176,6 +180,32 @@ public class TaskTypeServiceImpl implements TaskTypeService {
 
                 taskRunParamDao.insertSelective(taskRunParam1);
                 taskRunParamDao.insertSelective(taskRunParam2);
+            } else if ("money".equals(taskRun.getCode())) {
+
+                TbOrderExample ex = new TbOrderExample();
+                ex.createCriteria().andStatusEqualTo(1).andDateIsNull();
+                ex.setOrderByClause(" id desc limit 10");
+                List<String> orderIds = new ArrayList<String>();
+                List<TbOrder> ali = tbOrderDao.selectByExample(ex);
+                for (TbOrder tbOrder : ali) {
+                    orderIds.add(tbOrder.getOrderinfoId());
+                }
+
+                TaskRunParam taskRunParam1 = new TaskRunParam();
+                taskRunParam1.setKeyEn("orderIds");
+                taskRunParam1.setKeyValue(StringUtil.joinListString(orderIds, ","));
+                taskRunParam1.setTaskRunId(taskRun.getId());
+                taskRunParam1.setType(1);
+
+                TaskRunParam taskRunParam2 = new TaskRunParam();
+                taskRunParam2.setKeyEn("orderNum");
+                taskRunParam2.setKeyValue(String.valueOf(orderIds.size()));
+                taskRunParam2.setTaskRunId(taskRun.getId());
+                taskRunParam2.setType(1);
+
+                taskRunParamDao.insertSelective(taskRunParam1);
+                taskRunParamDao.insertSelective(taskRunParam2);
+
             }
         }
 
@@ -226,5 +256,33 @@ public class TaskTypeServiceImpl implements TaskTypeService {
             }
         }
 
+    }
+
+    public PaginationResult taskRunWuliuResultPage(Pagination pagination, Long id) {
+        TaskRunParamExample ex = new TaskRunParamExample();
+        ex.createCriteria().andTaskRunIdEqualTo(id).andKeyEnEqualTo("orderIds");
+        List<TaskRunParam> li = taskRunParamDao.selectByExample(ex);
+        List<String> orderList = new ArrayList<String>();
+        if (li.size() > 0) {
+            for (String oneOrder : li.get(0).getKeyValue().split(",")) {
+                orderList.add(oneOrder);
+            }
+        } else {
+            orderList.add("");
+        }
+
+
+        PaginationResult result = new PaginationResult();
+        TbOrderExample tbEx = new TbOrderExample();
+        tbEx.createCriteria().andOrderinfoIdIn(orderList);
+        tbEx.setOrderByClause("id asc limit " + pagination.getOffset() + "," + pagination.getLimit());
+        List<TbOrder> re = tbOrderDao.selectByExample(tbEx);
+
+        Integer count = tbOrderDao.countByExample(tbEx);
+        pagination.setTotal(count);
+
+        result.setPagination(pagination);
+        result.setRows(re);
+        return result;
     }
 }

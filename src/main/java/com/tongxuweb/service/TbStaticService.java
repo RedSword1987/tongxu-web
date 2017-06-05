@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by higgs on 17/5/8.
  */
 public interface TbStaticService {
     Map<String, List<Map<String, Object>>> getAllLines(List<TbSeller> li);

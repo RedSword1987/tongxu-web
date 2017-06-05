@@ -1,7 +1,6 @@
 package com.tongxuweb.domain.entity.common;
 
 /**
- * Created by higgs on 17/2/14.
  */
 public class PaginationResult extends Pagination {
     Object rows;

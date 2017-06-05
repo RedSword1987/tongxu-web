@@ -154,6 +154,11 @@ public class UrlRedirect {
         return "jsp/setting/tbOrderStatusInfo";
     }
 
-
+    @RequestMapping("/taskRunWuliuResult")
+    public String taskRunWuliuResult(HttpServletRequest request) {
+        String id = request.getParameter("id");
+        request.setAttribute("id", id);
+        return "jsp/task/taskRunWuliuResult";
+    }
 
 }

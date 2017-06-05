@@ -12,7 +12,6 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
 /**
- * Created by higgs on 16/12/1.
  */
 @Configuration
 @EnableCaching

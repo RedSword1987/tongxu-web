@@ -64,19 +64,37 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 								"orderId": null
 							});
 						}else if("wuliu"==code){
-							finishTask(taskId, 4);
-							if (task.orderIds && $(task.orderIds).size() > 0) {
-								getOrderDetail(tab.id,
-									{"batchId":taskId,
-									"begin":begin,
-									"end":end,
-									"timeInterval":timeInterval,
-									"code":code},
-									0,
-									task.orderids);
+							if (task.orderIds) {
+								var orderArr = task.orderIds.split(",");
+								if ($(orderArr).size() > 0) {
+									getOrderDetail(tab.id,
+										{
+											"batchId": taskId,
+											"begin": begin,
+											"end": end,
+											"timeInterval": timeInterval,
+											"code": code
+										},
+										0,
+										orderArr);
+								}
 							}
 						} else if ("money" == code) {
-
+							if (task.orderIds) {
+								var orderArr = task.orderIds.split(",");
+								if ($(orderArr).size() > 0) {
+									getOrderDetail(tab.id,
+										{
+											"batchId": taskId,
+											"begin": begin,
+											"end": end,
+											"timeInterval": timeInterval,
+											"code": code
+										},
+										0,
+										orderArr);
+								}
+							}
 						}
 					});
 					 
@@ -99,11 +117,10 @@ function getOrderDetail(tab_id,data,index_,orderids){
 	index_++;
 	if(index_<$(orderids).length){
 		setTimeout(function () { 
-			console.info(new Date());
 			getOrderDetail(tab_id,data,index_,orderids);
 		}, timeInterval*1000);
 	}else{
-		finishTask(data.batchId,2);
+		//finishTask(data.batchId,2);
 	}
 }
 
@@ -113,9 +130,10 @@ function finishTask(taskId,status){
 	$.ajax({
 		type: "post",
 		contentType: "application/json",
+		dataType: "json",
 		url: urlPre+finishTask,
 		data: JSON.stringify(dataJson),
-		dataType: "json",
+
 		timeout:   20000,
 		success: function (data) {
 			 
@@ -140,5 +158,4 @@ function saveData(request){
 		    error: function (e) {
 		    }
 		});
-	
 }

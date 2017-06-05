@@ -3,7 +3,6 @@ package com.tongxuweb.domain.entity;
 import com.tongxuweb.domain.entity.common.Pagination;
 
 /**
- * Created by higgs on 17/2/19.
  */
 public class TestBean extends Pagination {
 

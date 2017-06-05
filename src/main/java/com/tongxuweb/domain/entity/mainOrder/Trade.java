@@ -1,7 +1,6 @@
 package com.tongxuweb.domain.entity.mainOrder;
 
 /**
- * Created by higgs on 17/2/15.
  */
 public class Trade {
     //private String buyer_provice;

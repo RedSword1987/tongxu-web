@@ -10,17 +10,15 @@ import com.tongxuweb.domain.generate.TaskGetdataTaobao;
 import com.tongxuweb.domain.generate.TaskGetdataTaobaoExample;
 import com.tongxuweb.domain.generate.TaskGetdataTaobaoOrder;
 import com.tongxuweb.service.TaskGetdataTaobaoService;
-import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.Resource;
 
 /**
- * Created by higgs on 17/2/14.
  */
 @Service
 @Transactional(rollbackFor = Exception.class)

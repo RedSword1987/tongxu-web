@@ -3,7 +3,6 @@ package com.tongxuweb.domain.entity.mainOrder;
 import java.io.Serializable;
 
 /**
- * Created by higgs on 17/2/14.
  */
 public class Buyer implements Serializable{
 

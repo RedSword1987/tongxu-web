@@ -21,6 +21,8 @@
                         <h2>${name}
                             <small><a href="${pageContext.request.contextPath}/file/抓数插件.zip" target="_blank">抓数插件下载</a>
                             </small>
+                            <small> 单次默认抓数1000条
+                            </small>
                         </h2>
 
                         <div class="clearfix"></div>
@@ -62,6 +64,7 @@
     var columns = [
         {checkbox: true},
         {field: "taskName", title: "执行名称"},
+        {field: "orderNum", title: "订单数量"},
         {field: "status", title: "状态", formatter: formatterTaskStatus},
         {field: "beginDate", title: "执行开始时间", formatter: formatter_datetime, class: "th_time"},
         {field: "endDate", title: "执行结束时间", formatter: formatter_datetime, class: "th_time"},

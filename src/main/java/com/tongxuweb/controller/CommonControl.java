@@ -1,34 +1,41 @@
 package com.tongxuweb.controller;
 
+import com.tongxuweb.dao.TaskRunDao;
+import com.tongxuweb.dao.TaskRunParamDao;
+import com.tongxuweb.dao.TbOrderDao;
 import com.tongxuweb.domain.entity.SearchTaskResultBean;
-import com.tongxuweb.domain.generate.TaskGetdataTaobao;
-import com.tongxuweb.service.TaskGetdataTaobaoService;
+import com.tongxuweb.domain.generate.TaskRun;
+import com.tongxuweb.domain.generate.TaskRunParam;
+import com.tongxuweb.domain.generate.TaskRunParamExample;
 import com.tongxuweb.util.DateUtil;
 import com.tongxuweb.util.ExcelUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
- * Created by higgs on 17/2/19.
  */
 @Controller
 @RequestMapping("/common")
 public class CommonControl {
+
     @Resource
-    private TaskGetdataTaobaoService taskGetdataTaobaoService;
+    private TaskRunDao taskRunDao;
+
+    @Resource
+    private TbOrderDao tbOrderDao;
+
+
+    @Resource
+    private TaskRunParamDao taskRunParamDao;
 
     /**
      * @param request
@@ -44,14 +51,27 @@ public class CommonControl {
 
         String fileName = "ID_" + searchTaskResultBean.getId() + "_" + DateUtil.getTimeStringNow("yyyy-MM-dd");
         if (searchTaskResultBean.getId() != null) {
-            TaskGetdataTaobao t = taskGetdataTaobaoService.getOne(searchTaskResultBean.getId());
-            if (t != null) {
-                fileName = t.getTaskName();
+            TaskRun taskRun = taskRunDao.selectByPrimaryKey(searchTaskResultBean.getId());
+            if (taskRun != null) {
+                fileName = taskRun.getTaskName();
             }
         }
 
 
-        List<Map<String, Object>> listResult = taskGetdataTaobaoService.listTaskResultMap(searchTaskResultBean);
+        TaskRunParamExample ex = new TaskRunParamExample();
+        ex.createCriteria().andTaskRunIdEqualTo(searchTaskResultBean.getId()).andKeyEnEqualTo("orderIds");
+        List<TaskRunParam> li = taskRunParamDao.selectByExample(ex);
+        List<String> orderList = new ArrayList<String>();
+        if (li.size() > 0) {
+            for (String oneOrder : li.get(0).getKeyValue().split(",")) {
+                orderList.add(oneOrder);
+            }
+        } else {
+            orderList.add("");
+        }
+
+
+        List<Map<String, Object>> listResult = tbOrderDao.listOrders(orderList);
 
 
         String columnNames[] = {"订单编号", "收货姓名", "详细地址", "虚拟手机", "订单创建时间", "订单买家状态", "订单卖家状态", "快递公司", "快递号", "淘宝物流编号",

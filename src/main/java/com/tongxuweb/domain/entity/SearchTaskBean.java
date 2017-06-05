@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * Created by higgs on 17/2/19.
  */
 public class SearchTaskBean extends Pagination {
 

@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * Created by higgs on 17/5/8.
  */
 public interface TbStaticSizeDao extends TbStaticSizeMapper {
 

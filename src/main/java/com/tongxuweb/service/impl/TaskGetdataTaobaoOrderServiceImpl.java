@@ -18,13 +18,54 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by higgs on 17/2/13.
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class TaskGetdataTaobaoOrderServiceImpl implements TaskGetdataTaobaoOrderService {
     @Resource
     private TaskGetdataTaobaoOrderDao taskGetdataTaobaoOrderDao;
+
+    private static void initTaskGetdataTaobaoOrder(TaskGetdataTaobaoOrder taskGetdataTaobaoOrder) {
+        if (taskGetdataTaobaoOrder != null && !StringUtil.isEmpty(taskGetdataTaobaoOrder.getBuyerAddress())) {
+            String address = taskGetdataTaobaoOrder.getBuyerAddress();
+            String[] arr = address.split("，");
+            if (arr.length >= 4) {
+                taskGetdataTaobaoOrder.setBuyerName(arr[0]);
+                if (!StringUtil.isEmpty(arr[1]) && arr[1].length() > 3) {
+                    if (arr[1].startsWith("86-")) {
+                        arr[1] = arr[1].substring(3);
+                    }
+                    taskGetdataTaobaoOrder.setBuyerLogisticsPhone(arr[1]);
+                    if (!StringUtil.isEmpty(arr[1]) && arr[1].length() == 11) {
+                        String s7 = arr[1].substring(0, 7);
+                        int a = (int) (Math.random() * (9999 - 1000 + 1)) + 1000;
+                        taskGetdataTaobaoOrder.setBuyerVirtualPhone(s7 + String.valueOf(a));
+                    }
+                }
+
+                String buyer_post = arr[arr.length - 1].toString();
+                if (buyer_post.length() == 6) {
+                    taskGetdataTaobaoOrder.setBuyerPost(buyer_post);
+                }
+                String buyer_address = arr[arr.length - 2];
+                String[] buyer_addressArray = buyer_address.split(" ");
+                if (buyer_addressArray.length >= 3) {
+                    taskGetdataTaobaoOrder.setBuyerProvice(buyer_addressArray[0]);
+                    taskGetdataTaobaoOrder.setBuyerCity(buyer_addressArray[1]);
+
+                    StringBuilder stringBuilder = new StringBuilder();
+                    for (int i = 0; i < buyer_addressArray.length; i++) {
+                        if (i > 1) {
+                            stringBuilder.append(buyer_addressArray[i]).append(" ");
+                        }
+                    }
+                    taskGetdataTaobaoOrder.setBuyerArea(stringBuilder.toString().trim());
+                }
+                taskGetdataTaobaoOrder.setBuyerAddress(buyer_address);
+            }
+        }
+
+    }
 
     public Date getLastDate() {
         Date result = null;
@@ -64,8 +105,6 @@ public class TaskGetdataTaobaoOrderServiceImpl implements TaskGetdataTaobaoOrder
         ss.put("update", update);
         return list.size();
     }
-
-
 
     private List<TaskGetdataTaobaoOrder> convert(MainOrders mainOrders) {
         List<TaskGetdataTaobaoOrder> list = new ArrayList<TaskGetdataTaobaoOrder>();
@@ -120,48 +159,6 @@ public class TaskGetdataTaobaoOrderServiceImpl implements TaskGetdataTaobaoOrder
 
 
         return list;
-
-    }
-
-    private static void initTaskGetdataTaobaoOrder(TaskGetdataTaobaoOrder taskGetdataTaobaoOrder) {
-        if (taskGetdataTaobaoOrder != null && !StringUtil.isEmpty(taskGetdataTaobaoOrder.getBuyerAddress())) {
-            String address = taskGetdataTaobaoOrder.getBuyerAddress();
-            String[] arr = address.split("，");
-            if (arr.length >= 4) {
-                taskGetdataTaobaoOrder.setBuyerName(arr[0]);
-                if (!StringUtil.isEmpty(arr[1])&&arr[1].length()>3){
-                    if (arr[1].startsWith("86-")){
-                        arr[1]=arr[1].substring(3);
-                    }
-                    taskGetdataTaobaoOrder.setBuyerLogisticsPhone(arr[1]);
-                    if (!StringUtil.isEmpty(arr[1])&&arr[1].length()==11){
-                        String s7=arr[1].substring(0,7);
-                        int a = (int)(Math.random()*(9999-1000+1))+1000;
-                        taskGetdataTaobaoOrder.setBuyerVirtualPhone(s7+String.valueOf(a));
-                    }
-                }
-
-                String buyer_post = arr[arr.length - 1].toString();
-                if (buyer_post.length() == 6) {
-                    taskGetdataTaobaoOrder.setBuyerPost(buyer_post);
-                }
-                String buyer_address = arr[arr.length - 2];
-                String[] buyer_addressArray = buyer_address.split(" ");
-                if (buyer_addressArray.length >= 3) {
-                    taskGetdataTaobaoOrder.setBuyerProvice(buyer_addressArray[0]);
-                    taskGetdataTaobaoOrder.setBuyerCity(buyer_addressArray[1]);
-
-                    StringBuilder stringBuilder=new StringBuilder();
-                    for (int i=0;i<buyer_addressArray.length;i++){
-                        if (i>1){
-                            stringBuilder.append(buyer_addressArray[i]).append(" ");
-                        }
-                    }
-                    taskGetdataTaobaoOrder.setBuyerArea(stringBuilder.toString().trim());
-                }
-                taskGetdataTaobaoOrder.setBuyerAddress(buyer_address);
-            }
-        }
 
     }
 }

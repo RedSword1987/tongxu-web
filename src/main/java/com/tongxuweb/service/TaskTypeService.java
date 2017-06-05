@@ -7,7 +7,6 @@ import com.tongxuweb.domain.entity.common.PaginationResult;
 import java.util.List;
 
 /**
- * Created by higgs on 17/5/8.
  */
 public interface TaskTypeService {
 
@@ -23,4 +22,5 @@ public interface TaskTypeService {
 
     void taskRunUpdate(DTaskRun taskRun);
 
+    PaginationResult taskRunWuliuResultPage(Pagination pagination, Long id);
 }
