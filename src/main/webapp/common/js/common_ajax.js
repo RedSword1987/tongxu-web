@@ -144,7 +144,8 @@ function common_update(obj,updateFields_p,url_update,table_id_p,idField_p){
 	
 	//更改了值的字段
 	var needUpdateFields={};
-	
+
+
 	$.each(updateFields_p,function(i,value){
 		if(!value.isShow){
 			var newValue;
@@ -153,8 +154,7 @@ function common_update(obj,updateFields_p,url_update,table_id_p,idField_p){
 			}else{
 				newValue=$.trim($("#updateForm_"+value.field).val());
 			}
-
-			if (newValue == '' && newValue != 0) {
+			if ((newValue == '' || newValue == null || newValue == undefined) && newValue != '0') {
 				if(value.require&&check){
 					check=false;
 					alert(value.title+" 不可为空");
@@ -164,7 +164,6 @@ function common_update(obj,updateFields_p,url_update,table_id_p,idField_p){
 					needUpdateFields[value.field]=newValue;
 				}
 			}else {
-				
 				if(value.fileType=="2"){
 					if(!chechInt(newValue)){
 						check=false;

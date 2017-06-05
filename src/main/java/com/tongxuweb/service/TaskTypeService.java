@@ -13,6 +13,8 @@ public interface TaskTypeService {
 
     PaginationResult taskTypePage(Pagination pagination);
 
+    List<DTaskRun> listTaskRun(Pagination pagination, String code, Integer status);
+
     PaginationResult taskRunPage(Pagination pagination, String code);
 
     void taskRunDelete(List<Long> ids);

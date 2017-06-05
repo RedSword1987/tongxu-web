@@ -10,9 +10,9 @@ var urlPre=urlPre_local;
 
 chrome.extension.onMessage.addListener(
     function(request, sender, sendResponse) {
-		//alert("back 收到1条消息");
         saveData(request);
-		finishTask(request.batchId,2)
+
+		//finishTask(request.batchId,2)
     }
 );
 
@@ -41,22 +41,31 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
 						var begin=new Date();
 						var end=new Date();
-						if(task.beginDate){
-							begin=task.beginDate;
+						if (task.paramBeginDate) {
+							var dayF = task.paramBeginDate.split("-");
+							begin = new Date(dayF[0] * 1, dayF[1] * 1 - 1, dayF[2] * 1, 0, 0, 0);
 						}
-						if(task.endDate){
-							end=task.endDate;
+						if (task.paramEndDate) {
+							var dayF = task.paramEndDate.split("-");
+							end = new Date(dayF[0] * 1, dayF[1] * 1 - 1, dayF[2] * 1, 23, 59, 59);
 						}
 
-						var typeDesc=code
+						var typeDesc = code;
 
-						alert("开始抓数(type:"+typeDesc+") dateBegin:"+begin+",dateEnd:"+end+",batchId:"+taskId+"," );
+						alert("开始抓数(type:" + typeDesc + ") dateBegin:" + Date.parse(begin) + ",dateEnd:" + Date.parse(end) + ",batchId:" + taskId + ",");
 						if ("main"==code) {
-							finishTask(data.batchId,4);
-							chrome.tabs.sendMessage(tab.id,{"batchId":taskId,"begin":begin,"end":end,"timeInterval":timeInterval,"code":code,"orderId":null});
+							//finishTask(taskId,4);
+							chrome.tabs.sendMessage(tab.id, {
+								"batchId": taskId,
+								"begin": Date.parse(begin),
+								"end": Date.parse(end),
+								"timeInterval": timeInterval,
+								"code": code,
+								"orderId": null
+							});
 						}else if("wuliu"==code){
-							finishTask(data.batchId,4);
-							if(task.orderids&&$(task.orderids).size()>0){
+							finishTask(taskId, 4);
+							if (task.orderIds && $(task.orderIds).size() > 0) {
 								getOrderDetail(tab.id,
 									{"batchId":taskId,
 									"begin":begin,
@@ -66,8 +75,9 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 									0,
 									task.orderids);
 							}
+						} else if ("money" == code) {
+
 						}
-						finishTask(taskId);
 					});
 					 
 					
@@ -132,6 +142,3 @@ function saveData(request){
 		});
 	
 }
-
-
- 

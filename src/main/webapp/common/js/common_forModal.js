@@ -189,7 +189,7 @@ function initUpdateModal(obj,updateFields ){
 					updateContent += '<input type="password"  id="updateForm_' + value.field + '"  value=""  class="form-control col-md-7 col-xs-12">';
 				}
 			} else if (27 == value.fileType) {
-				updateContent += '<textarea type="textarea" rows="3"   id="updateForm_' + value.field + '" class="form-control col-md-7 col-xs-12"></textarea>';
+				updateContent += '<textarea type="textarea" rows="3"   id="updateForm_' + value.field + '" class="form-control col-md-7 col-xs-12">' + field_value + '</textarea>';
 			} else {
 				if ((field_value != null && field_value != '') || ((typeof(field_value) == "number" || typeof(field_value) == "string") && field_value == '0')) {
 					updateContent += '<input type="text"  id="updateForm_' + value.field + '"  value="' + field_value + '"  class="form-control col-md-7 col-xs-12">';

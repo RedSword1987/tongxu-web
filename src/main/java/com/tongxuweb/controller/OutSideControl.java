@@ -1,8 +1,10 @@
 package com.tongxuweb.controller;
 
-import com.tongxuweb.domain.create.TaskRunExtend;
+import com.tongxuweb.domain.create.DTaskRun;
 import com.tongxuweb.domain.entity.MainOrders;
+import com.tongxuweb.domain.entity.common.Pagination;
 import com.tongxuweb.domain.generate.TaskRun;
+import com.tongxuweb.service.TaskTypeService;
 import com.tongxuweb.service.interceptor.OutSideService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,12 +27,19 @@ public class OutSideControl {
     @Resource
     private OutSideService outSideService;
 
+    @Resource
+    private TaskTypeService taskTypeService;
+
 
     @RequestMapping("/getNeedTask")
     @ResponseBody
     public Map<String, Object> getNeedTask() {
         Map<String, Object> result = new HashMap<String, Object>();
-        List<TaskRunExtend> tasklist = outSideService.getNeedTask();
+        Pagination pagination = new Pagination();
+        pagination.setOffset(0);
+        pagination.setLimit(1);
+        List<DTaskRun> tasklist = taskTypeService.listTaskRun(pagination, null, 1);
+//        List<TaskRunExtend> tasklist = outSideService.getNeedTask();
         result.put("tasklist", tasklist);
         return result;
     }

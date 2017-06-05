@@ -4,7 +4,9 @@ import com.tongxuweb.domain.generate.TaskRun;
 import com.tongxuweb.util.StringUtil;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by red
@@ -58,20 +60,25 @@ public class DTaskRun extends TaskRun {
     }
 
     public void initOrderNum() {
-        if (StringUtil.isEmpty(getOrderIds())) {
+        if (!StringUtil.isEmpty(getOrderIds())) {
             String orderIds = getOrderIds().trim();
 
             List<String> orderids = new ArrayList<String>();
             if (!StringUtil.isEmpty(orderIds)) {
                 String[] arr = orderIds.split("[,; \\n\\t]");
+                Set<String> set = new HashSet<String>();
                 for (String arrS : arr) {
-                    if (!StringUtil.isEmpty(arrS) && arrS.length() >= 16) {
-                        orderids.add(arrS);
+//                    && arrS.length() >= 16
+                    if (!StringUtil.isEmpty(arrS)) {
+                        set.add(arrS.trim());
                     }
                 }
+                orderids.addAll(set);
             }
             setOrderIds(StringUtil.joinListString(orderids, ","));
             setOrderNum(String.valueOf(orderids.size()));
+        } else {
+            setOrderNum("0");
         }
     }
 }

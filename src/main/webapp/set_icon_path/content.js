@@ -13,10 +13,9 @@ chrome.extension.onMessage.addListener(
 		var dateEnd=request.end;
 		var batchId=request.batchId;
 		timeInterval=request.timeInterval;
-		
-		
-		
-        getData(dateBegin,dateEnd,1,batchId,code,orderId);
+
+
+		getData(dateBegin,dateEnd,1,batchId,code,orderId);
     }
 );
 
@@ -179,7 +178,6 @@ function getData(dateBegin,dateEnd,pageNum,batchId,code,orderId){
 						}
 						var totalPage=data.page.totalPage;
 						data.batchId=batchId;
-						 
 						chrome.extension.sendMessage(data, function(response) {});
 						if(pageNum<totalPage){
 							 setTimeout(function () { 

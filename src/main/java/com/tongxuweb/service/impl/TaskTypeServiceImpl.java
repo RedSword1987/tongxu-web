@@ -50,20 +50,36 @@ public class TaskTypeServiceImpl implements TaskTypeService {
         return result;
     }
 
+
+    public List<DTaskRun> listTaskRun(Pagination pagination, String code, Integer status) {
+        TaskRunExample ex = new TaskRunExample();
+        TaskRunExample.Criteria criteria = ex.createCriteria();
+        if (!StringUtil.isEmpty(code)) {
+            criteria.andCodeEqualTo(code);
+        }
+        if (status != null) {
+            criteria.andStatusEqualTo(status);
+        }
+        ex.setOrderByClause("id asc limit " + pagination.getOffset() + "," + pagination.getLimit());
+        List<TaskRun> re = taskRunDao.selectByExample(ex);
+        return convert(re);
+    }
+
     public PaginationResult taskRunPage(Pagination pagination, String code) {
         PaginationResult result = new PaginationResult();
         TaskRunExample ex = new TaskRunExample();
-        ex.createCriteria().andCodeEqualTo(code);
-        ex.setOrderByClause("id asc limit " + pagination.getOffset() + "," + pagination.getLimit());
-        List<TaskRun> re = taskRunDao.selectByExample(ex);
+        TaskRunExample.Criteria criteria = ex.createCriteria();
+        if (!StringUtil.isEmpty(code)) {
+            criteria.andCodeEqualTo(code);
+        }
 
-
+        List<DTaskRun> li = listTaskRun(pagination, code, null);
         Integer count = taskRunDao.countByExample(ex);
         pagination.setTotal(count);
 
 
         result.setPagination(pagination);
-        result.setRows(convert(re));
+        result.setRows(li);
         return result;
     }
 
