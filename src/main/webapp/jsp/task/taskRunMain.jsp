@@ -52,26 +52,22 @@
 <%@include file="../../common/include/modal.jsp" %>
 <script type="text/javascript">
 
-    function getTaskStatusSelect() {
-        var content = '<option value="1">待执行</option>';
-        content += '<option value="2">成功</option>';
-        content += '<option value="3">失败</option>';
-        return content;
-    }
 
     var columns = [
         {checkbox: true},
         {field: "taskName", title: "执行名称"},
         {field: "status", title: "状态", formatter: formatterTaskStatus},
+        {field: "timeInterval", title: "抓数间隔时间(秒)"},
         {field: "paramBeginDate", title: "订单开始时间", formatter: formatter_datetime, class: "th_time"},
         {field: "paramEndDate", title: "订单结束时间", formatter: formatter_datetime, class: "th_time"},
         {field: "beginDate", title: "执行开始时间", formatter: formatter_datetime, class: "th_time"},
-        {field: "endDate", title: "执行结束时间", formatter: formatter_datetime, class: "th_time"},
+        {field: "endDate", title: "执行结束时间", formatter: getRunTimeDesc, class: "th_time"},
         {field: "createdAt", title: "创建时间", formatter: formatter_datetime, class: "th_time"}
     ];
 
     var addFields = [
         {field: "taskName", title: "执行名称", require: true},
+        {field: "timeInterval", title: "抓数间隔时间(秒)", defaultValue: 10, require: true, fileType: 2},
         {field: "paramBeginDate", title: "订单开始时间", require: true, fileType: 3},
         {field: "paramEndDate", title: "订单结束时间", require: true, fileType: 3},
         {field: "code", isHidden: true, defaultValue: "${code}"}
@@ -79,6 +75,7 @@
 
     var updateFields = [
         {field: "taskName", title: "执行名称", require: true},
+        {field: "timeInterval", title: "抓数间隔时间(秒)", require: true, fileType: 2},
         {field: "paramBeginDate", title: "订单开始时间", require: true, fileType: 3},
         {field: "paramEndDate", title: "订单结束时间", require: true, fileType: 3},
         {field: "status", title: "状态", fileType: 10, select_content: getTaskStatusSelect()}

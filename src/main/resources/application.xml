@@ -44,9 +44,9 @@
             <value>${jdbc_password}</value>
         </property>
         <!-- 初始化连接大小 -->
-        <property name="initialSize" value="3"/>
+        <property name="initialSize" value="5"/>
         <!-- 连接池最大使用连接数量 -->
-        <property name="maxActive" value="20"/>
+        <property name="maxActive" value="50"/>
     </bean>
 
     <!-- 配置Mybatis的文件 ，mapperLocations配置**Mapper.xml文件位置，configLocation配置mybatis-config文件位置-->

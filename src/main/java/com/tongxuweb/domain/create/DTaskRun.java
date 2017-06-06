@@ -16,6 +16,7 @@ public class DTaskRun extends TaskRun {
     String paramEndDate;
     String orderIds;
     String orderNum = "0";
+    Integer timeInterval = 10;
 
     public DTaskRun(TaskRun taskRun) {
         setCode(taskRun.getCode());
@@ -57,6 +58,14 @@ public class DTaskRun extends TaskRun {
 
     public void setParamEndDate(String paramEndDate) {
         this.paramEndDate = paramEndDate;
+    }
+
+    public Integer getTimeInterval() {
+        return timeInterval;
+    }
+
+    public void setTimeInterval(Integer timeInterval) {
+        this.timeInterval = timeInterval;
     }
 
     public void initOrderNum() {

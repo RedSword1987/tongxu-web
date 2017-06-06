@@ -38,7 +38,6 @@ public class OutSideControl {
         pagination.setOffset(0);
         pagination.setLimit(1);
         List<DTaskRun> tasklist = taskTypeService.listTaskRun(pagination, null, 1);
-//        List<TaskRunExtend> tasklist = outSideService.getNeedTask();
         result.put("tasklist", tasklist);
         return result;
     }

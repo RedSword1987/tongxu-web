@@ -142,6 +142,14 @@ function getObjType(ooo) {
 }
 
 
+function getTaskStatusSelect() {
+	var content = '<option value="1">待执行</option>';
+	content += '<option value="2">成功</option>';
+	content += '<option value="3">失败</option>';
+	content += '<option value="4">进展中</option>';
+	return content;
+}
+
 function formatterTaskStatus(value, row, index) {
 	if (value) {
 		value = value + '';
@@ -154,6 +162,38 @@ function formatterTaskStatus(value, row, index) {
 			return "成功";
 		} else if (value == 3) {
 			return "失败";
+		} else if (value == 4) {
+			return "进展中";
+		}
+	}
+	return value;
+}
+
+function getRunTimeDesc(value, row, index) {
+	if (value) {
+		if (value.indexOf("-") == -1) {
+			var date_l = new Date(value);
+			if (row.beginDate) {
+
+				var beginDate = new Date(row.beginDate);
+				var timeSe = (date_l.getTime() - beginDate.getTime()) / 1000;
+
+				if (timeSe <= 60) {
+					return timeSe + "秒";
+				} else {
+					var mins = parseInt(timeSe / 60);
+					var mins_s = timeSe % 60;
+					return mins + "分," + mins_s + "秒";
+				}
+			}
+
+
+			var time = date_l.CCFormat("yyyy-MM-dd hh:mm:ss");
+			return time;
+		} else if (chechInt(value)) {
+			var date_l = new Date(value * 1);
+			var time = date_l.CCFormat("yyyy-MM-dd hh:mm:ss");
+			return time;
 		}
 	}
 	return value;

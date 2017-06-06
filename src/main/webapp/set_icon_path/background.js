@@ -3,21 +3,24 @@ var urlPre_local="http://localhost:8089/";
 
 
 var getNeedTask="outSide/getNeedTask.action";
-var finishTask="outSide/finishTask.action";
+var finishTask = "outSide/taskRunStatus.action";
 var saveOrders="outSide/saveOrders.action";
 
 var urlPre=urlPre_local;
 
 chrome.extension.onMessage.addListener(
     function(request, sender, sendResponse) {
-        saveData(request);
-
-		//finishTask(request.batchId,2)
+		var action = request.action;
+		if (action && 2 == action) {
+			taskStatus(request.id, request.status);
+		} else {
+			saveData(request);
+		}
     }
 );
 
 var days=-30;
-var timeInterval=11;
+var timeInterval = 3;
 
 
 
@@ -36,6 +39,12 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 					var data=responseData.tasklist;
 					$.each(data,function(i,task){
 						var taskId=task.id;
+						if (task.timeInterval) {
+							timeInterval = task.timeInterval;
+						}
+
+						taskStatus(taskId, 4);
+
 						var code=task.code;
 
 
@@ -52,9 +61,9 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
 						var typeDesc = code;
 
-						alert("开始抓数(type:" + typeDesc + ") dateBegin:" + Date.parse(begin) + ",dateEnd:" + Date.parse(end) + ",batchId:" + taskId + ",");
 						if ("main"==code) {
-							//finishTask(taskId,4);
+							alert("开始抓数(type:" + typeDesc + ") dateBegin:" + Date.parse(begin) + ",dateEnd:" + Date.parse(end) + ",batchId:" + taskId + ",");
+
 							chrome.tabs.sendMessage(tab.id, {
 								"batchId": taskId,
 								"begin": Date.parse(begin),
@@ -64,6 +73,8 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 								"orderId": null
 							});
 						}else if("wuliu"==code){
+							alert("开始抓数(type:" + typeDesc + ") :抓数数量:" + task.orderNum + ",batchId:" + taskId);
+
 							if (task.orderIds) {
 								var orderArr = task.orderIds.split(",");
 								if ($(orderArr).size() > 0) {
@@ -80,6 +91,8 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 								}
 							}
 						} else if ("money" == code) {
+							alert("开始抓数(type:" + typeDesc + ") :抓数数量:" + task.orderNum + ",batchId:" + taskId);
+
 							if (task.orderIds) {
 								var orderArr = task.orderIds.split(",");
 								if ($(orderArr).size() > 0) {
@@ -97,9 +110,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 							}
 						}
 					});
-					 
-					
-					
 				}else{
 					alert("无需要抓取的任务");
 				}
@@ -108,7 +118,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 				alert("错拉");
 		    }
 		});
-		
 });
 
 function getOrderDetail(tab_id,data,index_,orderids){
@@ -120,12 +129,12 @@ function getOrderDetail(tab_id,data,index_,orderids){
 			getOrderDetail(tab_id,data,index_,orderids);
 		}, timeInterval*1000);
 	}else{
-		//finishTask(data.batchId,2);
+		taskStatus(taskId, 2);
 	}
 }
 
 
-function finishTask(taskId,status){
+function taskStatus(taskId, status) {
 	var dataJson={"id":taskId,"status":status};
 	$.ajax({
 		type: "post",
@@ -134,9 +143,9 @@ function finishTask(taskId,status){
 		url: urlPre+finishTask,
 		data: JSON.stringify(dataJson),
 
-		timeout:   20000,
+		timeout: 200000,
 		success: function (data) {
-			 
+
 		},
 		error: function (e) {
 			alert("错拉");
@@ -144,18 +153,21 @@ function finishTask(taskId,status){
 	});
 }
 
+
 function saveData(request){
 	var requestData=JSON.stringify(request);
-	$.ajax({
+	$.ajax(
+		{
 		    type: "post",
 			contentType: "application/json",
 		    url: urlPre+saveOrders,
 		    data: requestData,
 		    dataType: "json",
-		    timeout:   20000,
+			timeout: 200000,
 		    success: function (data) {
 		    },
 		    error: function (e) {
 		    }
-		});
+		}
+	);
 }

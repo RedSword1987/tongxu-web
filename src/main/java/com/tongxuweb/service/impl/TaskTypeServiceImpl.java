@@ -128,10 +128,18 @@ public class TaskTypeServiceImpl implements TaskTypeService {
                     String paramEndDate = temp.get("paramEndDate");
                     String orderNum = temp.get("orderNum");
                     String orderIds = temp.get("orderIds");
+                    String timeInterval = temp.get("timeInterval");
+                    if (!StringUtil.isEmpty(timeInterval)) {
+                        try {
+                            fa.setTimeInterval(Integer.valueOf(timeInterval.trim()));
+                        } catch (Exception e) {
+                        }
+                    }
                     fa.setParamBeginDate(paramBeginDate);
                     fa.setParamEndDate(paramEndDate);
                     fa.setOrderIds(orderIds);
                     fa.setOrderNum(orderNum);
+
                 }
                 result.add(fa);
             }
@@ -145,6 +153,16 @@ public class TaskTypeServiceImpl implements TaskTypeService {
         taskRunDao.insertSelective(taskRun);
 
         if (!StringUtil.isEmpty(taskRun.getCode())) {
+
+            TaskRunParam timeInterval = new TaskRunParam();
+            timeInterval.setKeyEn("timeInterval");
+            timeInterval.setKeyValue(String.valueOf(taskRun.getTimeInterval()));
+            timeInterval.setTaskRunId(taskRun.getId());
+            timeInterval.setType(1);
+
+            taskRunParamDao.insertSelective(timeInterval);
+
+
             if ("main".equals(taskRun.getCode())) {
                 TaskRunParam taskRunParam1 = new TaskRunParam();
                 taskRunParam1.setKeyEn("paramBeginDate");
@@ -182,9 +200,22 @@ public class TaskTypeServiceImpl implements TaskTypeService {
                 taskRunParamDao.insertSelective(taskRunParam2);
             } else if ("money".equals(taskRun.getCode())) {
 
+                String orderNum = taskRun.getOrderNum();
+
+                int orderNumI = 1000;
+                try {
+                    orderNumI = Integer.valueOf(orderNum);
+                    if (orderNumI <= 0) {
+                        orderNumI = 1000;
+                    }
+                } catch (Exception e) {
+
+                }
+
+
                 TbOrderExample ex = new TbOrderExample();
                 ex.createCriteria().andStatusEqualTo(1).andDateIsNull();
-                ex.setOrderByClause(" id desc limit 10");
+                ex.setOrderByClause(" id desc limit " + orderNumI);
                 List<String> orderIds = new ArrayList<String>();
                 List<TbOrder> ali = tbOrderDao.selectByExample(ex);
                 for (TbOrder tbOrder : ali) {
@@ -213,8 +244,22 @@ public class TaskTypeServiceImpl implements TaskTypeService {
 
     public void taskRunUpdate(DTaskRun taskRun) {
         taskRunDao.updateByPrimaryKeySelective(taskRun);
+        if (taskRun.getStatus() != null && 1 == taskRun.getStatus()) {
+            taskRunDao.clearBeginAndEndDate(taskRun.getId());
+        }
+
         TaskRun old = taskRunDao.selectByPrimaryKey(taskRun.getId());
         if (!StringUtil.isEmpty(old.getCode())) {
+
+            TaskRunParamExample timeInterval = new TaskRunParamExample();
+            timeInterval.createCriteria().andTaskRunIdEqualTo(taskRun.getId()).andKeyEnEqualTo("timeInterval");
+
+            TaskRunParam timeIntervalP = new TaskRunParam();
+            timeIntervalP.setKeyValue(String.valueOf(taskRun.getTimeInterval()));
+
+            taskRunParamDao.updateByExampleSelective(timeIntervalP, timeInterval);
+
+
             if ("main".equals(old.getCode())) {
                 TaskRunParamExample t1 = new TaskRunParamExample();
                 t1.createCriteria().andTaskRunIdEqualTo(taskRun.getId()).andKeyEnEqualTo("paramBeginDate");
@@ -253,9 +298,45 @@ public class TaskTypeServiceImpl implements TaskTypeService {
 
                 taskRunParamDao.updateByExampleSelective(taskRunParam2, t2);
 
+            } else if ("money".equals(old.getCode())) {
+                String orderNum = taskRun.getOrderNum();
+                int orderNumI = 1000;
+                try {
+                    orderNumI = Integer.valueOf(orderNum);
+                    if (orderNumI <= 0) {
+                        orderNumI = 1000;
+                    }
+                } catch (Exception e) {
+                }
+
+
+                TbOrderExample ex = new TbOrderExample();
+                ex.createCriteria().andStatusEqualTo(1).andDateIsNull();
+                ex.setOrderByClause(" id desc limit " + orderNumI);
+                List<String> orderIds = new ArrayList<String>();
+                List<TbOrder> ali = tbOrderDao.selectByExample(ex);
+                for (TbOrder tbOrder : ali) {
+                    orderIds.add(tbOrder.getOrderinfoId());
+                }
+
+                TaskRunParamExample t1 = new TaskRunParamExample();
+                t1.createCriteria().andTaskRunIdEqualTo(taskRun.getId()).andKeyEnEqualTo("orderNum");
+
+                TaskRunParam taskRunParam1 = new TaskRunParam();
+                taskRunParam1.setKeyValue(String.valueOf(orderIds.size()));
+
+                taskRunParamDao.updateByExampleSelective(taskRunParam1, t1);
+
+
+                TaskRunParamExample t2 = new TaskRunParamExample();
+                t2.createCriteria().andTaskRunIdEqualTo(taskRun.getId()).andKeyEnEqualTo("orderIds");
+
+                TaskRunParam taskRunParam2 = new TaskRunParam();
+                taskRunParam2.setKeyValue(StringUtil.joinListString(orderIds, ","));
+
+                taskRunParamDao.updateByExampleSelective(taskRunParam2, t2);
             }
         }
-
     }
 
     public PaginationResult taskRunWuliuResultPage(Pagination pagination, Long id) {

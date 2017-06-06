@@ -169,7 +169,7 @@ public class TbServiceImpl implements TbService {
                 ex.createCriteria().andSellerIdEqualTo(tbSeller.getSellerId()).andDateEqualTo(date).andStatusEqualTo(1);
                 Integer payNum = tbOrderDao.countByExample(ex);
                 if (payNum <= 0) {
-                    return;
+                    continue;
                 }
 
                 Integer itemNum = tbStaticDao.staticItemNum(date, tbSeller.getSellerId());

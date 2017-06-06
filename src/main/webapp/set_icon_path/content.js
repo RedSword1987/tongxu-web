@@ -1,4 +1,4 @@
-var timeInterval=5;
+var timeInterval = 3;
 var pageSize=100; 
 
  $.ajaxSetup({
@@ -118,113 +118,133 @@ function getData(dateBegin,dateEnd,pageNum,batchId,code,orderId){
 								});
 								 
 							}
-								 
-								 if(data.mainOrders[iii].payInfo&&data.mainOrders[iii].payInfo.operations){
-									 if($(data.mainOrders[iii].payInfo.operations).length>0&&data.mainOrders[iii].trade
-									 &&data.mainOrders[iii].trade.logisticsNum){
-										 for(i=0;i<data.mainOrders[iii].payInfo.operations.length;i++){
-											var operations=data.mainOrders[iii].payInfo.operations[i];
-											if(operations&&operations.url&&operations.text&&operations.text.indexOf("查看物流")!=-1){
-												$.ajax({
-													type: "get",
-													asyn:false,
-													url: "https:"+operations.url,
-													timeout:   20000,
-													success: function (htmlData) {	 
-														var data1=htmlData;
-														var begin=htmlData.indexOf("物流编号");
-														if(begin!=-1){
-															data1=htmlData.substring(begin,begin+100);
-														}
-														begin=data1.indexOf("<em>");
-														var end=data1.indexOf("</em>");
-														if(begin!=-1&&end!=-1){
-															data1=data1.substring(begin+4,end);
-														}
-														var wuliucode=data1;
-														if(wuliucode.indexOf("LP")!=-1){
-															data.mainOrders[iii].trade.logisticsNumTaobao=wuliucode;
-															var nows=new Date();
-															var nows_s=nows.getTime();
-															$.ajax({
-																type: "get",
-																asyn:false,
-																url:"https://detail.i56.taobao.com/call/query_trace.do?_ksTS="+nows_s+"_54&callback=jsonp55&dimension=ORDER_CODE&orderCode="+wuliucode,
-																timeout:   20000,
-																success: function (jsonData) {	
-																	var jsonData_=jsonData;
-																	if(jsonData_){
-																		jsonData_=jsonData_.substring(10,jsonData_.length-1);
-																		 
-																		var wuliuJson = JSON.parse(jsonData_); 
-																		if(wuliuJson.detailList&&$(wuliuJson.detailList).length>0){
-																			var wuliudetail=wuliuJson.detailList[0];
-																			if(wuliudetail&&wuliudetail.detail&&$(wuliudetail.detail).length>0){
-																				var alldesc='';
-																				for(i=0;i<wuliudetail.detail.length;i++){
-																					var wuliaoObject=wuliudetail.detail[i];
-																					
-																					if(wuliaoObject.time){
-																						alldesc+=wuliaoObject.time+" ";
-																					}
-																					
-																					if(wuliaoObject.city){
-																						alldesc+=wuliaoObject.city+" ";
-																					}
-																					
-																					if(wuliaoObject.desc){
-																						alldesc+=wuliaoObject.desc;;
-																					}
-																					
-																					alldesc+=";";
-																					if(i==(wuliudetail.detail.length-1)){
-																						data.mainOrders[iii].trade.logisticsLastDesc=wuliaoObject.desc;
-																					}
-																				}
-																				
-																				data.mainOrders[iii].trade.logisticsDesc=alldesc;
-																				
-																			}
-																		}
-																	}
-																},
-																error: function (e) {
-																}
-															});
-														}
-													},
-													error: function (e) {
+
+							if (data.mainOrders[iii].payInfo && data.mainOrders[iii].payInfo.operations) {
+								if ($(data.mainOrders[iii].payInfo.operations).length > 0 && data.mainOrders[iii].trade
+									&& data.mainOrders[iii].trade.logisticsNum) {
+									for (i = 0; i < data.mainOrders[iii].payInfo.operations.length; i++) {
+										var operations = data.mainOrders[iii].payInfo.operations[i];
+										if (operations && operations.url && operations.text && operations.text.indexOf("查看物流") != -1) {
+											$.ajax({
+												type: "get",
+												asyn: false,
+												url: "https:" + operations.url,
+												timeout: 20000,
+												success: function (htmlData) {
+													var data1 = htmlData;
+													var begin = htmlData.indexOf("物流编号");
+													if (begin != -1) {
+														data1 = htmlData.substring(begin, begin + 100);
 													}
-												});
+													begin = data1.indexOf("<em>");
+													var end = data1.indexOf("</em>");
+													if (begin != -1 && end != -1) {
+														data1 = data1.substring(begin + 4, end);
+													}
+													var wuliucode = data1;
+													if (wuliucode.indexOf("LP") != -1) {
+														data.mainOrders[iii].trade.logisticsNumTaobao = wuliucode;
+														var nows = new Date();
+														var nows_s = nows.getTime();
+														$.ajax({
+															type: "get",
+															asyn: false,
+															url: "https://detail.i56.taobao.com/call/query_trace.do?_ksTS=" + nows_s + "_54&callback=jsonp55&dimension=ORDER_CODE&orderCode=" + wuliucode,
+															timeout: 20000,
+															success: function (jsonData) {
+																var jsonData_ = jsonData;
+																if (jsonData_) {
+																	jsonData_ = jsonData_.substring(10, jsonData_.length - 1);
+
+																	var wuliuJson = JSON.parse(jsonData_);
+																	if (wuliuJson.detailList && $(wuliuJson.detailList).length > 0) {
+																		var wuliudetail = wuliuJson.detailList[0];
+																		if (wuliudetail && wuliudetail.detail && $(wuliudetail.detail).length > 0) {
+																			var alldesc = '';
+																			for (i = 0; i < wuliudetail.detail.length; i++) {
+																				var wuliaoObject = wuliudetail.detail[i];
+
+																				if (wuliaoObject.time) {
+																					alldesc += wuliaoObject.time + " ";
+																			}
+
+																				if (wuliaoObject.city) {
+																					alldesc += wuliaoObject.city + " ";
+																				}
+
+																				if (wuliaoObject.desc) {
+																					alldesc += wuliaoObject.desc;
+																					;
+																				}
+
+																				alldesc += ";";
+																				if (i == (wuliudetail.detail.length - 1)) {
+																					data.mainOrders[iii].trade.logisticsLastDesc = wuliaoObject.desc;
+																				}
+																		}
+
+																			data.mainOrders[iii].trade.logisticsDesc = alldesc;
+
+																	}
+																}
+																}
+															},
+															error: function (e) {
+														}
+														});
+													}
+												},
+												error: function (e) {
 											}
-											
+											});
 										}
-										
-									 }
-								 }
-								 
-							
-							 
-							
+
+									}
+
+								}
+							}
 						}
 						var totalPage=data.page.totalPage;
 						data.batchId=batchId;
 						chrome.extension.sendMessage(data, function(response) {});
 						if(pageNum<totalPage){
-							 setTimeout(function () { 
-							   getData(dateBegin,dateEnd,pageNum+1,batchId)
+							 setTimeout(function () {
+								 getData(dateBegin, dateEnd, pageNum + 1, batchId, code, null)
 							}, timeInterval*1000);
 						} else{
-
+							if ("main" == code) {
+								chrome.extension.sendMessage({
+									"id": batchId,
+									"status": 2,
+									"action": 2
+								}, function (response) {
+								});
+							}
 						}
-
+					} else {
+						if ("main" == code) {
+							chrome.extension.sendMessage({
+								"id": batchId,
+								"status": 2,
+								"action": 2
+							}, function (response) {
+							});
+						}
+					}
+				} else {
+					if ("main" == code) {
+						chrome.extension.sendMessage({
+							"id": batchId,
+							"status": 2,
+							"action": 2
+						}, function (response) {
+						});
 					}
 				}
 		    },
 		    error: function (e) {
 		    }
 		});
-	
 }
 
 function getSendInfo(htmlData){
