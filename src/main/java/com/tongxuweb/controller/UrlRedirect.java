@@ -1,8 +1,10 @@
 package com.tongxuweb.controller;
 
 import com.tongxuweb.dao.TaskTypeDao;
+import com.tongxuweb.domain.create.PConfigAll;
 import com.tongxuweb.domain.generate.*;
 import com.tongxuweb.mapper.generate.TbSellerMapper;
+import com.tongxuweb.service.PService;
 import com.tongxuweb.service.TbStaticService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,9 @@ public class UrlRedirect {
 
     @Resource
     private TbStaticService tbStaticService;
+
+    @Resource
+    private PService pService;
 
     @Resource
     private TbSellerMapper tbSellerMapper;
@@ -160,5 +165,15 @@ public class UrlRedirect {
         request.setAttribute("id", id);
         return "jsp/task/taskRunWuliuResult";
     }
+
+    @RequestMapping("/pConfig")
+    public String pConfig(HttpServletRequest request) {
+
+        PConfigAll pConfigAll = pService.getPConfig();
+        request.setAttribute("pConfigAll", pConfigAll);
+        return "jsp/setting/pConfig";
+    }
+
+
 
 }

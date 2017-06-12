@@ -6,7 +6,7 @@ var getNeedTask="outSide/getNeedTask.action";
 var finishTask = "outSide/taskRunStatus.action";
 var saveOrders="outSide/saveOrders.action";
 
-var urlPre=urlPre_local;
+var urlPre = urlPre_t;
 
 chrome.extension.onMessage.addListener(
     function(request, sender, sendResponse) {

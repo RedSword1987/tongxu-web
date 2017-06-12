@@ -117,11 +117,11 @@
         id, date, task_id, buyer_id, buyer_nick, buyer_phonenum, buyer_virtual_phone, buyer_name, 
         buyer_provice, buyer_city, buyer_area, buyer_post, buyer_address, buyer_logistics_phone, 
         buy_message, orderinfo_createtime, orderinfo_id, statusinfo_text, statusinfo_type, 
-        create_time, pay_time, send_time, alipay_id, order_bar, order_bar_text, logistics_name, 
+        create_time, pay_time, send_time, alipay_id, order_bar, order_bar_text, logistics_name,
         logistics_num, logistics_num_taobao, logistics_last_desc, money_yunyin_yongjin, money_yunyin_fuwufei,
         money_yunyin_koudian, money_yunyin_youhuiquan, money_yunyin_teshu, money_wuliu_kuaidi,
         money_wuliu_changku, money_wuliu_baozhuang, money_wuliu_yunfeixian, money_final_money,
-        tag_info, item_num, created_at, updated_at, title, status, payinfo_actualfee, seller_id,
+        tag_info, item_num, created_at, updated_at, title, status, payinfo_actualfee, seller_id, 
         money_item_jinhuo, money_item_zhenping
     </sql>
     <sql id="Blob_Column_List">

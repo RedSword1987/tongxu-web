@@ -54,6 +54,7 @@
                             <li><a href="${pageContext.request.contextPath}/url/taskType.action">任务类型</a></li>
                             <li><a href="${pageContext.request.contextPath}/url/tbOrderStatusInfo.action">订单状态</a></li>
                             <li><a href="${pageContext.request.contextPath}/url/handStatic.action">手动统计</a></li>
+                            <li><a href="${pageContext.request.contextPath}/url/pConfig.action">参数配置</a></li>
                         </ul>
                     </li>
 

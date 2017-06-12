@@ -215,7 +215,7 @@ public class TaskTypeServiceImpl implements TaskTypeService {
 
                 TbOrderExample ex = new TbOrderExample();
                 ex.createCriteria().andStatusEqualTo(1).andDateIsNull();
-                ex.setOrderByClause(" id desc limit " + orderNumI);
+                ex.setOrderByClause(" orderinfo_createtime desc limit " + orderNumI);
                 List<String> orderIds = new ArrayList<String>();
                 List<TbOrder> ali = tbOrderDao.selectByExample(ex);
                 for (TbOrder tbOrder : ali) {
@@ -312,7 +312,7 @@ public class TaskTypeServiceImpl implements TaskTypeService {
 
                 TbOrderExample ex = new TbOrderExample();
                 ex.createCriteria().andStatusEqualTo(1).andDateIsNull();
-                ex.setOrderByClause(" id desc limit " + orderNumI);
+                ex.setOrderByClause(" orderinfo_createtime desc limit " + orderNumI);
                 List<String> orderIds = new ArrayList<String>();
                 List<TbOrder> ali = tbOrderDao.selectByExample(ex);
                 for (TbOrder tbOrder : ali) {

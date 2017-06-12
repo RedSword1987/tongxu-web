@@ -22,6 +22,10 @@
 
             <div class="clearfix"></div>
           </div>
+          <div class="x_content">
+            <table id="bootstrap-table">
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -31,22 +35,6 @@
 <%@include file="../../common/include/gentelella_js.jsp" %>
 <%@include file="../../common/include/modal.jsp" %>
 <script type="text/javascript">
-
-  function formatterStatus(value,row,index){
-    if(value){
-      value=value+'';
-      if(value==1){
-        return "待执行";
-      }else if(value==2){
-        return "成功";
-      }else if(value==3){
-        return "失败";
-      }
-    }
-    return value;
-  }
-
-
 
   var columns = [
     {field: "sellerName", title: "店铺名称"},

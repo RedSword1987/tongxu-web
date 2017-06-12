@@ -1,9 +1,11 @@
 package com.tongxuweb.controller;
 
+import com.tongxuweb.domain.create.PConfigAll;
 import com.tongxuweb.domain.generate.PUser;
 import com.tongxuweb.service.PService;
 import com.tongxuweb.util.CookieUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -55,5 +57,15 @@ public class PControl {
 
         return result;
 
+    }
+
+
+    @RequestMapping("/updatePConfig")
+    @ResponseBody
+    public Map<String, Object> updatePConfig(@RequestBody PConfigAll pConfigAll) {
+        Map<String, Object> ss = new HashMap<String, Object>();
+        ss.put("result", true);
+        pService.updatePConfig(pConfigAll);
+        return ss;
     }
 }

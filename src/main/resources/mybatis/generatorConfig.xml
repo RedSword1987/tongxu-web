@@ -79,6 +79,11 @@
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
         </table>
 
+        <table tableName="p_config">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+
+
         <table tableName="task_type">
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
         </table>

@@ -285,7 +285,6 @@ public class OutSideServiceImpl implements OutSideService {
                             if (!StringUtil.isEmpty(url) && url.indexOf("seller_id") != -1) {
                                 int sellerIdIndex = url.indexOf("seller_id=");
                                 url = url.substring(sellerIdIndex + 10);
-                                System.out.println(url);
                                 int yuIndex = url.indexOf("&");
                                 if (yuIndex != -1) {
                                     url = url.substring(0, yuIndex);

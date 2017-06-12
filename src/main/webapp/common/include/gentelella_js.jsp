@@ -1,12 +1,12 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <!-- jQuery -->
-<script src="${pageContext.request.contextPath}/gentelella-master/vendors/jquery/dist/jquery.min.js?v=20160907"></script>
+<script src="${pageContext.request.contextPath}/gentelella-master/vendors/jquery/dist/jquery.min.js?v=20170501"></script>
 <!-- Bootstrap -->
-<script src="${pageContext.request.contextPath}/gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js?v=20160907"></script>
+<script src="${pageContext.request.contextPath}/gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js?v=20170501"></script>
 <!-- FastClick -->
-<script src="${pageContext.request.contextPath}/gentelella-master/vendors/fastclick/lib/fastclick.js?v=20160907"></script>
+<script src="${pageContext.request.contextPath}/gentelella-master/vendors/fastclick/lib/fastclick.js?v=20170501"></script>
 <!-- NProgress -->
-<script src="${pageContext.request.contextPath}/gentelella-master/vendors/nprogress/nprogress.js?v=20160907"></script>
+<script src="${pageContext.request.contextPath}/gentelella-master/vendors/nprogress/nprogress.js?v=20170501"></script>
 <!-- Chart.js -->
 <script src="${pageContext.request.contextPath}/gentelella-master/vendors/Chart.js/dist/Chart.min.js"></script>
 <!-- gauge.js -->
@@ -70,10 +70,10 @@
 <script src="${pageContext.request.contextPath}/gentelella-master/vendors/bootstrap-table/bootstrap-table-zh-CN.js"></script>
 <script src="${pageContext.request.contextPath}/gentelella-master/vendors/jquery-cookie/jquery.cookie.js"></script>
 <!-- 自己项目的js -->
-<script src="${pageContext.request.contextPath}/common/js/common.js?v=20160907"></script>
-<script src="${pageContext.request.contextPath}/common/js/common_forTable.js?v=20160907"></script>
-<script src="${pageContext.request.contextPath}/common/js/common_forModal.js?v=20160907"></script>
-<script src="${pageContext.request.contextPath}/common/js/common_ajax.js?v=20160907"></script>
-<script src="${pageContext.request.contextPath}/common/js/echart.js?v=20160907"></script>
+<script src="${pageContext.request.contextPath}/common/js/common.js?v=20170501"></script>
+<script src="${pageContext.request.contextPath}/common/js/common_forTable.js?v=20170501"></script>
+<script src="${pageContext.request.contextPath}/common/js/common_forModal.js?v=20170501"></script>
+<script src="${pageContext.request.contextPath}/common/js/common_ajax.js?v=20170501"></script>
+<script src="${pageContext.request.contextPath}/common/js/echart.js?v=20170501"></script>
 
 
