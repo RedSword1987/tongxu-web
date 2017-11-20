@@ -2,6 +2,7 @@ package com.tongxuweb.service.interceptor;
 
 import com.tongxuweb.domain.create.TaskRunExtend;
 import com.tongxuweb.domain.entity.MainOrders;
+import com.tongxuweb.domain.generate.ActivityPayNotify;
 import com.tongxuweb.domain.generate.TaskRun;
 
 import java.util.List;
@@ -15,5 +16,7 @@ public interface OutSideService {
     List<TaskRunExtend> getNeedTask();
 
     int taskRunStatus(TaskRun taskRun);
+
+    ActivityPayNotify save(ActivityPayNotify activityPayNotify);
 
 }

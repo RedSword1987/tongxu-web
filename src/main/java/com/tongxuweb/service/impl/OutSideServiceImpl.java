@@ -42,6 +42,9 @@ public class OutSideServiceImpl implements OutSideService {
     private TbOrderItemDao tbOrderItemDao;
 
     @Resource
+    private ActivityPayNotifyDao activityPayNotifyDao;
+
+    @Resource
     private TaskRunDao taskRunDao;
 
     @Resource
@@ -230,6 +233,11 @@ public class OutSideServiceImpl implements OutSideService {
 
     public int taskRunStatus(TaskRun taskRun) {
         return taskRunDao.updateByPrimaryKeySelective(taskRun);
+    }
+
+    public ActivityPayNotify save(ActivityPayNotify activityPayNotify) {
+        activityPayNotifyDao.insertSelective(activityPayNotify);
+        return activityPayNotify;
     }
 
     private List<TbOrderExtend> convert(MainOrders mainOrders) {

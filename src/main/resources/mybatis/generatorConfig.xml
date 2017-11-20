@@ -137,6 +137,10 @@
             <generatedKey column="id" identity="true" sqlStatement="MySql"/>
         </table>
 
+        <table tableName="activity_pay_notify">
+            <generatedKey column="id" identity="true" sqlStatement="MySql"/>
+        </table>
+
 
     </context>
 </generatorConfiguration>
